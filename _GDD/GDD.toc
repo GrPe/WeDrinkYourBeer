@@ -36,7 +36,11 @@
 \contentsline {subsection}{\numberline {9.1}Overview}{12}
 \contentsline {section}{\numberline {10}Audio}{12}
 \contentsline {section}{\numberline {11}Technical Documentation}{13}
-\contentsline {subsection}{\numberline {11.1}State Machine}{13}
+\contentsline {subsection}{\numberline {11.1}State Machine - States}{13}
+\contentsline {paragraph}{Enemy}{13}
+\contentsline {paragraph}{Player}{13}
+\contentsline {paragraph}{Tower}{13}
+\contentsline {subsection}{\numberline {11.2}State Machine - Transition}{13}
 \contentsline {paragraph}{Enemy}{13}
 \contentsline {paragraph}{Player}{13}
 \contentsline {paragraph}{Tower}{13}
