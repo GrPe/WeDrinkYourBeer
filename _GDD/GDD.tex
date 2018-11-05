@@ -79,11 +79,15 @@
 
 \newpage
 \section{Game Controls}
+Tylko poprzez dotyk
+
 
 \newpage
 \section{Technicals}
 \subsection{Target}
+Android 5.0
 \subsection{Development Software}
+Android Studio + LibGDX
 
 \newpage
 \section{Game Art}
@@ -93,5 +97,30 @@ Rzut izometryczny. Stylistyka miejska.
 \section{Audio}
 Wiadomo tylko tyle, że ma być.
 
+\newpage
+
+\section{Technical Documentation}
+\subsection{State Machine}
+\paragraph{Enemy}
+\begin{itemize}
+	\item Walking
+	\item Dying
+\end{itemize}
+
+\paragraph{Player}
+\begin{itemize}
+	\item Regular
+	\item Build
+	\item FailMission
+	\item SuccessMission
+\end{itemize}
+
+\paragraph{Tower}
+\begin{itemize}
+	\item Waiting for enemy
+	\item Attack
+	\item building in progress
+	\item upgrade in progress
+\end{itemize}
 
 \end{document}
