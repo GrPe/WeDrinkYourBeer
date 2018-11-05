@@ -11,6 +11,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.5'
         
 
     }
@@ -22,7 +23,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "test"
+        appName = "WeDrinkYourBeer"
         gdxVersion = '1.9.8'
         roboVMVersion = '2.3.5'
         box2DLightsVersion = '1.4'
