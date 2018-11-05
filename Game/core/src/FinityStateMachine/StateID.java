@@ -2,5 +2,18 @@ package FinityStateMachine;
 
 public enum StateID
 {
-    NullStateID
+    NullStateID,
+
+    EnemyWalking,
+    EnemyDying,
+
+    PlayerRegular,
+    PlayerBuild,
+    PlayerFailMission,
+    PlayerSuccessMission,
+
+    TowerWaitingForEnemy,
+    TowerAttackEnemy,
+    TowerBuildingInProgress,
+    TowerUpgradeInProgress
 }
