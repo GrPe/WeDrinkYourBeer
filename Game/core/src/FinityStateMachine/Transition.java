@@ -2,5 +2,18 @@ package FinityStateMachine;
 
 public enum Transition
 {
-    NullTransition
+    NullTransition,
+
+    EnemyStartWalking,
+    EnemyDie,
+
+    PlayerRegular,
+    PlayerBuildTower,
+    PlayerFailMission,
+    PlayerSuccessMission,
+
+    TowerWaitingFor,
+    TowerAttack,
+    TowerBuild,
+    TowerUpgrade
 }
