@@ -5,11 +5,11 @@ import com.badlogic.gdx.Gdx;
 
 import java.util.HashMap;
 
-public class State
+public abstract class State
 {
     HashMap<Transition,StateID> map = new HashMap<Transition, StateID>();
 
-    private StateID stateID;
+    protected StateID stateID;
     public StateID getStateID()
     {
         return stateID;
