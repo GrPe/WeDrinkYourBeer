@@ -1,37 +1,85 @@
-# Built application files
-/*/build/
+## Java
 
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
+*.class
+*.war
+*.ear
+hs_err_pid*
 
-# Local configuration file (sdk path, etc)
-local.properties
+## Robovm
+Game/ios/robovm-build/
 
-# Gradle generated files
-.gradle/
+## GWT
+Game/html/war/
+Game/html/gwt-unitCache/
+.apt_generated/
+.gwt/
+gwt-unitCache/
+www-test/
+.gwt-tmp/
 
-# Signing files
-.signing/
-
-# User-specific configurations
-.idea/libraries/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
-.idea/vcs.xml
+## Android Studio and Intellij and Android in general
+Game/android/libs/armeabi/
+Game/android/libs/armeabi-v7a/
+Game/android/libs/arm64-v8a/
+Game/android/libs/x86/
+Game/android/libs/x86_64/
+Game/android/gen/
+.idea/
+*.ipr
+*.iws
 *.iml
+Game/android/out/
+Game/com_crashlytics_export_strings.xml
 
-# OS-specific files
+
+/build/
+Game/android/build/
+Game/core/build/
+Game/desktop/build/
+Game/html/build/
+Game/ios/build/
+Game/ios-moe/build/
+
+Game/nbbuild/
+Game/android/nbbuild/
+Game/core/nbbuild/
+Game/desktop/nbbuild/
+Game/html/nbbuild/
+Game/ios/nbbuild/
+Game/ios-moe/nbbuild/
+
+Game/dist/
+Game/android/dist/
+Game/core/dist/
+Game/desktop/dist/
+Game/html/dist/
+Game/ios/dist/
+Game/ios-moe/dist/
+
+Game/nbdist/
+Game/android/nbdist/
+Game/core/nbdist/
+Game/desktop/nbdist/
+Game/html/nbdist/
+Game/ios/nbdist/
+Game/ios-moe/nbdist/
+
+nbactions.xml
+nb-configuration.xml
+
+## Gradle
+
+Game/local.properties
+Game/.gradle/
+gradle-app.setting
+Game/build/
+Game/android/build/
+Game/core/build/
+Game/desktop/build/
+Game/html/build/
+Game/ios/build/
+Game/ios-moe/build/
+
+## OS Specific
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
