@@ -15,7 +15,7 @@ public final class Environment extends GameObject implements Drawable
 
     @Override
     public Sprite getDrawingSprite() {
-        return null;
+        return sprite;
     }
 
     public void setPosition(Vector2 position)
