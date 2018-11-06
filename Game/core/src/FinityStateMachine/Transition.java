@@ -8,7 +8,6 @@ public enum Transition
     EnemyDie,
 
     PlayerRegular,
-    PlayerBuildTower,
     PlayerFailMission,
     PlayerSuccessMission,
 

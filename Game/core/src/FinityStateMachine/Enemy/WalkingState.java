@@ -2,6 +2,7 @@ package FinityStateMachine.Enemy;
 
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
+import GameObjects.Enemy;
 
 public class WalkingState extends State {
 
