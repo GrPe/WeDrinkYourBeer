@@ -10,4 +10,14 @@ public class SpawnPoint extends GameObject implements Drawable
     public Sprite getDrawingSprite() {
         return sprite;
     }
+
+    @Override
+    public double getX() {
+        return super.getPosition().x;
+    }
+
+    @Override
+    public double getY() {
+        return super.getPosition().y;
+    }
 }

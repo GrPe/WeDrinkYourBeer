@@ -18,6 +18,16 @@ public final class Environment extends GameObject implements Drawable
         return sprite;
     }
 
+    @Override
+    public double getX() {
+        return super.getPosition().x;
+    }
+
+    @Override
+    public double getY() {
+        return super.getPosition().y;
+    }
+
     public void setPosition(Vector2 position)
     {
         super.setPosition(position);
