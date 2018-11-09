@@ -7,6 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
+
+import Factories.LevelEnvironmentFactory;
+import GameObjects.Environment;
 
 public class GameMaster extends ApplicationAdapter
 {
@@ -17,17 +23,29 @@ public class GameMaster extends ApplicationAdapter
     private Texture texture;
     private Sprite sprite;
 
+    private ArrayList<Environment> env;
 
     @Override
     public void create()
     {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false,800,480);
+        camera.setToOrtho(false,780,480);
 
         batch = new SpriteBatch();
 
-        texture = new Texture(Gdx.files.internal("badlogic.jpg"));
-        sprite = new Sprite(texture);
+        //texture = new Texture(Gdx.files.internal("Environment/buildings0.png"));
+        //sprite = new Sprite(texture);
+
+        env = new ArrayList<Environment>();
+        for(int i = 0; i < 800/60; i++)
+        {
+            if(i%2 == 1) continue;
+            for(int j = 0; j < 480/60; j++)
+            {
+                if(j%2 == 1) continue;
+                env.add(LevelEnvironmentFactory.createBuilding(new Vector2(i*60,j*60)));
+            }
+        }
     }
 
     @Override
@@ -41,8 +59,10 @@ public class GameMaster extends ApplicationAdapter
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        //to draw
-        batch.draw(sprite,800-256,480-256);
+        for(Environment x : env)
+        {
+            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
+        }
         batch.end();
 
 

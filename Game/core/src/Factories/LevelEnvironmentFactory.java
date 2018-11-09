@@ -10,7 +10,7 @@ import GameObjects.Environment;
 
 public class LevelEnvironmentFactory
 {
-    private static final int buildingTextureCounter = 0;
+    private static final int buildingTextureCounter = 3;
     private static ArrayList<Texture> texturesBuildings;
     private static Texture textureWay;
 
@@ -18,7 +18,8 @@ public class LevelEnvironmentFactory
     public static Environment createBuilding(Vector2 position)
     {
         if(texturesBuildings == null) LoadBuildingsTextures();
-        return null;
+        Environment ret = new Environment(position,0,texturesBuildings.get(2));
+        return ret;
     }
 
     public static Environment createWay(Vector2 position)
@@ -30,9 +31,10 @@ public class LevelEnvironmentFactory
 
     private static void LoadBuildingsTextures()
     {
+        texturesBuildings = new ArrayList<Texture>();
         for(int i = 0; i < buildingTextureCounter; i++)
         {
-            Texture tmp = new Texture(Gdx.files.internal("Environment/buildings" + i));
+            Texture tmp = new Texture(Gdx.files.internal("Environment/buildings" + i + ".png"));
             texturesBuildings.add(tmp);
         }
     }

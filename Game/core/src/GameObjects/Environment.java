@@ -10,7 +10,7 @@ public final class Environment extends GameObject implements Drawable
 
     public Environment(Vector2 position, float rotation, Texture texture) {
         super(position, rotation);
-        this.sprite.setTexture(texture);
+        this.sprite = new Sprite(texture);
     }
 
     @Override
@@ -19,12 +19,12 @@ public final class Environment extends GameObject implements Drawable
     }
 
     @Override
-    public double getX() {
+    public float getX() {
         return super.getPosition().x;
     }
 
     @Override
-    public double getY() {
+    public float getY() {
         return super.getPosition().y;
     }
 

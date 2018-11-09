@@ -16,12 +16,12 @@ public class Enemy extends GameObject implements Drawable
     }
 
     @Override
-    public double getX() {
+    public float getX() {
         return super.getPosition().x;
     }
 
     @Override
-    public double getY() {
+    public float getY() {
         return super.getPosition().y;
     }
 }
