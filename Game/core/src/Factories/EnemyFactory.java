@@ -35,15 +35,15 @@ public class EnemyFactory
         line = file.readString();
         arr = line.split(" ");
 
-        float x, y;
+        int x, y;
         int size = Integer.parseInt(arr[0]);
         navLink = new Vector2[size];
 
         for(int i = 1; i < arr.length; i+=2)
         {
-            x = Float.parseFloat(arr[i]);
-            y = Float.parseFloat(arr[i+1]);
-            navLink[(i-1)/2] = new Vector2(x,y);
+            x = Integer.parseInt(arr[i]);
+            y = Integer.parseInt(arr[i+1]);
+            navLink[(i-1)/2] = new Vector2(x*60,y*60);
         }
     }
 
