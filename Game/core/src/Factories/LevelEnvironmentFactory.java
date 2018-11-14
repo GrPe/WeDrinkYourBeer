@@ -41,6 +41,6 @@ public class LevelEnvironmentFactory
 
     private static void LoadWaysTextures()
     {
-        textureWay = new Texture(Gdx.files.internal("Environment/way"));
+        textureWay = new Texture(Gdx.files.internal("Environment/way.png"));
     }
 }
