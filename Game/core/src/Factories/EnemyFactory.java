@@ -29,7 +29,7 @@ public class EnemyFactory
 
     private void LoadNavLink(int levelNo)
     {
-        FileHandle file = Gdx.files.internal("Levels/navlv0.txt");
+        FileHandle file = Gdx.files.internal("Levels/navlv" + levelNo + ".txt");
         String line;
         String[] arr;
         line = file.readString();
