@@ -20,10 +20,9 @@ public class GameMaster extends ApplicationAdapter
     private SpriteBatch batch;
 
     //test
-    private Texture texture;
-    private Sprite sprite;
 
     private ArrayList<Environment> env;
+    private Level lvl;
 
     @Override
     public void create()
@@ -33,19 +32,9 @@ public class GameMaster extends ApplicationAdapter
 
         batch = new SpriteBatch();
 
-        //texture = new Texture(Gdx.files.internal("Environment/buildings0.png"));
-        //sprite = new Sprite(texture);
+        //test
 
-        env = new ArrayList<Environment>();
-        for(int i = 0; i < 800/60; i++)
-        {
-            if(i%2 == 1) continue;
-            for(int j = 0; j < 480/60; j++)
-            {
-                if(j%2 == 1) continue;
-                env.add(LevelEnvironmentFactory.createBuilding(new Vector2(i*60,j*60)));
-            }
-        }
+        lvl = new Level();
     }
 
     @Override
@@ -59,10 +48,7 @@ public class GameMaster extends ApplicationAdapter
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        for(Environment x : env)
-        {
-            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
-        }
+        lvl.render(batch);
         batch.end();
 
 
