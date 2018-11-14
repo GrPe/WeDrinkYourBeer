@@ -7,12 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 import GameObjects.Environment;
+import GameObjects.SpawnPoint;
 
 public class LevelEnvironmentFactory
 {
     private static final int buildingTextureCounter = 3;
     private static ArrayList<Texture> texturesBuildings;
     private static Texture textureWay;
+    private static Texture textureSpawnPoint;
 
 
     public static Environment createBuilding(Vector2 position)
@@ -29,6 +31,12 @@ public class LevelEnvironmentFactory
         return ret;
     }
 
+    public static SpawnPoint createSpawnPoint(Vector2 position)
+    {
+        if(textureSpawnPoint == null) LoadSpawnPointTexture();
+        return new SpawnPoint(position,0,textureSpawnPoint);
+    }
+
     private static void LoadBuildingsTextures()
     {
         texturesBuildings = new ArrayList<Texture>();
@@ -42,5 +50,10 @@ public class LevelEnvironmentFactory
     private static void LoadWaysTextures()
     {
         textureWay = new Texture(Gdx.files.internal("Environment/way.png"));
+    }
+
+    private static void LoadSpawnPointTexture()
+    {
+        textureSpawnPoint = new Texture(Gdx.files.internal("Environment/spawnPoint.png"));
     }
 }
