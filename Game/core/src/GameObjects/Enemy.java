@@ -1,12 +1,12 @@
 package GameObjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ArrayList;
 
 public class Enemy extends GameObject implements Drawable
 {
@@ -14,13 +14,13 @@ public class Enemy extends GameObject implements Drawable
     //Animation<TextureRegion> walkAnimation;
     Sprite temp;
 
-    int hp;
-    float speed;
-    int damage;
-    ArrayList<Vector2> navLink;
-    int currectTarget;
+    private int hp;
+    private float speed;
+    private int damage;
+    private Vector2[] navLink;
+    private int currectTarget;
 
-    public Enemy(Vector2 position, float rotation, Texture texture, ArrayList<Vector2> navLink, int hp, float speed, int damage) {
+    public Enemy(Vector2 position, float rotation, Texture texture, Vector2[] navLink, int hp, float speed, int damage) {
         super(position, rotation);
         temp = new Sprite(texture);
         this.navLink = navLink;
@@ -53,7 +53,16 @@ public class Enemy extends GameObject implements Drawable
 
     public void move()
     {
+        float destX = navLink[currectTarget].x - super.getPosition().x;
+        float destY = navLink[currectTarget].y - super.getPosition().y;
 
+        float dist = (float)Math.sqrt(destX * destX + destY * destY);
+
+        destX = destX/dist;
+        destY = destY/dist;
+
+        super.setPosition(new Vector2(super.getPosition().x + destX * speed * Gdx.graphics.getDeltaTime(),
+                super.getPosition().y + destY * speed * Gdx.graphics.getDeltaTime()));
     }
 
     public int getDamage()
