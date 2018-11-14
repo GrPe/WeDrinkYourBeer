@@ -1,8 +1,11 @@
 package Factories;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.logging.FileHandler;
 
 import GameObjects.Enemy;
 
@@ -26,7 +29,22 @@ public class EnemyFactory
 
     private void LoadNavLink(int levelNo)
     {
-        //json
+        FileHandle file = Gdx.files.internal("Levels/navlv0.txt");
+        String line;
+        String[] arr;
+        line = file.readString();
+        arr = line.split(" ");
+
+        float x, y;
+        int size = Integer.parseInt(arr[0]);
+        navLink = new Vector2[size];
+
+        for(int i = 1; i < arr.length; i+=2)
+        {
+            x = Float.parseFloat(arr[i]);
+            y = Float.parseFloat(arr[i+1]);
+            navLink[(i-1)/2] = new Vector2(x,y);
+        }
     }
 
     private void LoadStudentTexture()
