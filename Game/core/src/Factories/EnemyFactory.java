@@ -49,12 +49,12 @@ public class EnemyFactory
 
     private void LoadStudentTexture()
     {
-        studentTexture = new Texture(Gdx.files.internal("Enemy/student.png"));
+        studentTexture = new Texture(Gdx.files.internal("Enemies/enemy_test.png"));
     }
 
     private void LoadMetalTexture()
     {
-        metalTexture = new Texture(Gdx.files.internal("Enemy/metal.png"));
+        metalTexture = new Texture(Gdx.files.internal("Enemies/metal.png"));
     }
 
 }
