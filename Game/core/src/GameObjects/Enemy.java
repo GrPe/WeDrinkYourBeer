@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import FinityStateMachine.Enemy.WalkingState;
+import FinityStateMachine.StateID;
+import FinityStateMachine.StateMachine;
+import FinityStateMachine.Transition;
+
 
 public class Enemy extends GameObject implements Drawable
 {
@@ -18,6 +23,8 @@ public class Enemy extends GameObject implements Drawable
     private Vector2[] navLink;
     private int currentTarget;
 
+    StateMachine stateMachine;
+
     public Enemy(Vector2 position, float rotation, Texture texture, Vector2[] navLink, int hp, float speed, int damage) {
         super(position, rotation);
         temp = new Sprite(texture);
@@ -26,6 +33,7 @@ public class Enemy extends GameObject implements Drawable
         this.speed = speed;
         this.hp = hp;
         this.currentTarget = 0;
+        InitStateMachine();
     }
 
     @Override
@@ -61,7 +69,25 @@ public class Enemy extends GameObject implements Drawable
 
         super.setPosition(new Vector2(super.getPosition().x + destX * speed * Gdx.graphics.getDeltaTime(),
                 super.getPosition().y + destY * speed * Gdx.graphics.getDeltaTime()));
+
+        ChangePosition();
     }
+
+    private void ChangePosition()
+    {
+        if(CheckPosition())
+        {
+            currentTarget++;
+            if(currentTarget == navLink.length)
+                currentTarget--;
+        }
+    }
+
+    private boolean CheckPosition()
+    {
+        return super.getPosition().epsilonEquals(navLink[currentTarget]);
+    }
+
 
     public int getDamage()
     {
@@ -72,5 +98,23 @@ public class Enemy extends GameObject implements Drawable
     {
         return hp < 0;
     }
+
+    private void InitStateMachine()
+    {
+        stateMachine = new StateMachine();
+
+        WalkingState walkingState = new WalkingState(this);
+        walkingState.AddTransition(Transition.EnemyDie, StateID.EnemyDying);
+
+        stateMachine.AddState(walkingState);
+
+    }
+
+    //only for state machine
+    public void OnDie()
+    {
+        stateMachine.PerformTransition(Transition.EnemyDie);
+    }
+
 
 }
