@@ -9,7 +9,6 @@ import GameObjects.Enemy;
 public class WalkingState extends State {
 
     private Enemy enemy;
-    private Vector2 target;
 
     public WalkingState(Enemy enemy)
     {
@@ -20,7 +19,7 @@ public class WalkingState extends State {
     @Override
     public void DoBeforeEntering()
     {
-        target = enemy.Na
+
     }
 
     @Override
@@ -32,7 +31,7 @@ public class WalkingState extends State {
     @Override
     public void Act()
     {
-
+        enemy.move();
     }
 
 }
