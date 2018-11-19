@@ -92,5 +92,8 @@ public class Level
         batch.draw(spawnPoint.getDrawingSprite(),spawnPoint.getX(),spawnPoint.getY());
     }
 
-
+    public Vector2 getSpawnPointPosition()
+    {
+        return spawnPoint.getPosition();
+    }
 }
