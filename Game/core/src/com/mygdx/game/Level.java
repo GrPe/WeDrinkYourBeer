@@ -85,10 +85,13 @@ public class Level
         {
             batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
         }
+
         for(Environment x : ways)
         {
             batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
         }
+
+        batch.draw(spawnPoint.getDrawingSprite(),spawnPoint.getX(),spawnPoint.getY());
     }
 
 
