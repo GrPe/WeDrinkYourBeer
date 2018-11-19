@@ -110,11 +110,15 @@ public class Enemy extends GameObject implements Drawable
 
     }
 
+    public void Update()
+    {
+        stateMachine.getCurrentState().Act();
+    }
+
     //only for state machine
     public void OnDie()
     {
         stateMachine.PerformTransition(Transition.EnemyDie);
     }
-
 
 }

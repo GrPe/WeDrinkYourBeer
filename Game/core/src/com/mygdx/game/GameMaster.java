@@ -4,15 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-import Factories.LevelEnvironmentFactory;
-import GameObjects.Enemy;
 import GameObjects.Environment;
 
 public class GameMaster extends ApplicationAdapter
@@ -23,7 +18,8 @@ public class GameMaster extends ApplicationAdapter
     //test
 
     private ArrayList<Environment> env;
-    private Level lvl;
+    private Level level;
+    private EnemyManager enemyManager;
 
     @Override
     public void create()
@@ -35,7 +31,9 @@ public class GameMaster extends ApplicationAdapter
 
         //test
 
-        lvl = new Level();
+        level = new Level();
+        enemyManager = new EnemyManager(level);
+        enemyManager.NewWay(10);
     }
 
     @Override
@@ -49,10 +47,9 @@ public class GameMaster extends ApplicationAdapter
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        lvl.render(batch);
+        level.render(batch);
+        enemyManager.render(batch);
         batch.end();
-
-
     }
 
     @Override
