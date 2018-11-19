@@ -22,7 +22,6 @@ public class Level
     private ArrayList<Environment> ways;
     private ArrayList<Environment> buildings;
     private SpawnPoint spawnPoint;
-    private ArrayList<Enemy> enemies;
 
 
     public Level()
@@ -43,7 +42,6 @@ public class Level
 
         ways = new ArrayList<Environment>();
         buildings = new ArrayList<Environment>();
-        enemies = new ArrayList<Enemy>();
 
         FileHandle file = Gdx.files.internal("Levels/lv0.txt");
         String line;
