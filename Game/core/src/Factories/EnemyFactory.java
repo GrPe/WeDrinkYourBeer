@@ -11,23 +11,23 @@ import GameObjects.Enemy;
 
 public class EnemyFactory
 {
-    private Vector2[] navLink;
+    private static Vector2[] navLink;
     //temporary - Animation in future !!!
-    private Texture studentTexture;
-    private Texture metalTexture;
+    private static Texture studentTexture;
+    private static Texture metalTexture;
 
-    public Enemy createStudentEnemy(Vector2 position)
+    public static Enemy createStudentEnemy(Vector2 position)
     {
         if(studentTexture == null) LoadStudentTexture();
         return new Enemy(position,0,studentTexture,navLink,5,1,1);
     }
 
-    public Enemy createMetalEnemy(Vector2 position)
+    public static Enemy createMetalEnemy(Vector2 position)
     {
         return null;
     }
 
-    private void LoadNavLink(int levelNo)
+    private static void LoadNavLink(int levelNo)
     {
         FileHandle file = Gdx.files.internal("Levels/navlv" + levelNo + ".txt");
         String line;
@@ -47,12 +47,12 @@ public class EnemyFactory
         }
     }
 
-    private void LoadStudentTexture()
+    private static void LoadStudentTexture()
     {
         studentTexture = new Texture(Gdx.files.internal("Enemies/enemy_test.png"));
     }
 
-    private void LoadMetalTexture()
+    private static void LoadMetalTexture()
     {
         metalTexture = new Texture(Gdx.files.internal("Enemies/metal.png"));
     }
