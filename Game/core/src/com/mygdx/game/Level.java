@@ -8,7 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 import Factories.LevelEnvironmentFactory;
+import GameObjects.Enemy;
 import GameObjects.Environment;
+import GameObjects.SpawnPoint;
 
 public class Level
 {
@@ -19,12 +21,11 @@ public class Level
 
     private ArrayList<Environment> ways;
     private ArrayList<Environment> buildings;
+    private SpawnPoint spawnPoint;
 
 
     public Level()
     {
-        ways = new ArrayList<Environment>();
-        buildings = new ArrayList<Environment>();
         try
         {
             CreateLevel();
@@ -38,6 +39,10 @@ public class Level
 
     private void CreateLevel() throws Exception
     {
+
+        ways = new ArrayList<Environment>();
+        buildings = new ArrayList<Environment>();
+
         FileHandle file = Gdx.files.internal("Levels/lv0.txt");
         String line;
         int y = 6;
@@ -56,6 +61,7 @@ public class Level
                     x++;
                     break;
                 case CODE_SPAWN_POINT:
+                    spawnPoint = LevelEnvironmentFactory.createSpawnPoint(new Vector2(x*60, y*60));
                     x++;
                     break;
                 case CODE_TOWER:
@@ -77,11 +83,17 @@ public class Level
         {
             batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
         }
+
         for(Environment x : ways)
         {
             batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
         }
+
+        batch.draw(spawnPoint.getDrawingSprite(),spawnPoint.getX(),spawnPoint.getY());
     }
 
-
+    public Vector2 getSpawnPointPosition()
+    {
+        return spawnPoint.getPosition();
+    }
 }

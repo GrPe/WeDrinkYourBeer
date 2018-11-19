@@ -1,12 +1,14 @@
 package FinityStateMachine.Enemy;
 
+import com.badlogic.gdx.math.Vector2;
+
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
 import GameObjects.Enemy;
 
 public class WalkingState extends State {
 
-    Enemy enemy;
+    private Enemy enemy;
 
     public WalkingState(Enemy enemy)
     {
@@ -29,7 +31,7 @@ public class WalkingState extends State {
     @Override
     public void Act()
     {
-
+        enemy.move();
     }
 
 }
