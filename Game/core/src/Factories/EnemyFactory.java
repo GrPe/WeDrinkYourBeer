@@ -20,7 +20,6 @@ public class EnemyFactory
                                         new Vector2(6,2)};
     //temporary - Animation in future !!!
     private static Texture studentTexture;
-    private static Texture metalTexture;
 
     public static Enemy createStudentEnemy(Vector2 position)
     {
@@ -30,20 +29,8 @@ public class EnemyFactory
         }
         return new Enemy(position,0,studentTexture,navLink,5,1,1);
     }
-
-    public static Enemy createMetalEnemy(Vector2 position)
-    {
-        return null;
-    }
-
     private static void LoadStudentTexture()
     {
         studentTexture = new Texture(Gdx.files.internal("Enemies/enemy_test.png"));
     }
-
-    private static void LoadMetalTexture()
-    {
-        metalTexture = new Texture(Gdx.files.internal("Enemies/metal.png"));
-    }
-
 }
