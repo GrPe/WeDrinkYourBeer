@@ -20,15 +20,13 @@ public class LevelEnvironmentFactory
     public static Environment createBuilding(Vector2 position)
     {
         if(texturesBuildings == null) LoadBuildingsTextures();
-        Environment ret = new Environment(position,0,texturesBuildings.get(2));
-        return ret;
+        return new Environment(position,0,texturesBuildings.get(2));
     }
 
     public static Environment createWay(Vector2 position)
     {
         if(textureWay == null) LoadWaysTextures();
-        Environment ret = new Environment(position,0,textureWay);
-        return ret;
+        return new Environment(position,0,textureWay);
     }
 
     public static SpawnPoint createSpawnPoint(Vector2 position)
