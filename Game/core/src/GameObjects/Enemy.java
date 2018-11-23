@@ -23,7 +23,7 @@ public class Enemy extends GameObject implements Drawable
     private Vector2[] navLink;
     private int currentTarget;
 
-    StateMachine stateMachine;
+    private StateMachine stateMachine;
 
     public Enemy(Vector2 position, float rotation, Texture texture, Vector2[] navLink, int hp, float speed, int damage) {
         super(position, rotation);
@@ -85,7 +85,7 @@ public class Enemy extends GameObject implements Drawable
 
     private boolean CheckPosition()
     {
-        return super.getPosition().epsilonEquals(navLink[currentTarget]);
+        return super.getPosition().epsilonEquals(navLink[currentTarget],1);
     }
 
 
