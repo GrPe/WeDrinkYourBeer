@@ -1,11 +1,8 @@
 package Factories;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.logging.FileHandler;
 
 import GameObjects.Enemy;
 
