@@ -85,7 +85,7 @@ public class Enemy extends GameObject implements Drawable
 
     private boolean CheckPosition()
     {
-        return super.getPosition().epsilonEquals(navLink[currentTarget]);
+        return super.getPosition().epsilonEquals(navLink[currentTarget],1);
     }
 
 

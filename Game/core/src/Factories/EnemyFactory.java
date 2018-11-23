@@ -8,13 +8,13 @@ import GameObjects.Enemy;
 
 public class EnemyFactory
 {
-    private static Vector2[] navLink = {new Vector2(6,8),
-                                        new Vector2(6,7),
-                                        new Vector2(7,7),
-                                        new Vector2(7,5),
-                                        new Vector2(9,5),
-                                        new Vector2(9,2),
-                                        new Vector2(6,2)};
+    private static Vector2[] navLink = {
+            new Vector2(4*60,1*60),
+            new Vector2(5*60,1*60),
+            new Vector2(5*60,3*60),
+            new Vector2(7*60,3*60),
+            new Vector2(7*60,5*60),
+            new Vector2(4*60,5*60)};
     //temporary - Animation in future !!!
     private static Texture studentTexture;
 
@@ -24,7 +24,7 @@ public class EnemyFactory
         {
             LoadStudentTexture();
         }
-        return new Enemy(position,0,studentTexture,navLink,5,1,1);
+        return new Enemy(position,0,studentTexture,navLink,5,10,1);
     }
     private static void LoadStudentTexture()
     {
