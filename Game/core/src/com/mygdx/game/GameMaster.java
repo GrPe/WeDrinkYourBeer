@@ -33,7 +33,7 @@ public class GameMaster extends ApplicationAdapter
 
         level = new Level();
         enemyManager = new EnemyManager(level);
-        enemyManager.NewWay(1);
+        enemyManager.NewWay(5);
     }
 
     @Override

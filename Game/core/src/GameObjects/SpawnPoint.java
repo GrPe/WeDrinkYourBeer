@@ -8,8 +8,8 @@ public class SpawnPoint extends GameObject implements Drawable
 {
     private Sprite sprite;
 
-    public SpawnPoint(Vector2 position, float rotation, Texture texture) {
-        super(position, rotation);
+    public SpawnPoint(Vector2 position, Texture texture) {
+        super(position, 0);
         this.sprite = new Sprite(texture);
     }
 

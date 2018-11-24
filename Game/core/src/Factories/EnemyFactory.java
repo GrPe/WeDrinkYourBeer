@@ -24,7 +24,7 @@ public class EnemyFactory
         {
             LoadStudentTexture();
         }
-        return new Enemy(position,0,studentTexture,navLink,5,10,1);
+        return new Enemy(position,0,studentTexture,navLink,5,30,1);
     }
     private static void LoadStudentTexture()
     {

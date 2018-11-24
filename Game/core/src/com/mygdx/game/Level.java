@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 import Factories.LevelEnvironmentFactory;
-import GameObjects.Enemy;
 import GameObjects.Environment;
 import GameObjects.SpawnPoint;
 
