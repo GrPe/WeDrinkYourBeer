@@ -8,8 +8,8 @@ public final class Environment extends GameObject implements Drawable
 {
     private Sprite sprite;
 
-    public Environment(Vector2 position, float rotation, Texture texture) {
-        super(position, rotation);
+    public Environment(Vector2 position, Texture texture) {
+        super(position, 0);
         this.sprite = new Sprite(texture);
     }
 
