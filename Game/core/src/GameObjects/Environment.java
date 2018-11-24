@@ -27,9 +27,4 @@ public final class Environment extends GameObject implements Drawable
     public float getY() {
         return super.getPosition().y;
     }
-
-    public void setPosition(Vector2 position)
-    {
-        super.setPosition(position);
-    }
 }
