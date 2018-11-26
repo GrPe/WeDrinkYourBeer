@@ -21,6 +21,7 @@ public class Level
     private ArrayList<Environment> ways;
     private ArrayList<Environment> buildings;
     private SpawnPoint spawnPoint;
+    private GameObjects.Base base;
 
 
     public Level()
@@ -64,6 +65,7 @@ public class Level
                     x++;
                     break;
                 case CODE_TOWER:
+                    base = LevelEnvironmentFactory.createBase(new Vector2(x*60, y*60));
                     x++;
                     break;
                 case '\n':
@@ -89,10 +91,18 @@ public class Level
         }
 
         batch.draw(spawnPoint.getDrawingSprite(),spawnPoint.getX(),spawnPoint.getY());
+
+        batch.draw(base.getDrawingSprite(), base.getX(), base.getY());
     }
 
     public Vector2 getSpawnPointPosition()
     {
         return spawnPoint.getPosition();
     }
+
+    public GameObjects.Base getBase()
+    {
+        return base;
+    }
+
 }
