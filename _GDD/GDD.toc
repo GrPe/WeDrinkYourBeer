@@ -16,31 +16,26 @@
 \contentsline {subsection}{\numberline {3.3}Maps}{6}
 \contentsline {section}{\numberline {4}Lore}{7}
 \contentsline {subsection}{\numberline {4.1}Story}{7}
-\contentsline {subsection}{\numberline {4.2}Characters}{7}
+\contentsline {subsection}{\numberline {4.2}Towers}{7}
 \contentsline {subsection}{\numberline {4.3}Enemies}{7}
-\contentsline {section}{\numberline {5}Levels}{8}
-\contentsline {subsection}{\numberline {5.1}Lv01 - tutorial}{8}
-\contentsline {paragraph}{T\IeC {\l }o fabularne}{8}
-\contentsline {paragraph}{Dialogi}{8}
-\contentsline {paragraph}{Opis levelu}{8}
-\contentsline {section}{\numberline {6}Interface}{9}
-\contentsline {subsection}{\numberline {6.1}Main Menu}{9}
-\contentsline {subsection}{\numberline {6.2}Wyb\IeC {\'o}r misji}{9}
-\contentsline {subsection}{\numberline {6.3}Credits}{9}
-\contentsline {subsection}{\numberline {6.4}User Interface}{9}
-\contentsline {section}{\numberline {7}Game Controls}{10}
-\contentsline {section}{\numberline {8}Technicals}{11}
-\contentsline {subsection}{\numberline {8.1}Target}{11}
-\contentsline {subsection}{\numberline {8.2}Development Software}{11}
-\contentsline {section}{\numberline {9}Game Art}{12}
-\contentsline {subsection}{\numberline {9.1}Overview}{12}
-\contentsline {section}{\numberline {10}Audio}{12}
-\contentsline {section}{\numberline {11}Technical Documentation}{13}
-\contentsline {subsection}{\numberline {11.1}State Machine - States}{13}
-\contentsline {paragraph}{Enemy}{13}
-\contentsline {paragraph}{Player}{13}
-\contentsline {paragraph}{Tower}{13}
-\contentsline {subsection}{\numberline {11.2}State Machine - Transition}{13}
-\contentsline {paragraph}{Enemy}{13}
-\contentsline {paragraph}{Player}{13}
-\contentsline {paragraph}{Tower}{13}
+\contentsline {section}{\numberline {5}Interface}{8}
+\contentsline {subsection}{\numberline {5.1}Main Menu}{8}
+\contentsline {subsection}{\numberline {5.2}Wyb\IeC {\'o}r misji}{8}
+\contentsline {subsection}{\numberline {5.3}Credits}{8}
+\contentsline {subsection}{\numberline {5.4}User Interface}{8}
+\contentsline {section}{\numberline {6}Game Controls}{9}
+\contentsline {section}{\numberline {7}Technicals}{10}
+\contentsline {subsection}{\numberline {7.1}Target}{10}
+\contentsline {subsection}{\numberline {7.2}Development Software}{10}
+\contentsline {section}{\numberline {8}Game Art}{11}
+\contentsline {subsection}{\numberline {8.1}Overview}{11}
+\contentsline {section}{\numberline {9}Audio}{11}
+\contentsline {section}{\numberline {10}Technical Documentation}{12}
+\contentsline {subsection}{\numberline {10.1}State Machine - States}{12}
+\contentsline {paragraph}{Enemy}{12}
+\contentsline {paragraph}{Player}{12}
+\contentsline {paragraph}{Tower}{12}
+\contentsline {subsection}{\numberline {10.2}State Machine - Transition}{12}
+\contentsline {paragraph}{Enemy}{12}
+\contentsline {paragraph}{Player}{12}
+\contentsline {paragraph}{Tower}{12}
