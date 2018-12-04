@@ -24,7 +24,7 @@ public class Level
     private GameObjects.Base base;
 
 
-    public Level()
+    Level()
     {
         try
         {
@@ -37,6 +37,7 @@ public class Level
 
     }
 
+    //todo - exception handlers
     private void CreateLevel() throws Exception
     {
 
@@ -78,7 +79,7 @@ public class Level
         }
     }
 
-    public void render(SpriteBatch batch)
+    void render(SpriteBatch batch)
     {
         for(Environment x : buildings)
         {
@@ -95,7 +96,7 @@ public class Level
         batch.draw(base.getDrawingSprite(), base.getX(), base.getY());
     }
 
-    public Vector2 getSpawnPointPosition()
+    Vector2 getSpawnPointPosition()
     {
         return spawnPoint.getPosition();
     }

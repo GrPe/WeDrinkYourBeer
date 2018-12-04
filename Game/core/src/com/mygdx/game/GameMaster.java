@@ -6,10 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.util.ArrayList;
-
-import GameObjects.Environment;
-
 public class GameMaster extends ApplicationAdapter
 {
     private OrthographicCamera camera;
@@ -17,7 +13,6 @@ public class GameMaster extends ApplicationAdapter
 
     //test
 
-    private ArrayList<Environment> env;
     private Level level;
     private EnemyManager enemyManager;
 
@@ -42,7 +37,7 @@ public class GameMaster extends ApplicationAdapter
         Gdx.gl.glClearColor(0,0xff,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
+        Update();
 
         batch.setProjectionMatrix(camera.combined);
 
@@ -56,6 +51,12 @@ public class GameMaster extends ApplicationAdapter
     public void dispose()
     {
         batch.dispose();
+    }
+
+    private void Update()
+    {
+        camera.update();
+        enemyManager.Update();
     }
 
 
