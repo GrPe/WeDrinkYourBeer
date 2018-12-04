@@ -18,7 +18,6 @@ public class LevelEnvironmentFactory
     private static Texture textureSpawnPoint;
     private static Texture textureBase;
 
-
     public static Environment createBuilding(Vector2 position)
     {
         if(texturesBuildings == null) LoadBuildingsTextures();
@@ -67,5 +66,14 @@ public class LevelEnvironmentFactory
     {
         textureBase = new Texture(Gdx.files.internal("Environment/base.png"));
     }
+
+    private static void Clear()
+    {
+         texturesBuildings = null;
+         textureWay = null;
+         textureSpawnPoint = null;
+         textureBase = null;
+    }
+
 
 }
