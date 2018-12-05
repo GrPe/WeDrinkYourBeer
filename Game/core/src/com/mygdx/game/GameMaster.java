@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameMaster extends ApplicationAdapter
@@ -42,8 +43,10 @@ public class GameMaster extends ApplicationAdapter
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
+
         level.render(batch);
         enemyManager.render(batch);
+
         batch.end();
     }
 
@@ -57,7 +60,21 @@ public class GameMaster extends ApplicationAdapter
     {
         camera.update();
         enemyManager.Update();
+
+        EnemyInBase();
     }
+
+    //todo
+    private void EnemyInBase()
+    {
+        enemyManager.isEnemyInBase();
+
+        if(enemyManager.isEmpty())
+        {
+            enemyManager.NewWay(8);
+        }
+    }
+
 
 
 }
