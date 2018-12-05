@@ -4,11 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import java.util.ArrayList;
-
-import GameObjects.Environment;
 
 public class GameMaster extends ApplicationAdapter
 {
@@ -17,7 +14,6 @@ public class GameMaster extends ApplicationAdapter
 
     //test
 
-    private ArrayList<Environment> env;
     private Level level;
     private EnemyManager enemyManager;
 
@@ -42,13 +38,15 @@ public class GameMaster extends ApplicationAdapter
         Gdx.gl.glClearColor(0,0xff,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
+        Update();
 
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
+
         level.render(batch);
         enemyManager.render(batch);
+
         batch.end();
     }
 
@@ -57,6 +55,26 @@ public class GameMaster extends ApplicationAdapter
     {
         batch.dispose();
     }
+
+    private void Update()
+    {
+        camera.update();
+        enemyManager.Update();
+
+        EnemyInBase();
+    }
+
+    //todo
+    private void EnemyInBase()
+    {
+        enemyManager.isEnemyInBase();
+
+        if(enemyManager.isEmpty())
+        {
+            enemyManager.NewWay(8);
+        }
+    }
+
 
 
 }

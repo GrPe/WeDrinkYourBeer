@@ -14,7 +14,7 @@ public class EnemyFactory
             new Vector2(5*60,3*60),
             new Vector2(7*60,3*60),
             new Vector2(7*60,5*60),
-            new Vector2(4*60,5*60)};
+            new Vector2(3*60,5*60)};
     //temporary - Animation in future !!!
     private static Texture studentTexture;
 
@@ -24,7 +24,7 @@ public class EnemyFactory
         {
             LoadStudentTexture();
         }
-        return new Enemy(position,0,studentTexture,navLink,5,30,1);
+        return new Enemy(position,0,studentTexture,navLink,5,60,1);
     }
     private static void LoadStudentTexture()
     {

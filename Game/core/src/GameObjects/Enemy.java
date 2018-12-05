@@ -22,6 +22,7 @@ public class Enemy extends GameObject implements Drawable
     private int damage;
     private Vector2[] navLink;
     private int currentTarget;
+    private boolean isInBase;
 
     private StateMachine stateMachine;
 
@@ -33,6 +34,7 @@ public class Enemy extends GameObject implements Drawable
         this.speed = speed;
         this.hp = hp;
         this.currentTarget = 0;
+        isInBase = false;
         InitStateMachine();
     }
 
@@ -52,42 +54,12 @@ public class Enemy extends GameObject implements Drawable
         return super.getPosition().y;
     }
 
+    public float getSpeed() {return speed;}
+
     public void dealDamage(int damage)
     {
         hp -= damage;
     }
-
-    public void move()
-    {
-        float destX = navLink[currentTarget].x - super.getPosition().x;
-        float destY = navLink[currentTarget].y - super.getPosition().y;
-
-        float dist = (float)Math.sqrt(destX * destX + destY * destY);
-
-        destX = destX/dist;
-        destY = destY/dist;
-
-        super.setPosition(new Vector2(super.getPosition().x + destX * speed * Gdx.graphics.getDeltaTime(),
-                super.getPosition().y + destY * speed * Gdx.graphics.getDeltaTime()));
-
-        ChangePosition();
-    }
-
-    private void ChangePosition()
-    {
-        if(CheckPosition())
-        {
-            currentTarget++;
-            if(currentTarget == navLink.length)
-                currentTarget--;
-        }
-    }
-
-    private boolean CheckPosition()
-    {
-        return super.getPosition().epsilonEquals(navLink[currentTarget],1);
-    }
-
 
     public int getDamage()
     {
@@ -99,6 +71,23 @@ public class Enemy extends GameObject implements Drawable
         return hp < 0;
     }
 
+    public Vector2 getNextTarget()
+    {
+        return navLink[currentTarget++];
+    }
+
+    public Vector2 getFinalTarget() {return navLink[navLink.length-1];}
+
+    public void SetInBase()
+    {
+        isInBase = true;
+    }
+
+    public boolean getIsInBase()
+    {
+        return isInBase;
+    }
+
     private void InitStateMachine()
     {
         stateMachine = new StateMachine();
@@ -107,7 +96,6 @@ public class Enemy extends GameObject implements Drawable
         walkingState.AddTransition(Transition.EnemyDie, StateID.EnemyDying);
 
         stateMachine.AddState(walkingState);
-
     }
 
     public void Update()
