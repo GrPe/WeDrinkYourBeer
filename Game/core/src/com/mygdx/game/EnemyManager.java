@@ -58,4 +58,23 @@ public class EnemyManager
             batch.draw(enemy.getDrawingSprite(),enemy.getX(),enemy.getY());
         }
     }
+
+    boolean isEnemyInBase()
+    {
+        for(Enemy enemy : enemies)
+        {
+            if(enemy.getIsInBase())
+            {
+                enemies.remove(enemy);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean isEmpty()
+    {
+        return enemies.isEmpty();
+    }
+
 }
