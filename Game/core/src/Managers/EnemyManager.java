@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package Managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,20 +14,20 @@ public class EnemyManager
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
 
-    private Level level;
+    private LevelManager level;
 
-    EnemyManager(Level level)
+    public EnemyManager(LevelManager level)
     {
         enemies = new ArrayList<Enemy>();
         this.level = level;
     }
 
-    void NewWay(int numberOfEnemy)
+    public void NewWay(int numberOfEnemy)
     {
         numberOfEnemyToSpawn = numberOfEnemy;
     }
 
-    void Update()
+    public void Update()
     {
         SpawnEnemy();
 
@@ -51,7 +51,7 @@ public class EnemyManager
         }
     }
 
-    void render(SpriteBatch batch)
+    public void render(SpriteBatch batch)
     {
         for(Enemy enemy : enemies)
         {
@@ -59,7 +59,7 @@ public class EnemyManager
         }
     }
 
-    boolean isEnemyInBase()
+    public boolean isEnemyInBase()
     {
         for(Enemy enemy : enemies)
         {
@@ -72,7 +72,7 @@ public class EnemyManager
         return false;
     }
 
-    boolean isEmpty()
+    public boolean isEmpty()
     {
         return enemies.isEmpty();
     }

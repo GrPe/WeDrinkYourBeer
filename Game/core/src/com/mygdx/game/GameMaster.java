@@ -4,8 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import Managers.LevelManager;
+
+import Managers.EnemyManager;
 
 public class GameMaster extends ApplicationAdapter
 {
@@ -14,8 +16,9 @@ public class GameMaster extends ApplicationAdapter
 
     //test
 
-    private Level level;
-    private EnemyManager enemyManager;
+    private LevelManager level;
+    private Managers.EnemyManager enemyManager;
+    private Managers.UIManager uiManager;
 
     @Override
     public void create()
@@ -27,9 +30,10 @@ public class GameMaster extends ApplicationAdapter
 
         //test
 
-        level = new Level();
+        level = new LevelManager();
         enemyManager = new EnemyManager(level);
         enemyManager.NewWay(5);
+        uiManager = new Managers.UIManager();
     }
 
     @Override
@@ -46,6 +50,7 @@ public class GameMaster extends ApplicationAdapter
 
         level.render(batch);
         enemyManager.render(batch);
+        uiManager.draw(batch);
 
         batch.end();
     }

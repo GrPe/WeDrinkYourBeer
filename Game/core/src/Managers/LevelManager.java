@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package Managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -11,7 +11,7 @@ import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
 import GameObjects.SpawnPoint;
 
-public class Level
+public class LevelManager
 {
     private final char CODE_WAY = 'o';
     private final char CODE_BUILDING = 'x';
@@ -24,7 +24,7 @@ public class Level
     private GameObjects.Base base;
 
 
-    Level()
+    public LevelManager()
     {
         try
         {
@@ -79,7 +79,7 @@ public class Level
         }
     }
 
-    void render(SpriteBatch batch)
+    public void render(SpriteBatch batch)
     {
         for(Environment x : buildings)
         {
