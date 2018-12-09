@@ -1,8 +1,7 @@
 package Managers;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.UI.Label;
@@ -13,18 +12,20 @@ public class UIManager
     private Label timerAndCounter;
     //button
 
-    public UIManager()
+    public UIManager(BitmapFont font)
     {
-        //load fonts
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Joystick.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        baseHp = new Label(font, new Vector2(20,450),"12/12");
+        timerAndCounter = new Label(font, new Vector2(320,450), "40");
+    }
 
-        parameter.size = 30;
-        parameter.borderStraight = true;
+    public void SetBaseHpLabel(int current, int max)
+    {
+        baseHp.setText(current + "/" + max);
+    }
 
-        baseHp = new Label(generator.generateFont(parameter), new Vector2(20,450),"12/12");
-        timerAndCounter = new Label(generator.generateFont(parameter), new Vector2(320,450), "40");
-        generator.dispose();
+    public void SetTimerAndCounter(int value)
+    {
+        timerAndCounter.setText(Integer.toString(value));
     }
 
     public void draw(Batch batch)
