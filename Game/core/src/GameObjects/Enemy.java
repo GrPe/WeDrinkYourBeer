@@ -1,6 +1,5 @@
 package GameObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -13,10 +12,7 @@ import FinityStateMachine.Transition;
 
 public class Enemy extends GameObject implements Drawable
 {
-
-    //Animation<TextureRegion> walkAnimation;
-    Sprite temp;
-
+    private Sprite sprite;
     private int hp;
     private float speed;
     private int damage;
@@ -28,7 +24,7 @@ public class Enemy extends GameObject implements Drawable
 
     public Enemy(Vector2 position, float rotation, Texture texture, Vector2[] navLink, int hp, float speed, int damage) {
         super(position, rotation);
-        temp = new Sprite(texture);
+        sprite = new Sprite(texture);
         this.navLink = navLink;
         this.damage = damage;
         this.speed = speed;
@@ -41,7 +37,7 @@ public class Enemy extends GameObject implements Drawable
     @Override
     public Sprite getDrawingSprite()
     {
-        return temp;
+        return sprite;
     }
 
     @Override

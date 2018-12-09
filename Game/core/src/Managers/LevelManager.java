@@ -23,7 +23,6 @@ public class LevelManager
     private SpawnPoint spawnPoint;
     private GameObjects.Base base;
 
-
     public LevelManager()
     {
         try

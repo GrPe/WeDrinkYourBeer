@@ -2,6 +2,7 @@ package Managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -14,12 +15,12 @@ public class EnemyManager
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
 
-    private LevelManager level;
+    private Vector2 spawnPosition;
 
-    public EnemyManager(LevelManager level)
+    public EnemyManager(Vector2 spawnPosition)
     {
         enemies = new ArrayList<Enemy>();
-        this.level = level;
+        this.spawnPosition = spawnPosition;
     }
 
     public void NewWay(int numberOfEnemy)
@@ -44,7 +45,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(EnemyFactory.createStudentEnemy(level.getSpawnPointPosition()));
+                enemies.add(EnemyFactory.createStudentEnemy(spawnPosition));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }

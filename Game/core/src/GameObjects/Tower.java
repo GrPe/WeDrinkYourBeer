@@ -8,11 +8,11 @@ import FinityStateMachine.StateMachine;
 
 public class Tower extends GameObject implements Drawable
 {
-    StateMachine stateMachine;
+    private StateMachine stateMachine;
     private Sprite sprite;
-    float range;
-    int fireSpeed;
-    int damage;
+    private float range;
+    private int fireSpeed;
+    private int damage;
 
     public Tower(Vector2 position, float rotation, Texture texture, float range, int fireSpeed, int damage) {
         super(position, rotation);

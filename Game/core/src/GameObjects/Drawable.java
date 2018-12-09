@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public interface Drawable
 {
-    public Sprite getDrawingSprite();
-    public float getX();
-    public float getY();
+    Sprite getDrawingSprite();
+    float getX();
+    float getY();
 }
