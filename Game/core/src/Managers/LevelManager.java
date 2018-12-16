@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+import Factories.EnvironmentType;
 import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
 import GameObjects.SpawnPoint;
@@ -23,8 +24,16 @@ public class LevelManager
     private SpawnPoint spawnPoint;
     private GameObjects.Base base;
 
-    public LevelManager()
+    private ResourceManager resourceManager;
+    private LevelEnvironmentFactory levelEnvironmentFactory;
+
+    private int numberOfLevel = 1; //temp
+
+    public LevelManager(ResourceManager resourceManager)
     {
+        this.resourceManager = resourceManager;
+        this.levelEnvironmentFactory = new LevelEnvironmentFactory(resourceManager);
+
         try
         {
             CreateLevel();
@@ -39,7 +48,6 @@ public class LevelManager
     //todo - exception handlers
     private void CreateLevel() throws Exception
     {
-
         ways = new ArrayList<Environment>();
         buildings = new ArrayList<Environment>();
 
@@ -53,19 +61,19 @@ public class LevelManager
         {
             switch (sign) {
                 case CODE_WAY:
-                    ways.add(LevelEnvironmentFactory.createWay(new Vector2(x * 60, y * 60)));
+                    ways.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Way));
                     x++;
                     break;
                 case CODE_BUILDING:
-                    buildings.add(LevelEnvironmentFactory.createBuilding(new Vector2(x * 60, y * 60)));
+                    buildings.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Buildings));
                     x++;
                     break;
                 case CODE_SPAWN_POINT:
-                    spawnPoint = LevelEnvironmentFactory.createSpawnPoint(new Vector2(x*60, y*60));
+                    spawnPoint = levelEnvironmentFactory.CreateSpawnPoint(new Vector2(x*60, y*60));
                     x++;
                     break;
                 case CODE_TOWER:
-                    base = LevelEnvironmentFactory.createBase(new Vector2(x*60, y*60));
+                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),666);
                     x++;
                     break;
                 case '\n':
@@ -95,7 +103,7 @@ public class LevelManager
         batch.draw(base.getDrawingSprite(), base.getX(), base.getY());
     }
 
-    Vector2 getSpawnPointPosition()
+    public Vector2 getSpawnPointPosition()
     {
         return spawnPoint.getPosition();
     }
