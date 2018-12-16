@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import Managers.LevelManager;
 
 import Managers.EnemyManager;
+import Managers.ResourceManager;
 
 public class GameMaster extends ApplicationAdapter
 {
@@ -19,6 +20,7 @@ public class GameMaster extends ApplicationAdapter
     private LevelManager level;
     private Managers.EnemyManager enemyManager;
     private Managers.UIManager uiManager;
+    private ResourceManager resourceManager;
 
     @Override
     public void create()
@@ -28,12 +30,16 @@ public class GameMaster extends ApplicationAdapter
 
         batch = new SpriteBatch();
 
+        resourceManager = new ResourceManager();
+
         //test
 
-        level = new LevelManager();
-        enemyManager = new EnemyManager(level);
+        //resourceManager.FinishLoading();
+        level = new LevelManager(resourceManager);
+        enemyManager = new EnemyManager(level.getSpawnPointPosition(),resourceManager);
+        uiManager = new Managers.UIManager(resourceManager.GetFont());
+
         enemyManager.NewWay(5);
-        uiManager = new Managers.UIManager();
     }
 
     @Override
@@ -59,6 +65,7 @@ public class GameMaster extends ApplicationAdapter
     public void dispose()
     {
         batch.dispose();
+        resourceManager.dispose();
     }
 
     private void Update()
@@ -79,7 +86,4 @@ public class GameMaster extends ApplicationAdapter
             enemyManager.NewWay(8);
         }
     }
-
-
-
 }
