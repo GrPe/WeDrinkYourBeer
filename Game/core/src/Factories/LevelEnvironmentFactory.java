@@ -1,79 +1,47 @@
 package Factories;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
 
 import GameObjects.Base;
 import GameObjects.Environment;
 import GameObjects.SpawnPoint;
+import Managers.ResourceManager;
 
 public class LevelEnvironmentFactory
 {
-    private static final int buildingTextureCounter = 3;
-    private static ArrayList<Texture> texturesBuildings;
-    private static Texture textureWay;
-    private static Texture textureSpawnPoint;
-    private static Texture textureBase;
+    private ResourceManager resourceManager;
 
-    public static Environment createBuilding(Vector2 position)
+    public LevelEnvironmentFactory(ResourceManager resourceManager)
     {
-        if(texturesBuildings == null) LoadBuildingsTextures();
-        return new Environment(position,texturesBuildings.get(2));
+        this.resourceManager = resourceManager;
     }
 
-    public static Environment createWay(Vector2 position)
+    public Environment CreateEnvironment(Vector2 position, EnvironmentType environmentType)
     {
-        if(textureWay == null) LoadWaysTextures();
-        return new Environment(position,textureWay);
-    }
-
-    public static SpawnPoint createSpawnPoint(Vector2 position)
-    {
-        if(textureSpawnPoint == null) LoadSpawnPointTexture();
-        return new SpawnPoint(position,textureSpawnPoint);
-    }
-
-    public static Base createBase(Vector2 position)
-    {
-        if(textureBase == null) LoadBaseTexture();
-        return new Base(position,textureBase,666);
-    }
-
-    private static void LoadBuildingsTextures()
-    {
-        texturesBuildings = new ArrayList<Texture>();
-        for(int i = 0; i < buildingTextureCounter; i++)
+        Environment environment;
+        switch(environmentType)
         {
-            Texture tmp = new Texture(Gdx.files.internal("Environment/buildings" + i + ".png"));
-            texturesBuildings.add(tmp);
+            case Buildings:
+                environment = new Environment(position,resourceManager.GetTexture("buildings2.png"));
+                break;
+            case Way:
+                environment = new Environment(position,resourceManager.GetTexture("way.png"));
+                break;
+            default:
+                environment = new Environment(position,resourceManager.GetTexture("buildings2.png"));
+                break;
         }
+
+        return environment;
     }
 
-    private static void LoadWaysTextures()
+    public Base CreateBase(Vector2 position, int hp)
     {
-        textureWay = new Texture(Gdx.files.internal("Environment/way.png"));
+        return new Base(position, resourceManager.GetTexture("base.png"),hp);
     }
 
-    private static void LoadSpawnPointTexture()
+    public SpawnPoint CreateSpawnPoint(Vector2 position)
     {
-        textureSpawnPoint = new Texture(Gdx.files.internal("Environment/spawnPoint.png"));
+        return new SpawnPoint(position, resourceManager.GetTexture("spawnPoint.png"));
     }
-
-    private static void LoadBaseTexture()
-    {
-        textureBase = new Texture(Gdx.files.internal("Environment/base.png"));
-    }
-
-    private static void Clear()
-    {
-         texturesBuildings = null;
-         textureWay = null;
-         textureSpawnPoint = null;
-         textureBase = null;
-    }
-
-
 }
