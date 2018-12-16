@@ -10,7 +10,6 @@ public class UIManager
 {
     private Label baseHp;
     private Label timerAndCounter;
-    //button
 
     public UIManager(BitmapFont font)
     {
