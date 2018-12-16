@@ -1,33 +1,33 @@
 package Managers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Disposable;
 
-public class ResourceManager
+public class ResourceManager implements Disposable
 {
     private AssetManager manager;
+    private BitmapFont bitmapFont;
 
     public ResourceManager()
     {
         manager = new AssetManager();
         LoadFont();
+        LoadTexture();
         manager.finishLoading();
-    }
-
-    public void LoadTextures(String path)
-    {
-        manager.load(path,Texture.class);
     }
 
     private void LoadFont()
     {
-        FreetypeFontLoader.FreeTypeFontLoaderParameter parameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
-        parameter.fontFileName = "Fonts/Joystick.ttf";
-        parameter.fontParameters.size = 30;
-        parameter.fontParameters.borderStraight = true;
-        manager.load("Fonts/Joystick.ttf",BitmapFont.class,parameter);
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Joystick.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 30;
+        parameter.borderStraight = true;
+        bitmapFont = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     public Texture GetTexture(String path)
@@ -41,17 +41,24 @@ public class ResourceManager
 
     public BitmapFont GetFont()
     {
-        return manager.get("Fonts/Joystick.ttf",BitmapFont.class);
+        return bitmapFont;
     }
 
-    public void FinishLoading()
+    @Override
+    public void dispose()
     {
-        manager.finishLoading();
+        bitmapFont.dispose();
+        manager.dispose();
     }
 
-    public void Clear()
+    private void LoadTexture()
     {
-        manager.clear();
+        manager.load("enemy_test.png",Texture.class);
+        manager.load("buildings2.png",Texture.class);
+        manager.load("way.png",Texture.class);
+        manager.load("base.png",Texture.class);
+        manager.load("spawnPoint.png",Texture.class);
     }
+
 
 }
