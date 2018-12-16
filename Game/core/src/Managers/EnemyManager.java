@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 import Factories.EnemyFactory;
+import Factories.EnemyType;
 import GameObjects.Enemy;
 
 public class EnemyManager
@@ -16,11 +17,15 @@ public class EnemyManager
     private int numberOfEnemyToSpawn = 0;
 
     private Vector2 spawnPosition;
+    private ResourceManager resourceManager;
+    private EnemyFactory enemyFactory;
 
-    public EnemyManager(Vector2 spawnPosition)
+    public EnemyManager(Vector2 spawnPosition, ResourceManager resourceManager)
     {
         enemies = new ArrayList<Enemy>();
         this.spawnPosition = spawnPosition;
+        this.resourceManager = resourceManager;
+        this.enemyFactory = new EnemyFactory(resourceManager);
     }
 
     public void NewWay(int numberOfEnemy)
@@ -45,7 +50,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(EnemyFactory.createStudentEnemy(spawnPosition));
+                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Student));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }
