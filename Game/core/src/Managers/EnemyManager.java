@@ -89,5 +89,11 @@ public class EnemyManager
         return enemies.size();
     }
 
+    public boolean isSpawningEnemies()
+    {
+        return numberOfEnemyToSpawn > 0;
+    }
+
+
 
 }
