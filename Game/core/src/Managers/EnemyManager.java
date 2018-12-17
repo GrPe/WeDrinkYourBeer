@@ -65,17 +65,18 @@ public class EnemyManager
         }
     }
 
-    public boolean isEnemyInBase()
+    public int isEnemyInBase()
     {
         for(Enemy enemy : enemies)
         {
             if(enemy.getIsInBase())
             {
+                int retDamage = enemy.getDamage();
                 enemies.remove(enemy);
-                return true;
+                return retDamage;
             }
         }
-        return false;
+        return 0;
     }
 
     public boolean isEmpty()

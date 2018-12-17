@@ -79,7 +79,11 @@ public class GameMaster extends ApplicationAdapter
     //todo
     private void EnemyInBase()
     {
-        enemyManager.isEnemyInBase();
+        int damage = enemyManager.isEnemyInBase();
+        if(damage > 0)
+        {
+            level.getBase().decreaseHp(damage);
+        }
 
         if(enemyManager.isEmpty())
         {
