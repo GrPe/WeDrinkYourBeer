@@ -74,6 +74,7 @@ public class GameMaster extends ApplicationAdapter
         enemyManager.Update();
 
         EnemyInBase();
+        UpdateEnemyCounter();
     }
 
     private void EnemyInBase()
@@ -94,7 +95,11 @@ public class GameMaster extends ApplicationAdapter
     private void dealBaseDamage(int damage)
     {
         level.getBase().decreaseHp(damage);
-        uiManager.SetBaseHpLabel(level.getBase().getHp(),level.getBase().getMaxHp());
+        uiManager.SetBaseHpLabel(level.getBase().getHp(), level.getBase().getMaxHp());
     }
 
+    private void UpdateEnemyCounter()
+    {
+        uiManager.SetTimerAndCounter(enemyManager.size());
+    }
 }
