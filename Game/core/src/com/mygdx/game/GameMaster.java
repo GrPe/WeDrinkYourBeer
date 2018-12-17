@@ -76,18 +76,25 @@ public class GameMaster extends ApplicationAdapter
         EnemyInBase();
     }
 
-    //todo
     private void EnemyInBase()
     {
         int damage = enemyManager.isEnemyInBase();
         if(damage > 0)
         {
-            level.getBase().decreaseHp(damage);
+            dealBaseDamage(damage);
         }
 
+        //todo
         if(enemyManager.isEmpty())
         {
             enemyManager.NewWay(8);
         }
     }
+
+    private void dealBaseDamage(int damage)
+    {
+        level.getBase().decreaseHp(damage);
+        uiManager.SetBaseHpLabel(level.getBase().getHp(),level.getBase().getMaxHp());
+    }
+
 }
