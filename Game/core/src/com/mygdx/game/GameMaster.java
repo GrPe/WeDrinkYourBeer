@@ -14,6 +14,8 @@ public class GameMaster extends ApplicationAdapter
 {
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    private float timer = 0;
+    private boolean nextPhase = false;
 
     //test
 
@@ -39,7 +41,7 @@ public class GameMaster extends ApplicationAdapter
         enemyManager = new EnemyManager(level.getSpawnPointPosition(),resourceManager);
         uiManager = new Managers.UIManager(resourceManager.GetFont());
 
-        enemyManager.NewWay(5);
+        //enemyManager.NewWay(5);
     }
 
     @Override
@@ -74,7 +76,8 @@ public class GameMaster extends ApplicationAdapter
         enemyManager.Update();
 
         EnemyInBase();
-        UpdateEnemyCounter();
+        UpdateUI();
+        NextPhase();
     }
 
     private void EnemyInBase()
@@ -84,12 +87,6 @@ public class GameMaster extends ApplicationAdapter
         {
             dealBaseDamage(damage);
         }
-
-        //todo
-        if(enemyManager.isEmpty())
-        {
-            enemyManager.NewWay(8);
-        }
     }
 
     private void dealBaseDamage(int damage)
@@ -98,8 +95,49 @@ public class GameMaster extends ApplicationAdapter
         uiManager.SetBaseHpLabel(level.getBase().getHp(), level.getBase().getMaxHp());
     }
 
+    private void UpdateUI()
+    {
+        if(enemyManager.isEmpty() && timer > 0)
+        {
+            UpdateEnemyTimer();
+        }
+        else
+        {
+            UpdateEnemyCounter();
+        }
+    }
+
     private void UpdateEnemyCounter()
     {
         uiManager.SetTimerAndCounter(enemyManager.size());
+    }
+
+    private void UpdateEnemyTimer()
+    {
+        uiManager.SetTimerAndCounter((int)timer);
+    }
+
+    private void NextPhase()
+    {
+        if(enemyManager.isEmpty() && timer <= 0 && !nextPhase)
+        {
+            timer = 3;
+            nextPhase = true;
+        }
+        if(nextPhase && !enemyManager.isSpawningEnemies() && enemyManager.isEmpty())
+        {
+            CountDownToNextPhase();
+        }
+
+    }
+
+    private void CountDownToNextPhase()
+    {
+        timer -=Gdx.graphics.getDeltaTime();
+        if(timer <= 0)
+        {
+            nextPhase = false;
+            enemyManager.NewWay(8);
+        }
     }
 }
