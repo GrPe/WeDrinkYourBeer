@@ -84,4 +84,10 @@ public class EnemyManager
         return enemies.isEmpty();
     }
 
+    public int size()
+    {
+        return enemies.size();
+    }
+
+
 }
