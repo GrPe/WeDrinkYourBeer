@@ -69,7 +69,10 @@ public class Enemy extends GameObject implements Drawable
 
     public Vector2 getNextTarget()
     {
-        return navLink[currentTarget++];
+        if(navLink.length > currentTarget)
+            return navLink[currentTarget++];
+        else
+            return navLink[navLink.length - 1];
     }
 
     public Vector2 getFinalTarget() {return navLink[navLink.length-1];}
