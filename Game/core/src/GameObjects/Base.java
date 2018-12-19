@@ -7,12 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 public class Base extends GameObject implements Drawable
 {
     private Sprite sprite;
+    private int maxHp;
     private int hp;
 
     public Base(Vector2 position, Texture texture, int hp) {
         super(position, 0);
         this.sprite = new Sprite(texture);
         this.hp = hp;
+        this.maxHp = hp;
     }
 
     @Override
@@ -33,6 +35,8 @@ public class Base extends GameObject implements Drawable
     public int getHp() {
         return hp;
     }
+
+    public int getMaxHp() {return maxHp;}
 
     public void setHp(int hp) {
         this.hp = hp;
