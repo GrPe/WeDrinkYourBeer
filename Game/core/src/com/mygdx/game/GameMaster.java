@@ -97,7 +97,7 @@ public class GameMaster extends ApplicationAdapter
 
     private void UpdateUI()
     {
-        if(enemyManager.isEmpty() && timer > 0)
+        if(enemyManager.isEmpty() && timer > 0 && !enemyManager.isSpawningEnemies())
         {
             UpdateEnemyTimer();
         }
