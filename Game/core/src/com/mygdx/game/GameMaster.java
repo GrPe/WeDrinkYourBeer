@@ -20,9 +20,10 @@ public class GameMaster extends ApplicationAdapter
 
     //test
 
-    private LevelManager level;
+    private LevelManager levelManager;
     private Managers.EnemyManager enemyManager;
     private Managers.UIManager uiManager;
+    private Managers.TowerManager towerManager;
     private ResourceManager resourceManager;
 
     @Override
@@ -37,10 +38,10 @@ public class GameMaster extends ApplicationAdapter
 
         //test
 
-        //resourceManager.FinishLoading();
-        level = new LevelManager(resourceManager);
-        enemyManager = new EnemyManager(level.getSpawnPointPosition(),resourceManager);
+        levelManager = new LevelManager(resourceManager);
+        enemyManager = new EnemyManager(levelManager.getSpawnPointPosition(),resourceManager);
         uiManager = new Managers.UIManager(resourceManager.GetFont());
+        towerManager = new TowerManager(levelManager,resourceManager);
 
         //enemyManager.NewWay(5);
     }
@@ -57,7 +58,7 @@ public class GameMaster extends ApplicationAdapter
 
         batch.begin();
 
-        level.render(batch);
+        levelManager.render(batch);
         enemyManager.render(batch);
         uiManager.draw(batch);
 
@@ -92,8 +93,8 @@ public class GameMaster extends ApplicationAdapter
 
     private void dealBaseDamage(int damage)
     {
-        level.getBase().decreaseHp(damage);
-        uiManager.SetBaseHpLabel(level.getBase().getHp(), level.getBase().getMaxHp());
+        levelManager.getBase().decreaseHp(damage);
+        uiManager.SetBaseHpLabel(levelManager.getBase().getHp(), levelManager.getBase().getMaxHp());
     }
 
     private void UpdateUI()
