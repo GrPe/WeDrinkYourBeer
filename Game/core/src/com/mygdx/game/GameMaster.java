@@ -2,10 +2,15 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+
+import Factories.TowerType;
 import Managers.LevelManager;
 
 import Managers.EnemyManager;
@@ -62,6 +67,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
         levelManager.render(batch);
         enemyManager.render(batch);
+        towerManager.render(batch);
         uiManager.draw(batch);
 
         batch.end();
@@ -78,6 +84,8 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     {
         camera.update();
         enemyManager.Update();
+        towerManager.Update();
+        InsertTower();
 
         EnemyInBase();
         UpdateUI();
@@ -145,6 +153,21 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         }
     }
 
+    private Vector3 touchPoint = new Vector3();
+    private boolean isTouched = false;
+    private void InsertTower()
+    {
+        if(isTouched)
+        {
+            towerManager.SetTower(RoundTo60(touchPoint),TowerType.SingleFire);
+            isTouched = false;
+        }
+    }
+
+    private Vector2 RoundTo60(Vector3 position)
+    {
+        return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
+    }
 
     //Input Processor implementation
 
@@ -165,7 +188,10 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+        if(button != Input.Buttons.LEFT || pointer > 0) return false;
+        camera.unproject(touchPoint.set(screenX,screenY,0));
+        isTouched = true;
+        return true;
     }
 
     @Override
