@@ -4,7 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
+import FinityStateMachine.Tower.AttackEnemyState;
+import FinityStateMachine.Tower.WaitingForEnemyState;
+import FinityStateMachine.Transition;
 
 public class Tower extends GameObject implements Drawable
 {
@@ -46,6 +50,15 @@ public class Tower extends GameObject implements Drawable
     private void InitStateMachine()
     {
         stateMachine = new StateMachine();
+
+        WaitingForEnemyState waitingForEnemyState = new WaitingForEnemyState(this);
+        AttackEnemyState attackEnemyState = new AttackEnemyState(this);
+
+        waitingForEnemyState.AddTransition(Transition.TowerAttack, StateID.TowerAttackEnemy);
+        attackEnemyState.AddTransition(Transition.TowerWaitingFor, StateID.TowerWaitingForEnemy);
+
+        stateMachine.AddState(waitingForEnemyState);
+        stateMachine.AddState(attackEnemyState);
     }
 
     public float getRange() {
