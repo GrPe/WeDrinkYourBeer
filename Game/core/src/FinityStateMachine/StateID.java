@@ -13,7 +13,5 @@ public enum StateID
     PlayerSuccessMission,
 
     TowerWaitingForEnemy,
-    TowerAttackEnemy,
-    TowerBuildingInProgress,
-    TowerUpgradeInProgress
+    TowerAttackEnemy
 }

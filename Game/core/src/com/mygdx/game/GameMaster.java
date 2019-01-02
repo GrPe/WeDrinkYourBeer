@@ -2,15 +2,22 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+
+import Factories.TowerType;
 import Managers.LevelManager;
 
 import Managers.EnemyManager;
 import Managers.ResourceManager;
+import Managers.TowerManager;
 
-public class GameMaster extends ApplicationAdapter
+public class GameMaster extends ApplicationAdapter implements InputProcessor
 {
     private OrthographicCamera camera;
     private SpriteBatch batch;
@@ -19,9 +26,10 @@ public class GameMaster extends ApplicationAdapter
 
     //test
 
-    private LevelManager level;
+    private LevelManager levelManager;
     private Managers.EnemyManager enemyManager;
     private Managers.UIManager uiManager;
+    private Managers.TowerManager towerManager;
     private ResourceManager resourceManager;
 
     @Override
@@ -31,15 +39,16 @@ public class GameMaster extends ApplicationAdapter
         camera.setToOrtho(false,780,480);
 
         batch = new SpriteBatch();
+        Gdx.input.setInputProcessor(this);
 
         resourceManager = new ResourceManager();
 
         //test
 
-        //resourceManager.FinishLoading();
-        level = new LevelManager(resourceManager);
-        enemyManager = new EnemyManager(level.getSpawnPointPosition(),resourceManager);
+        levelManager = new LevelManager(resourceManager);
+        enemyManager = new EnemyManager(levelManager.getSpawnPointPosition(),resourceManager);
         uiManager = new Managers.UIManager(resourceManager.GetFont());
+        towerManager = new TowerManager(levelManager,resourceManager);
 
         //enemyManager.NewWay(5);
     }
@@ -56,8 +65,9 @@ public class GameMaster extends ApplicationAdapter
 
         batch.begin();
 
-        level.render(batch);
+        levelManager.render(batch);
         enemyManager.render(batch);
+        towerManager.render(batch);
         uiManager.draw(batch);
 
         batch.end();
@@ -74,6 +84,8 @@ public class GameMaster extends ApplicationAdapter
     {
         camera.update();
         enemyManager.Update();
+        towerManager.Update();
+        InsertTower();
 
         EnemyInBase();
         UpdateUI();
@@ -91,8 +103,8 @@ public class GameMaster extends ApplicationAdapter
 
     private void dealBaseDamage(int damage)
     {
-        level.getBase().decreaseHp(damage);
-        uiManager.SetBaseHpLabel(level.getBase().getHp(), level.getBase().getMaxHp());
+        levelManager.getBase().decreaseHp(damage);
+        uiManager.SetBaseHpLabel(levelManager.getBase().getHp(), levelManager.getBase().getMaxHp());
     }
 
     private void UpdateUI()
@@ -139,5 +151,66 @@ public class GameMaster extends ApplicationAdapter
             nextPhase = false;
             enemyManager.NewWay(8);
         }
+    }
+
+    private Vector3 touchPoint = new Vector3();
+    private boolean isTouched = false;
+    private void InsertTower()
+    {
+        if(isTouched)
+        {
+            towerManager.SetTower(RoundTo60(touchPoint),TowerType.SingleFire);
+            isTouched = false;
+        }
+    }
+
+    private Vector2 RoundTo60(Vector3 position)
+    {
+        return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
+    }
+
+    //Input Processor implementation
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if(button != Input.Buttons.LEFT || pointer > 0) return false;
+        camera.unproject(touchPoint.set(screenX,screenY,0));
+        isTouched = true;
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }

@@ -113,4 +113,14 @@ public class LevelManager
         return base;
     }
 
+    public boolean CheckIfTowerCanBePlaced(Vector2 position)
+    {
+        for(Environment x : buildings)
+        {
+            if(x.getPosition().equals(position)) return true;
+        }
+        return false;
+    }
+
+
 }

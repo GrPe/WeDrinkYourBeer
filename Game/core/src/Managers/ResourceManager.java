@@ -58,6 +58,7 @@ public class ResourceManager implements Disposable
         manager.load("way.png",Texture.class);
         manager.load("base.png",Texture.class);
         manager.load("spawnPoint.png",Texture.class);
+        manager.load("tmp_tower.png",Texture.class);
     }
 
 
