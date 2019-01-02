@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +12,7 @@ import Managers.EnemyManager;
 import Managers.ResourceManager;
 import Managers.TowerManager;
 
-public class GameMaster extends ApplicationAdapter
+public class GameMaster extends ApplicationAdapter implements InputProcessor
 {
     private OrthographicCamera camera;
     private SpriteBatch batch;
@@ -33,6 +34,7 @@ public class GameMaster extends ApplicationAdapter
         camera.setToOrtho(false,780,480);
 
         batch = new SpriteBatch();
+        Gdx.input.setInputProcessor(this);
 
         resourceManager = new ResourceManager();
 
@@ -141,5 +143,48 @@ public class GameMaster extends ApplicationAdapter
             nextPhase = false;
             enemyManager.NewWay(8);
         }
+    }
+
+
+    //Input Processor implementation
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }
