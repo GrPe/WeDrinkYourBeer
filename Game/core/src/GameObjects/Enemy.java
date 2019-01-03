@@ -64,7 +64,7 @@ public class Enemy extends GameObject implements Drawable
 
     public boolean isDead()
     {
-        return hp < 0;
+        return hp <= 0;
     }
 
     public Vector2 getNextTarget()
