@@ -84,7 +84,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     {
         camera.update();
         enemyManager.Update();
-        towerManager.Update();
+        towerManager.Update(enemyManager.getEnemies());
         InsertTower();
 
         EnemyInBase();
