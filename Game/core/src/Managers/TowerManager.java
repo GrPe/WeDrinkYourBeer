@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import Factories.TowerFactory;
 import Factories.TowerType;
+import GameObjects.Enemy;
 import GameObjects.Tower;
 
 public class TowerManager
@@ -36,11 +37,11 @@ public class TowerManager
         }
     }
 
-    public void Update()
+    public void Update(ArrayList<Enemy> enemies)
     {
         for(Tower x : towers)
         {
-            x.Update();
+            x.Update(enemies);
         }
     }
 
