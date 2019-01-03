@@ -36,7 +36,7 @@ public abstract class State
             return;
         }
 
-        map.put(transition,stateID);
+        map.put(transition,id);
     }
 
     public void DeleteTransition(Transition transition)
