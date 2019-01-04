@@ -22,6 +22,7 @@ public class AttackEnemyState extends State
     @Override
     public void DoBeforeEntering() {
         Gdx.app.log("test", "Enter Attack");
+        counter = tower.getFireSpeed();
     }
 
     @Override

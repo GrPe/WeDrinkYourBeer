@@ -66,6 +66,8 @@ public class EnemyManager
             if(enemy.isDead())
             {
                 enemies.remove(enemy);
+                Gdx.app.log("test", "Enemy killed");
+                return;
             }
         }
     }
