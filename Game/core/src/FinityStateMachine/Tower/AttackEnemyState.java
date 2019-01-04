@@ -34,10 +34,16 @@ public class AttackEnemyState extends State
     public void Act()
     {
         counter -= Gdx.graphics.getDeltaTime();
-        if(tower.getTarget().isDead()) tower.getStateMachine().PerformTransition(Transition.TowerWaitingFor);
 
         if(counter <= 0)
         {
+            if(tower.getTarget() == null || tower.getTarget().isDead())
+            {
+                tower.getStateMachine().PerformTransition(Transition.TowerWaitingFor);
+                return;
+            }
+
+            Gdx.app.log("test", "I attack");
             tower.getTarget().dealDamage(tower.getDamage());
             counter = tower.getFireSpeed();
         }
