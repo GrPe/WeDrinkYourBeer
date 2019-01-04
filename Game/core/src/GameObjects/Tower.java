@@ -1,8 +1,11 @@
 package GameObjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
 
 import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
@@ -18,18 +21,24 @@ public class Tower extends GameObject implements Drawable
     private int fireSpeed;
     private int damage;
 
+    private Enemy target;
+
     public Tower(Vector2 position, float rotation, Texture texture, float range, int fireSpeed, int damage) {
         super(position, rotation);
         this.sprite = new Sprite(texture);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
+        target = null;
         InitStateMachine();
     }
 
-    public void Update()
+    public void Update(ArrayList<Enemy> enemies)
     {
-        stateMachine.getCurrentState().Act();
+        if(stateMachine.getCurrentStateID() == StateID.TowerWaitingForEnemy)
+            stateMachine.getCurrentState().Act(enemies);
+        else
+            stateMachine.getCurrentState().Act();
     }
 
     @Override
@@ -71,5 +80,17 @@ public class Tower extends GameObject implements Drawable
 
     public int getDamage() {
         return damage;
+    }
+
+    public Enemy getTarget() {
+        return target;
+    }
+
+    public void setTarget(Enemy target) {
+        this.target = target;
+    }
+
+    public StateMachine getStateMachine() {
+        return stateMachine;
     }
 }

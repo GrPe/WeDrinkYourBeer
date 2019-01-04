@@ -41,6 +41,8 @@ public class EnemyManager
         {
             enemy.Update();
         }
+
+        DestroyDeadEnemy();
     }
 
     private void SpawnEnemy()
@@ -56,6 +58,20 @@ public class EnemyManager
             }
         }
     }
+
+    private void DestroyDeadEnemy()
+    {
+        for(Enemy enemy : enemies)
+        {
+            if(enemy.isDead())
+            {
+                enemies.remove(enemy);
+                Gdx.app.log("test", "Enemy killed");
+                return;
+            }
+        }
+    }
+
 
     public void render(SpriteBatch batch)
     {
@@ -94,6 +110,7 @@ public class EnemyManager
         return numberOfEnemyToSpawn > 0;
     }
 
-
-
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
 }

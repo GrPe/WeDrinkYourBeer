@@ -3,6 +3,7 @@ package FinityStateMachine;
 
 import com.badlogic.gdx.Gdx;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class State
@@ -35,7 +36,7 @@ public abstract class State
             return;
         }
 
-        map.put(transition,stateID);
+        map.put(transition,id);
     }
 
     public void DeleteTransition(Transition transition)
@@ -75,6 +76,11 @@ public abstract class State
     }
 
     public void Act()
+    {
+        //is virtual
+    }
+
+    public < E > void Act(ArrayList<E> list)
     {
         //is virtual
     }

@@ -1,12 +1,16 @@
 package FinityStateMachine.Tower;
 
+import com.badlogic.gdx.Gdx;
+
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
+import FinityStateMachine.Transition;
 import GameObjects.Tower;
 
 public class AttackEnemyState extends State
 {
     private Tower tower;
+    float counter = 0;
 
     public AttackEnemyState(Tower tower)
     {
@@ -17,14 +21,29 @@ public class AttackEnemyState extends State
 
     @Override
     public void DoBeforeEntering() {
-
+        counter = tower.getFireSpeed();
     }
 
     @Override
     public void DoBeforeLeaving() {
+        tower.setTarget(null);
     }
 
     @Override
-    public void Act() {
+    public void Act()
+    {
+        counter -= Gdx.graphics.getDeltaTime();
+
+        if(counter <= 0)
+        {
+            if(tower.getTarget() == null || tower.getTarget().isDead())
+            {
+                tower.getStateMachine().PerformTransition(Transition.TowerWaitingFor);
+                return;
+            }
+
+            tower.getTarget().dealDamage(tower.getDamage());
+            counter = tower.getFireSpeed();
+        }
     }
 }
