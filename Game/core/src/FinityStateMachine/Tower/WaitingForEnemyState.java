@@ -23,13 +23,13 @@ public class WaitingForEnemyState extends State
     @Override
     public void DoBeforeEntering()
     {
-        Gdx.app.log("test", "Enter Waiting");
+
     }
 
     @Override
     public void DoBeforeLeaving()
     {
-        Gdx.app.log("test", "Exit Waiting");
+
     }
 
     @Override
