@@ -1,7 +1,7 @@
 package GameObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -31,6 +31,16 @@ public class Tower extends GameObject implements Drawable
         this.damage = damage;
         target = null;
         InitStateMachine();
+    }
+
+    public void Fire()
+    {
+        //is virtual
+    }
+
+    public void RenderFire(Batch batch)
+    {
+        //is virtual
     }
 
     public void Update(ArrayList<Enemy> enemies)
