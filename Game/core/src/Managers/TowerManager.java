@@ -47,9 +47,10 @@ public class TowerManager
 
     public void render(Batch batch)
     {
-        for(Tower x : towers)
+        for(Tower tower : towers)
         {
-            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
+            batch.draw(tower.getDrawingSprite(),tower.getX(),tower.getY());
+            tower.RenderFire(batch);
         }
     }
 
