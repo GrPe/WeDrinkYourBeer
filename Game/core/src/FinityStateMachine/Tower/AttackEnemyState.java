@@ -10,14 +10,13 @@ import GameObjects.Tower;
 public class AttackEnemyState extends State
 {
     private Tower tower;
-    float counter = 0;
+    private float counter = 0;
 
     public AttackEnemyState(Tower tower)
     {
         this.tower = tower;
         super.stateID = StateID.TowerAttackEnemy;
     }
-
 
     @Override
     public void DoBeforeEntering() {
