@@ -41,6 +41,7 @@ public class AttackEnemyState extends State
                 return;
             }
 
+            tower.Fire();
             tower.getTarget().dealDamage(tower.getDamage());
             counter = tower.getFireSpeed();
         }
