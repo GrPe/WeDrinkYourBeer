@@ -76,6 +76,16 @@ public class Tower extends GameObject implements Drawable
         stateMachine.AddState(attackEnemyState);
     }
 
+    protected float GetSpriteWidth()
+    {
+        return sprite.getWidth();
+    }
+
+    protected float GetSpriteHeight()
+    {
+        return sprite.getHeight();
+    }
+
     public float GetRange() {
         return range;
     }
