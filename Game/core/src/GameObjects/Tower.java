@@ -76,6 +76,16 @@ public class Tower extends GameObject implements Drawable
         stateMachine.AddState(attackEnemyState);
     }
 
+    protected float GetSpriteWidth()
+    {
+        return sprite.getWidth();
+    }
+
+    protected float GetSpriteHeight()
+    {
+        return sprite.getHeight();
+    }
+
     public float GetRange() {
         return range;
     }
@@ -105,4 +115,10 @@ public class Tower extends GameObject implements Drawable
         super.SetRotation(rotation);
         sprite.setRotation(rotation);
     }
+
+    public boolean IsTargetInRange(Vector2 target)
+    {
+        return target.epsilonEquals(GetPosition(),range);
+    }
+
 }

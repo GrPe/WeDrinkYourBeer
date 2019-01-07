@@ -6,6 +6,7 @@ import FinityStateMachine.State;
 import FinityStateMachine.StateID;
 import FinityStateMachine.Transition;
 import GameObjects.Enemy;
+import GameObjects.GameObject;
 import GameObjects.Tower;
 
 public class WaitingForEnemyState extends State
@@ -36,7 +37,7 @@ public class WaitingForEnemyState extends State
         if(tower.GetTarget() != null) return;
         for(E enemy : list)
         {
-            if(((Enemy)enemy).GetPosition().epsilonEquals(tower.GetPosition(),tower.GetRange()))
+            if(tower.IsTargetInRange(((GameObject)enemy).GetPosition()))
             {
                 tower.SetTarget((Enemy)enemy);
                 tower.GetStateMachine().PerformTransition(Transition.TowerAttack);
