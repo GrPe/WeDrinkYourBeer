@@ -18,17 +18,12 @@ public class TowerFactory
 
     public Tower CreateTower(Vector2 position, TowerType towerType)
     {
-        Tower tower;
         switch(towerType)
         {
             case SingleFire:
-                tower = new SingleFireTower(position, resourceManager.GetTexture("tmp_tower.png"),this);
-                break;
-            default:
-                tower = new SingleFireTower(position, resourceManager.GetTexture("tmp_tower.png"),this);
-                break;
+                return  new SingleFireTower(position, resourceManager.GetTexture("tmp_tower.png"),this);
         }
-        return tower;
+        return null;
     }
 
     public Bullet CreateBullet(Vector2 position, float rotation, Vector2 destination)

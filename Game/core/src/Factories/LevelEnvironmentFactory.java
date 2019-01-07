@@ -18,21 +18,14 @@ public class LevelEnvironmentFactory
 
     public Environment CreateEnvironment(Vector2 position, EnvironmentType environmentType)
     {
-        Environment environment;
         switch(environmentType)
         {
             case Buildings:
-                environment = new Environment(position,resourceManager.GetTexture("buildings2.png"));
-                break;
+                return new Environment(position,resourceManager.GetTexture("buildings2.png"));
             case Way:
-                environment = new Environment(position,resourceManager.GetTexture("way.png"));
-                break;
-            default:
-                environment = new Environment(position,resourceManager.GetTexture("buildings2.png"));
-                break;
+                return new Environment(position,resourceManager.GetTexture("way.png"));
         }
-
-        return environment;
+        return null;
     }
 
     public Base CreateBase(Vector2 position, int hp)
