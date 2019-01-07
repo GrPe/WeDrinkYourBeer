@@ -52,8 +52,7 @@ public class AttackEnemyState extends State
 
     private void SetRotationToTarget(Vector2 target)
     {
-        double tangent = (tower.GetPosition().x - target.x) / (tower.GetPosition().y - target.y);
-        double angle = Math.toDegrees(Math.atan(tangent));
+        double angle = Math.toDegrees(Math.atan2(tower.GetPosition().x - target.x,target.y-tower.GetPosition().y));
         tower.SetRotation((float)angle);
     }
 
