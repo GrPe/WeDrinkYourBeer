@@ -1,7 +1,7 @@
 package GameObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -26,11 +26,17 @@ public class Tower extends GameObject implements Drawable
     public Tower(Vector2 position, float rotation, Texture texture, float range, int fireSpeed, int damage) {
         super(position, rotation);
         this.sprite = new Sprite(texture);
+        sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
         target = null;
         InitStateMachine();
+    }
+
+    public void Fire()
+    {
+        //is virtual
     }
 
     public void Update(ArrayList<Enemy> enemies)
@@ -42,18 +48,18 @@ public class Tower extends GameObject implements Drawable
     }
 
     @Override
-    public Sprite getDrawingSprite() {
-        return sprite;
+    public void Render(Batch batch) {
+        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 
     private void InitStateMachine()
@@ -70,27 +76,33 @@ public class Tower extends GameObject implements Drawable
         stateMachine.AddState(attackEnemyState);
     }
 
-    public float getRange() {
+    public float GetRange() {
         return range;
     }
 
-    public int getFireSpeed() {
+    public int GetFireSpeed() {
         return fireSpeed;
     }
 
-    public int getDamage() {
+    public int GetDamage() {
         return damage;
     }
 
-    public Enemy getTarget() {
+    public Enemy GetTarget() {
         return target;
     }
 
-    public void setTarget(Enemy target) {
+    public void SetTarget(Enemy target) {
         this.target = target;
     }
 
-    public StateMachine getStateMachine() {
+    public StateMachine GetStateMachine() {
         return stateMachine;
+    }
+
+    @Override
+    public void SetRotation(float rotation) {
+        super.SetRotation(rotation);
+        sprite.setRotation(rotation);
     }
 }

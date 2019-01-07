@@ -1,6 +1,7 @@
 package FinityStateMachine.Tower;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
@@ -10,7 +11,7 @@ import GameObjects.Tower;
 public class AttackEnemyState extends State
 {
     private Tower tower;
-    float counter = 0;
+    private float counter = 0;
 
     public AttackEnemyState(Tower tower)
     {
@@ -18,15 +19,14 @@ public class AttackEnemyState extends State
         super.stateID = StateID.TowerAttackEnemy;
     }
 
-
     @Override
     public void DoBeforeEntering() {
-        counter = tower.getFireSpeed();
+        counter = tower.GetFireSpeed();
     }
 
     @Override
     public void DoBeforeLeaving() {
-        tower.setTarget(null);
+        tower.SetTarget(null);
     }
 
     @Override
@@ -36,14 +36,25 @@ public class AttackEnemyState extends State
 
         if(counter <= 0)
         {
-            if(tower.getTarget() == null || tower.getTarget().isDead())
+            if(tower.GetTarget() == null || tower.GetTarget().IsDead())
             {
-                tower.getStateMachine().PerformTransition(Transition.TowerWaitingFor);
+                tower.GetStateMachine().PerformTransition(Transition.TowerWaitingFor);
                 return;
             }
 
-            tower.getTarget().dealDamage(tower.getDamage());
-            counter = tower.getFireSpeed();
+            SetRotationToTarget(tower.GetTarget().GetPosition());
+
+            tower.Fire();
+            tower.GetTarget().DealDamage(tower.GetDamage());
+            counter = tower.GetFireSpeed();
         }
     }
+
+    private void SetRotationToTarget(Vector2 target)
+    {
+        double tangent = (tower.GetPosition().x - target.x) / (tower.GetPosition().y - target.y);
+        double angle = Math.toDegrees(Math.atan(tangent));
+        tower.SetRotation((float)angle);
+    }
+
 }

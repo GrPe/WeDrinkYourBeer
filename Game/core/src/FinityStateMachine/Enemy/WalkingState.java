@@ -18,8 +18,8 @@ public class WalkingState extends State {
         this.enemy = enemy;
         stateID = StateID.EnemyWalking;
 
-        currentTarget = enemy.getNextTarget();
-        finalTarget = enemy.getFinalTarget();
+        currentTarget = enemy.GetNextTarget();
+        finalTarget = enemy.GetFinalTarget();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class WalkingState extends State {
     @Override
     public void Act()
     {
-        if(!isInBase())
+        if(!IsInBase())
         {
             move();
         }
@@ -50,16 +50,16 @@ public class WalkingState extends State {
 
     private void move()
     {
-        float destX = currentTarget.x - enemy.getX();
-        float destY = currentTarget.y - enemy.getY();
+        float destX = currentTarget.x - enemy.GetX();
+        float destY = currentTarget.y - enemy.GetY();
 
         float dist = (float)Math.sqrt(destX * destX + destY * destY);
 
         destX = destX/dist;
         destY = destY/dist;
 
-        enemy.setPosition(new Vector2(enemy.getX() + destX * enemy.getSpeed() * Gdx.graphics.getDeltaTime(),
-                enemy.getY() + destY * enemy.getSpeed() * Gdx.graphics.getDeltaTime()));
+        enemy.SetPosition(new Vector2(enemy.GetX() + destX * enemy.GetSpeed() * Gdx.graphics.getDeltaTime(),
+                enemy.GetY() + destY * enemy.GetSpeed() * Gdx.graphics.getDeltaTime()));
 
         ChangePosition();
     }
@@ -69,16 +69,16 @@ public class WalkingState extends State {
     {
         if(CheckPosition(1, currentTarget))
         {
-            currentTarget = enemy.getNextTarget();
+            currentTarget = enemy.GetNextTarget();
         }
     }
 
     private boolean CheckPosition(int epsilon, Vector2 target)
     {
-        return enemy.getPosition().epsilonEquals(target,epsilon);
+        return enemy.GetPosition().epsilonEquals(target,epsilon);
     }
 
-    private boolean isInBase()
+    private boolean IsInBase()
     {
         return CheckPosition(2,finalTarget);
     }

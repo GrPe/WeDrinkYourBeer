@@ -28,7 +28,7 @@ public class TowerManager
         //if tower exists in this place
         for(Tower t : towers)
         {
-            if(t.getPosition().equals(position)) return;
+            if(t.GetPosition().equals(position)) return;
         }
 
         if(levelManager.CheckIfTowerCanBePlaced(position))
@@ -45,11 +45,11 @@ public class TowerManager
         }
     }
 
-    public void render(Batch batch)
+    public void Render(Batch batch)
     {
-        for(Tower x : towers)
+        for(Tower tower : towers)
         {
-            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
+            tower.Render(batch);
         }
     }
 

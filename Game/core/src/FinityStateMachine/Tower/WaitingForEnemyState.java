@@ -1,7 +1,5 @@
 package FinityStateMachine.Tower;
 
-import com.badlogic.gdx.Gdx;
-
 import java.util.ArrayList;
 
 import FinityStateMachine.State;
@@ -35,13 +33,13 @@ public class WaitingForEnemyState extends State
     @Override
     public < E > void Act(ArrayList<E> list)
     {
-        if(tower.getTarget() != null) return;
+        if(tower.GetTarget() != null) return;
         for(E enemy : list)
         {
-            if(((Enemy)enemy).getPosition().epsilonEquals(tower.getPosition(),tower.getRange()))
+            if(((Enemy)enemy).GetPosition().epsilonEquals(tower.GetPosition(),tower.GetRange()))
             {
-                tower.setTarget((Enemy)enemy);
-                tower.getStateMachine().PerformTransition(Transition.TowerAttack);
+                tower.SetTarget((Enemy)enemy);
+                tower.GetStateMachine().PerformTransition(Transition.TowerAttack);
                 return;
             }
         }

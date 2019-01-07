@@ -25,17 +25,11 @@ public class EnemyFactory
 
     public Enemy CreateEnemy(Vector2 position, EnemyType enemyType)
     {
-        Enemy enemy;
         switch(enemyType)
         {
             case Student:
-                enemy = new Student(position, resourceManager.GetTexture("enemy_test.png"),navLink);
-                break;
-            default:
-                enemy = new Student(position, resourceManager.GetTexture("enemy_test.png"),navLink);
-                break;
+                return new Student(position, resourceManager.GetTexture("enemy_test.png"),navLink);
         }
-
-        return enemy;
+        return null;
     }
 }

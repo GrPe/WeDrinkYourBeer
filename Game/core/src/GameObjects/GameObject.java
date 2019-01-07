@@ -17,19 +17,19 @@ public abstract class GameObject {
         this.rotation = rotation;
     }
 
-    public Vector2 getPosition() {
+    public Vector2 GetPosition() {
         return position;
     }
 
-    public void setPosition(Vector2 position) {
+    public void SetPosition(Vector2 position) {
         this.position = position;
     }
 
-    public float getRotation() {
+    public float GetRotation() {
         return rotation;
     }
 
-    public void setRotation(float rotation) {
+    public void SetRotation(float rotation) {
         this.rotation = rotation;
     }
 }

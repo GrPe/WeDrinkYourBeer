@@ -1,10 +1,10 @@
 package GameObjects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Batch;
 
 public interface Drawable
 {
-    Sprite getDrawingSprite();
-    float getX();
-    float getY();
+    void Render(Batch batch);
+    float GetX();
+    float GetY();
 }

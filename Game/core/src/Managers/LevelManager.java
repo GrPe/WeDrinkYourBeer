@@ -90,25 +90,24 @@ public class LevelManager
     {
         for(Environment x : buildings)
         {
-            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
+            x.Render(batch);
         }
 
         for(Environment x : ways)
         {
-            batch.draw(x.getDrawingSprite(),x.getX(),x.getY());
+            x.Render(batch);
         }
 
-        batch.draw(spawnPoint.getDrawingSprite(),spawnPoint.getX(),spawnPoint.getY());
-
-        batch.draw(base.getDrawingSprite(), base.getX(), base.getY());
+        spawnPoint.Render(batch);
+        base.Render(batch);
     }
 
-    public Vector2 getSpawnPointPosition()
+    public Vector2 GetSpawnPointPosition()
     {
-        return spawnPoint.getPosition();
+        return spawnPoint.GetPosition();
     }
 
-    public GameObjects.Base getBase()
+    public GameObjects.Base GetBase()
     {
         return base;
     }
@@ -117,7 +116,7 @@ public class LevelManager
     {
         for(Environment x : buildings)
         {
-            if(x.getPosition().equals(position)) return true;
+            if(x.GetPosition().equals(position)) return true;
         }
         return false;
     }

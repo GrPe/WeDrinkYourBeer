@@ -63,31 +63,30 @@ public class EnemyManager
     {
         for(Enemy enemy : enemies)
         {
-            if(enemy.isDead())
+            if(enemy.IsDead())
             {
                 enemies.remove(enemy);
-                Gdx.app.log("test", "Enemy killed");
                 return;
             }
         }
     }
 
 
-    public void render(SpriteBatch batch)
+    public void Render(SpriteBatch batch)
     {
         for(Enemy enemy : enemies)
         {
-            batch.draw(enemy.getDrawingSprite(),enemy.getX(),enemy.getY());
+            enemy.Render(batch);
         }
     }
 
-    public int isEnemyInBase()
+    public int IsEnemyInBase()
     {
         for(Enemy enemy : enemies)
         {
-            if(enemy.getIsInBase())
+            if(enemy.GetIsInBase())
             {
-                int retDamage = enemy.getDamage();
+                int retDamage = enemy.GetDamage();
                 enemies.remove(enemy);
                 return retDamage;
             }
@@ -95,22 +94,22 @@ public class EnemyManager
         return 0;
     }
 
-    public boolean isEmpty()
+    public boolean IsEmpty()
     {
         return enemies.isEmpty();
     }
 
-    public int size()
+    public int Size()
     {
         return enemies.size();
     }
 
-    public boolean isSpawningEnemies()
+    public boolean IsSpawningEnemies()
     {
         return numberOfEnemyToSpawn > 0;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public ArrayList<Enemy> GetEnemies() {
         return enemies;
     }
 }
