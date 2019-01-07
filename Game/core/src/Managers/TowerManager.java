@@ -28,7 +28,7 @@ public class TowerManager
         //if tower exists in this place
         for(Tower t : towers)
         {
-            if(t.getPosition().equals(position)) return;
+            if(t.GetPosition().equals(position)) return;
         }
 
         if(levelManager.CheckIfTowerCanBePlaced(position))

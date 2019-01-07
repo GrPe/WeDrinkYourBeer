@@ -18,41 +18,42 @@ public class Base extends GameObject implements Drawable
     }
 
     @Override
-    public Sprite getDrawingSprite() {
-        return sprite;
+    public void Render(Batch batch) {
+        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 
-    public int getHp() {
+    public int GetHp() {
         return hp;
     }
 
-    public int getMaxHp() {return maxHp;}
+    public int GetMaxHp() {return maxHp;}
 
-    public void setHp(int hp) {
+    public void SetHp(int hp) {
+        this.maxHp = hp;
         this.hp = hp;
     }
 
-    public void decreaseHp(int hp)
+    public void DecreaseHp(int hp)
     {
         this.hp -= hp;
     }
 
-    public boolean isDead()
+    public boolean IsDead()
     {
         return hp < 0;
     }
 
-    public void increaseHp(int hp)
+    public void IncreaseHp(int hp)
     {
         this.hp += hp;
     }

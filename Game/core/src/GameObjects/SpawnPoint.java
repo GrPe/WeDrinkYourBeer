@@ -19,12 +19,12 @@ public class SpawnPoint extends GameObject implements Drawable
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 }

@@ -19,7 +19,7 @@ public class Label extends GameObject
 
     public void draw(Batch batch)
     {
-        font.draw(batch,text,getPosition().x,getPosition().y);
+        font.draw(batch,text, GetPosition().x, GetPosition().y);
     }
 
     public void setText(String text)

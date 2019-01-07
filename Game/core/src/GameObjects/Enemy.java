@@ -35,39 +35,38 @@ public class Enemy extends GameObject implements Drawable
     }
 
     @Override
-    public Sprite getDrawingSprite()
-    {
-        return sprite;
+    public void Render(Batch batch) {
+        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 
-    public float getSpeed() {return speed;}
+    public float GetSpeed() {return speed;}
 
-    public void dealDamage(int damage)
+    public void DealDamage(int damage)
     {
         hp -= damage;
     }
 
-    public int getDamage()
+    public int GetDamage()
     {
         return damage;
     }
 
-    public boolean isDead()
+    public boolean IsDead()
     {
         return hp <= 0;
     }
 
-    public Vector2 getNextTarget()
+    public Vector2 GetNextTarget()
     {
         if(navLink.length > currentTarget)
             return navLink[currentTarget++];
@@ -75,14 +74,14 @@ public class Enemy extends GameObject implements Drawable
             return navLink[navLink.length - 1];
     }
 
-    public Vector2 getFinalTarget() {return navLink[navLink.length-1];}
+    public Vector2 GetFinalTarget() {return navLink[navLink.length-1];}
 
     public void SetInBase()
     {
         isInBase = true;
     }
 
-    public boolean getIsInBase()
+    public boolean GetIsInBase()
     {
         return isInBase;
     }
@@ -101,11 +100,4 @@ public class Enemy extends GameObject implements Drawable
     {
         stateMachine.getCurrentState().Act();
     }
-
-    //only for state machine
-    public void OnDie()
-    {
-        stateMachine.PerformTransition(Transition.EnemyDie);
-    }
-
 }

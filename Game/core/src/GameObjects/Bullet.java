@@ -25,8 +25,8 @@ public class Bullet extends GameObject implements Drawable
 
     private void Move()
     {
-        float destX = destination.x - getX();
-        float destY = destination.y - getY();
+        float destX = destination.x - GetX();
+        float destY = destination.y - GetY();
 
         float dist = (float)Math.sqrt(destX * destX + destY * destY);
 
@@ -39,8 +39,9 @@ public class Bullet extends GameObject implements Drawable
 
     public boolean CanBeDestroyed()
     {
-        return super.getPosition().epsilonEquals(destination,10);
+        return super.GetPosition().epsilonEquals(destination,10);
     }
+
 
     @Override
     public Sprite getDrawingSprite() {
@@ -48,12 +49,12 @@ public class Bullet extends GameObject implements Drawable
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 }

@@ -103,12 +103,12 @@ public class LevelManager
         batch.draw(base.getDrawingSprite(), base.getX(), base.getY());
     }
 
-    public Vector2 getSpawnPointPosition()
+    public Vector2 GetSpawnPointPosition()
     {
-        return spawnPoint.getPosition();
+        return spawnPoint.GetPosition();
     }
 
-    public GameObjects.Base getBase()
+    public GameObjects.Base GetBase()
     {
         return base;
     }
@@ -117,7 +117,7 @@ public class LevelManager
     {
         for(Environment x : buildings)
         {
-            if(x.getPosition().equals(position)) return true;
+            if(x.GetPosition().equals(position)) return true;
         }
         return false;
     }

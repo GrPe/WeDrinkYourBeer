@@ -26,7 +26,7 @@ public class SingleFireTower extends Tower
     @Override
     public void Fire()
     {
-        bullets.add(towerFactory.CreateBullet(super.getPosition(),super.getRotation(),super.getTarget().getPosition()));
+        bullets.add(towerFactory.CreateBullet(super.GetPosition(),super.GetRotation(),super.GetTarget().GetPosition()));
     }
 
     @Override

@@ -48,7 +48,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         //test
 
         levelManager = new LevelManager(resourceManager);
-        enemyManager = new EnemyManager(levelManager.getSpawnPointPosition(),resourceManager);
+        enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
         uiManager = new Managers.UIManager(resourceManager.GetFont());
         towerManager = new TowerManager(levelManager,resourceManager);
 
@@ -86,7 +86,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     {
         camera.update();
         enemyManager.Update();
-        towerManager.Update(enemyManager.getEnemies());
+        towerManager.Update(enemyManager.GetEnemies());
         InsertTower();
 
         EnemyInBase();
@@ -96,22 +96,22 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
     private void EnemyInBase()
     {
-        int damage = enemyManager.isEnemyInBase();
+        int damage = enemyManager.IsEnemyInBase();
         if(damage > 0)
         {
-            dealBaseDamage(damage);
+            DealBaseDamage(damage);
         }
     }
 
-    private void dealBaseDamage(int damage)
+    private void DealBaseDamage(int damage)
     {
-        levelManager.getBase().decreaseHp(damage);
-        uiManager.SetBaseHpLabel(levelManager.getBase().getHp(), levelManager.getBase().getMaxHp());
+        levelManager.GetBase().DecreaseHp(damage);
+        uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(), levelManager.GetBase().GetMaxHp());
     }
 
     private void UpdateUI()
     {
-        if(enemyManager.isEmpty() && timer > 0 && !enemyManager.isSpawningEnemies())
+        if(enemyManager.IsEmpty() && timer > 0 && !enemyManager.IsSpawningEnemies())
         {
             UpdateEnemyTimer();
         }
@@ -123,7 +123,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
     private void UpdateEnemyCounter()
     {
-        uiManager.SetTimerAndCounter(enemyManager.size());
+        uiManager.SetTimerAndCounter(enemyManager.Size());
     }
 
     private void UpdateEnemyTimer()
@@ -133,12 +133,12 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
     private void NextPhase()
     {
-        if(enemyManager.isEmpty() && timer <= 0 && !nextPhase)
+        if(enemyManager.IsEmpty() && timer <= 0 && !nextPhase)
         {
             timer = 3;
             nextPhase = true;
         }
-        if(nextPhase && !enemyManager.isSpawningEnemies() && enemyManager.isEmpty())
+        if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
         {
             CountDownToNextPhase();
         }

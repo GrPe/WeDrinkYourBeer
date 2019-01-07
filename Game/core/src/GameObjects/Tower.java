@@ -57,13 +57,13 @@ public class Tower extends GameObject implements Drawable
     }
 
     @Override
-    public float getX() {
-        return super.getPosition().x;
+    public float GetX() {
+        return super.GetPosition().x;
     }
 
     @Override
-    public float getY() {
-        return super.getPosition().y;
+    public float GetY() {
+        return super.GetPosition().y;
     }
 
     private void InitStateMachine()
@@ -80,27 +80,27 @@ public class Tower extends GameObject implements Drawable
         stateMachine.AddState(attackEnemyState);
     }
 
-    public float getRange() {
+    public float GetRange() {
         return range;
     }
 
-    public int getFireSpeed() {
+    public int GetFireSpeed() {
         return fireSpeed;
     }
 
-    public int getDamage() {
+    public int GetDamage() {
         return damage;
     }
 
-    public Enemy getTarget() {
+    public Enemy GetTarget() {
         return target;
     }
 
-    public void setTarget(Enemy target) {
+    public void SetTarget(Enemy target) {
         this.target = target;
     }
 
-    public StateMachine getStateMachine() {
+    public StateMachine GetStateMachine() {
         return stateMachine;
     }
 }

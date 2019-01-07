@@ -20,12 +20,12 @@ public class AttackEnemyState extends State
 
     @Override
     public void DoBeforeEntering() {
-        counter = tower.getFireSpeed();
+        counter = tower.GetFireSpeed();
     }
 
     @Override
     public void DoBeforeLeaving() {
-        tower.setTarget(null);
+        tower.SetTarget(null);
     }
 
     @Override
@@ -35,15 +35,15 @@ public class AttackEnemyState extends State
 
         if(counter <= 0)
         {
-            if(tower.getTarget() == null || tower.getTarget().isDead())
+            if(tower.GetTarget() == null || tower.GetTarget().IsDead())
             {
-                tower.getStateMachine().PerformTransition(Transition.TowerWaitingFor);
+                tower.GetStateMachine().PerformTransition(Transition.TowerWaitingFor);
                 return;
             }
 
             tower.Fire();
-            tower.getTarget().dealDamage(tower.getDamage());
-            counter = tower.getFireSpeed();
+            tower.GetTarget().DealDamage(tower.GetDamage());
+            counter = tower.GetFireSpeed();
         }
     }
 }
