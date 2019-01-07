@@ -15,8 +15,8 @@ public final class Environment extends GameObject implements Drawable
     }
 
     @Override
-    public Sprite getDrawingSprite() {
-        return sprite;
+    public void Render(Batch batch) {
+        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
     }
 
     @Override

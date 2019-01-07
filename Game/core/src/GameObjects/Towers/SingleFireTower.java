@@ -30,11 +30,11 @@ public class SingleFireTower extends Tower
     }
 
     @Override
-    public void RenderFire(Batch batch)
-    {
+    public void Render(Batch batch) {
+        super.Render(batch);
         for(Bullet bullet : bullets)
         {
-            batch.draw(bullet.getDrawingSprite(),bullet.getX(),bullet.getY());
+            bullet.Render(batch);
         }
     }
 

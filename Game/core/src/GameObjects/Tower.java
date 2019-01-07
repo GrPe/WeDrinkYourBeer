@@ -26,6 +26,7 @@ public class Tower extends GameObject implements Drawable
     public Tower(Vector2 position, float rotation, Texture texture, float range, int fireSpeed, int damage) {
         super(position, rotation);
         this.sprite = new Sprite(texture);
+        sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
@@ -34,11 +35,6 @@ public class Tower extends GameObject implements Drawable
     }
 
     public void Fire()
-    {
-        //is virtual
-    }
-
-    public void RenderFire(Batch batch)
     {
         //is virtual
     }
@@ -52,8 +48,8 @@ public class Tower extends GameObject implements Drawable
     }
 
     @Override
-    public Sprite getDrawingSprite() {
-        return sprite;
+    public void Render(Batch batch) {
+        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
     }
 
     @Override
@@ -102,5 +98,11 @@ public class Tower extends GameObject implements Drawable
 
     public StateMachine GetStateMachine() {
         return stateMachine;
+    }
+
+    @Override
+    public void SetRotation(float rotation) {
+        super.SetRotation(rotation);
+        sprite.setRotation(rotation);
     }
 }

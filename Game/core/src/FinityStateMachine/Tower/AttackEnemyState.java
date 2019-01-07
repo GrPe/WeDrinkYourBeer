@@ -1,6 +1,7 @@
 package FinityStateMachine.Tower;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
@@ -41,9 +42,19 @@ public class AttackEnemyState extends State
                 return;
             }
 
+            SetRotationToTarget(tower.GetTarget().GetPosition());
+
             tower.Fire();
             tower.GetTarget().DealDamage(tower.GetDamage());
             counter = tower.GetFireSpeed();
         }
     }
+
+    private void SetRotationToTarget(Vector2 target)
+    {
+        double tangent = (tower.GetPosition().x - target.x) / (tower.GetPosition().y - target.y);
+        double angle = Math.toDegrees(Math.atan(tangent));
+        tower.SetRotation((float)angle);
+    }
+
 }
