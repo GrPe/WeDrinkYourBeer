@@ -87,6 +87,7 @@ public class EnemyManager
             if(enemy.GetIsInBase())
             {
                 int retDamage = enemy.GetDamage();
+                enemy.DealDamage(50000);
                 enemies.remove(enemy);
                 return retDamage;
             }

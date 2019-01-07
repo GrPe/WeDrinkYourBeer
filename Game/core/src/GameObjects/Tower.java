@@ -115,4 +115,10 @@ public class Tower extends GameObject implements Drawable
         super.SetRotation(rotation);
         sprite.setRotation(rotation);
     }
+
+    public boolean IsTargetInRange(Vector2 target)
+    {
+        return target.epsilonEquals(GetPosition(),range);
+    }
+
 }
