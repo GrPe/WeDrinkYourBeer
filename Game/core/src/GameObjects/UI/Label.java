@@ -17,12 +17,12 @@ public class Label extends GameObject
         this.text = text;
     }
 
-    public void draw(Batch batch)
+    public void Render(Batch batch)
     {
         font.draw(batch,text, GetPosition().x, GetPosition().y);
     }
 
-    public void setText(String text)
+    public void SetText(String text)
     {
         this.text = text;
     }

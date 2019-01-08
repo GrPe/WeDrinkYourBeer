@@ -70,7 +70,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         levelManager.render(batch);
         enemyManager.Render(batch);
         towerManager.Render(batch);
-        uiManager.draw(batch);
+        uiManager.Render(batch);
 
         batch.end();
     }
