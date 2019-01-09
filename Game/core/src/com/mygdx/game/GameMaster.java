@@ -24,6 +24,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     private SpriteBatch batch;
     private float timer = 0;
     private boolean nextPhase = false;
+    private int coins;
 
     //test
 
@@ -42,6 +43,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
 
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
+        coins = 150;
 
         resourceManager = new ResourceManager();
 
@@ -70,7 +72,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         levelManager.render(batch);
         enemyManager.Render(batch);
         towerManager.Render(batch);
-        uiManager.draw(batch);
+        uiManager.Render(batch);
 
         batch.end();
     }
@@ -88,6 +90,9 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
         InsertTower();
+
+        coins += enemyManager.GetKilledEnemyFromLastCheck()*10;
+        uiManager.SetCoinsLabel(coins);
 
         EnemyInBase();
         UpdateUI();
@@ -161,7 +166,12 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     {
         if(isTouched)
         {
-            towerManager.SetTower(RoundTo60(touchPoint),TowerType.SingleFire);
+            if(coins >= 50)
+            {
+                coins -= 50;
+                uiManager.SetCoinsLabel(coins);
+                towerManager.SetTower(RoundTo60(touchPoint),TowerType.SingleFire);
+            }
             isTouched = false;
         }
     }

@@ -10,27 +10,35 @@ public class UIManager
 {
     private Label baseHp;
     private Label timerAndCounter;
+    private Label coins;
 
     public UIManager(BitmapFont font)
     {
         baseHp = new Label(font, new Vector2(20,450),"12/12");
         timerAndCounter = new Label(font, new Vector2(320,450), "40");
+        coins = new Label(font, new Vector2(550,450),"120");
     }
 
     public void SetBaseHpLabel(int current, int max)
     {
-        baseHp.setText(current + "/" + max);
+        baseHp.SetText(current + "/" + max);
     }
 
     public void SetTimerAndCounter(int value)
     {
-        timerAndCounter.setText(Integer.toString(value));
+        timerAndCounter.SetText(Integer.toString(value));
     }
 
-    public void draw(Batch batch)
+    public void SetCoinsLabel(int value)
     {
-        baseHp.draw(batch);
-        timerAndCounter.draw(batch);
+        coins.SetText(Integer.toString(value));
+    }
+
+    public void Render(Batch batch)
+    {
+        baseHp.Render(batch);
+        timerAndCounter.Render(batch);
+        coins.Render(batch);
     }
 
 }
