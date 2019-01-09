@@ -15,6 +15,7 @@ public class EnemyManager
     private ArrayList<Enemy> enemies;
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
+    private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
     private ResourceManager resourceManager;
@@ -65,12 +66,19 @@ public class EnemyManager
         {
             if(enemy.IsDead())
             {
+                killedEnemyFromLastCheck++;
                 enemies.remove(enemy);
                 return;
             }
         }
     }
 
+    public int GetKilledEnemyFromLastCheck()
+    {
+        int temp = killedEnemyFromLastCheck;
+        killedEnemyFromLastCheck = 0;
+        return temp;
+    }
 
     public void Render(SpriteBatch batch)
     {
