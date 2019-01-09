@@ -18,7 +18,7 @@ public class SingleFireTower extends Tower
 
     public SingleFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 192, 1, 1,50);
+        super(position, 0, texture, 128, 1, 1,50);
         this.towerFactory = towerFactory;
         bullets = new ArrayList<Bullet>();
     }
