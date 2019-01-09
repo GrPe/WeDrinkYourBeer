@@ -86,10 +86,6 @@ public class Tower extends GameObject implements Drawable
         return sprite.getHeight();
     }
 
-    public float GetRange() {
-        return range;
-    }
-
     public int GetFireSpeed() {
         return fireSpeed;
     }
