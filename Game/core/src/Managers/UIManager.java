@@ -1,7 +1,6 @@
 package Managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.UI.Label;
@@ -12,14 +11,24 @@ public class UIManager
     private Label baseHp;
     private Label timerAndCounter;
     private Label coins;
+
+    //tower menu buttons
+    private boolean towerMenuVisibility;
     private UIButton towerMenu;
+    private UIButton singleFireTowerButton;
+    private UIButton continuousFireTowerButton;
+    private UIButton harvesterTowerButton;
 
     public UIManager(ResourceManager resourceManager)
     {
+        towerMenuVisibility = false;
         baseHp = new Label(resourceManager.GetFont(), new Vector2(20,450),"12/12");
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(320,450), "40");
         coins = new Label(resourceManager.GetFont(), new Vector2(550,450),"120");
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
+        singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
+        continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continouosFireTowerButton.png"));
+        harvesterTowerButton = new UIButton(new Vector2(60,0),resourceManager.GetTexture("harvester.png"));
     }
 
     public void SetBaseHpLabel(int current, int max)
@@ -43,11 +52,42 @@ public class UIManager
         timerAndCounter.Render(batch);
         coins.Render(batch);
         towerMenu.Render(batch);
+        if(towerMenuVisibility)
+        {
+            singleFireTowerButton.Render(batch);
+            continuousFireTowerButton.Render(batch);
+            harvesterTowerButton.Render(batch);
+        }
     }
 
     public boolean IsTowerMenuButtonClicked(Vector2 position)
     {
         return towerMenu.IsClicked(position);
     }
+
+    public boolean IsSingleFireTowerButtonClicked(Vector2 position)
+    {
+        if(!towerMenuVisibility) return false;
+        return singleFireTowerButton.IsClicked(position);
+    }
+
+    public boolean IsContinouosFireTowerButtonClicked(Vector2 position)
+    {
+        if(!towerMenuVisibility) return false;
+        return continuousFireTowerButton.IsClicked(position);
+    }
+
+    public boolean IsHarvesterTowerButtonClicked(Vector2 position)
+    {
+        if(!towerMenuVisibility) return false;
+        return harvesterTowerButton.IsClicked(position);
+    }
+
+    public void SetVisibility(boolean state)
+    {
+        towerMenuVisibility = state;
+    }
+
+
 
 }
