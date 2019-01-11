@@ -27,7 +27,7 @@ public class UIManager
         coins = new Label(resourceManager.GetFont(), new Vector2(550,450),"120");
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
         singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
-        continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continouosFireTowerButton.png"));
+        continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"));
         harvesterTowerButton = new UIButton(new Vector2(60,0),resourceManager.GetTexture("harvester.png"));
     }
 
