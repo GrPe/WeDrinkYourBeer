@@ -12,7 +12,7 @@ public class UIManager
     private Label timerAndCounter;
     private Label coins;
 
-    public UIManager(BitmapFont font)
+    public UIManager(ResourceManager resourceManager)
     {
         baseHp = new Label(font, new Vector2(20,450),"12/12");
         timerAndCounter = new Label(font, new Vector2(320,450), "40");

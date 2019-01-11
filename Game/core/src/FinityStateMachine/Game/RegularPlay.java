@@ -32,7 +32,7 @@ public class RegularPlay extends State
 
         levelManager = new LevelManager(resourceManager);
         enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
-        uiManager = new UIManager(resourceManager.GetFont());
+        uiManager = new UIManager(resourceManager);
         towerManager = new TowerManager(levelManager,resourceManager);
     }
 
