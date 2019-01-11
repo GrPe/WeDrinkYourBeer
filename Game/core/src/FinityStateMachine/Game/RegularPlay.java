@@ -40,6 +40,7 @@ public class RegularPlay extends State
     public void DoBeforeEntering()
     {
         coins = 100;
+        uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
     }
 
     @Override
