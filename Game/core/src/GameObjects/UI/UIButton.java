@@ -12,7 +12,7 @@ public class UIButton extends GameObject implements Drawable
 {
     private Sprite sprite;
 
-    public UIButton(Vector2 position, float rotation, Texture texture) {
+    public UIButton(Vector2 position, Texture texture) {
         super(position, 0);
         this.sprite = new Sprite(texture);
     }
