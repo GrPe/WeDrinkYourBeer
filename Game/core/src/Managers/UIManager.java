@@ -22,9 +22,10 @@ public class UIManager
     public UIManager(ResourceManager resourceManager)
     {
         towerMenuVisibility = false;
-        baseHp = new Label(resourceManager.GetFont(), new Vector2(20,450),"12/12");
-        timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(320,450), "40");
-        coins = new Label(resourceManager.GetFont(), new Vector2(550,450),"120");
+        baseHp = new Label(resourceManager.GetFont(), new Vector2(50,460),"12/12");
+        timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,460), "40");
+        coins = new Label(resourceManager.GetFont(), new Vector2(560,460),"120");
+
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
         singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
         continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"));
@@ -87,7 +88,4 @@ public class UIManager
     {
         towerMenuVisibility = state;
     }
-
-
-
 }
