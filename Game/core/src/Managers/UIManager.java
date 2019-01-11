@@ -29,7 +29,7 @@ public class UIManager
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,460), "40");
         coins = new Label(resourceManager.GetFont(), new Vector2(560,440),"120");
 
-        returnToMainMenuButton = new UIButton(new Vector2(620,460),resourceManager.GetTexture("MainMenu.png"));
+        returnToMainMenuButton = new UIButton(new Vector2(620,460),resourceManager.GetTexture("mainMenu.png"));
 
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
         singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
