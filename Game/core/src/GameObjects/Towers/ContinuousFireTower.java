@@ -64,6 +64,7 @@ public class ContinuousFireTower extends Tower
             if(bullet.CanBeDestroyed())
             {
                 bullets.remove(bullet);
+                return;
             }
         }
     }

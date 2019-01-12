@@ -142,7 +142,7 @@ public class RegularPlay extends State
             {
                 coins -= 50;
                 uiManager.SetCoinsLabel(coins);
-                towerManager.SetTower(RoundTo60(inputManager.GetTouchPoint()),TowerType.SingleFire);
+                towerManager.SetTower(RoundTo60(inputManager.GetTouchPoint()),TowerType.ContinuousFire);
             }
         }
     }
