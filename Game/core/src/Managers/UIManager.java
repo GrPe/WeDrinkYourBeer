@@ -22,19 +22,30 @@ public class UIManager
     private UIButton continuousFireTowerButton;
     private UIButton harvesterTowerButton;
 
+    //no-clickable buttons
+    private UIButton hpIcon;
+    private UIButton timerIcon;
+    private UIButton coinsIcon;
+
     public UIManager(ResourceManager resourceManager)
     {
         towerMenuVisibility = false;
-        baseHp = new Label(resourceManager.GetFont(), new Vector2(50,460),"12/12");
+        baseHp = new Label(resourceManager.GetFont(), new Vector2(70,460),"12/12");
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,460), "40");
-        coins = new Label(resourceManager.GetFont(), new Vector2(560,440),"120");
+        coins = new Label(resourceManager.GetFont(), new Vector2(560,460),"120");
 
-        returnToMainMenuButton = new UIButton(new Vector2(620,460),resourceManager.GetTexture("mainMenu.png"));
+        returnToMainMenuButton = new UIButton(new Vector2(720,420),resourceManager.GetTexture("mainMenu.png"));
 
+        //tower menu buttons
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
         singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
         continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"));
         harvesterTowerButton = new UIButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"));
+
+        //no-clickable buttons
+        hpIcon = new UIButton(new Vector2(0,420),resourceManager.GetTexture("baseHpIcon.png"));
+        timerIcon = new UIButton(new Vector2(260,420),resourceManager.GetTexture("timerIcon.png"));
+        coinsIcon = new UIButton(new Vector2(480,420),resourceManager.GetTexture("coinsIcon.png"));
     }
 
     public void SetBaseHpLabel(int current, int max)
@@ -67,6 +78,10 @@ public class UIManager
             continuousFireTowerButton.Render(batch);
             harvesterTowerButton.Render(batch);
         }
+
+        hpIcon.Render(batch);
+        timerIcon.Render(batch);
+        coinsIcon.Render(batch);
     }
 
     public boolean IsTowerMenuButtonClicked(Vector2 position)

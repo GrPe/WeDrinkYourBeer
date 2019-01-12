@@ -68,6 +68,10 @@ public class ResourceManager implements Disposable
         manager.load("singleTowerMenuButton.png",Texture.class);
         manager.load("continuousFireTowerButton.png",Texture.class);
         manager.load("harvesterTowerButton.png",Texture.class);
+        manager.load("baseHpIcon.png",Texture.class);
+        manager.load("timerIcon.png",Texture.class);
+        manager.load("coinsIcon.png",Texture.class);
+
     }
 
 
