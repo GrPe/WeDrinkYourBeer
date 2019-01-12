@@ -1,6 +1,5 @@
 package GameObjects.UI;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,7 +24,6 @@ public class UIButton extends GameObject implements Drawable
     {
         batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight()
                 ,sprite.getScaleX(),sprite.getScaleY(), GetRotation());
-        Gdx.app.log("pos",super.GetPosition().toString());
     }
 
     @Override
