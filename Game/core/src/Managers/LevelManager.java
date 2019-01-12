@@ -69,6 +69,7 @@ public class LevelManager
                     x++;
                     break;
                 case CODE_SPAWN_POINT:
+                    ways.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Way));
                     spawnPoint = levelEnvironmentFactory.CreateSpawnPoint(new Vector2(x*60, y*60));
                     x++;
                     break;
