@@ -24,6 +24,7 @@ public class RegularPlay extends State
     private float timer = 0;
     private boolean nextPhase = false;
     private int coins;
+    private TowerType towerTypeToInsert;
 
     public RegularPlay(ResourceManager resourceManager, InputManager inputManager)
     {
@@ -54,7 +55,7 @@ public class RegularPlay extends State
     {
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
-        InsertTower();
+        ClickedHandler();
 
         coins += enemyManager.GetKilledEnemyFromLastCheck()*10;
         uiManager.SetCoinsLabel(coins);
@@ -134,8 +135,57 @@ public class RegularPlay extends State
         }
     }
 
-    private void InsertTower()
+    private void ClickedHandler()
     {
+        if(inputManager.IsTouchedDown())
+        {
+            Vector2 click = RoundTo60(inputManager.GetTouchPoint());
+            Gdx.app.log("position",click.toString());
+
+            if(uiManager.IsTowerMenuButtonClicked(click))
+            {
+                Gdx.app.log("position","TowerMenu");
+                uiManager.SetVisibility(true);
+                towerTypeToInsert = TowerType.None;
+            }
+            else if(uiManager.IsReturnToMainMenuButtonClicked(click))
+            {
+                towerTypeToInsert = TowerType.None;
+                Gdx.app.log("position","Menu");
+                //to do
+            }
+            else if(uiManager.IsSingleFireTowerButtonClicked(click))
+            {
+                Gdx.app.log("position","Single");
+                uiManager.SetVisibility(false);
+                towerTypeToInsert = TowerType.SingleFire;
+            }
+            else if(uiManager.IsContinuousFireTowerButtonClicked(click))
+            {
+                Gdx.app.log("position","Continuous");
+                uiManager.SetVisibility(false);
+                towerTypeToInsert = TowerType.ContinuousFire;
+            }
+            else if(uiManager.IsHarvesterTowerButtonClicked(click))
+            {
+                Gdx.app.log("position","Harvester");
+                uiManager.SetVisibility(false);
+                towerTypeToInsert = TowerType.None;
+            }
+            else if(towerTypeToInsert != TowerType.None)
+            {
+                Gdx.app.log("position","Insert");
+                InsertTower(click);
+                towerTypeToInsert = TowerType.None;
+            }
+        }
+    }
+
+    private void InsertTower(Vector2 position)
+    {
+        towerManager.SetTower(position,towerTypeToInsert);
+
+        /*
         if(inputManager.IsTouchedDown())
         {
             if(coins >= 50)
@@ -144,7 +194,7 @@ public class RegularPlay extends State
                 uiManager.SetCoinsLabel(coins);
                 towerManager.SetTower(RoundTo60(inputManager.GetTouchPoint()),TowerType.ContinuousFire);
             }
-        }
+        }*/
     }
 
     private Vector2 RoundTo60(Vector3 position)

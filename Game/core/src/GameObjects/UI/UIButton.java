@@ -38,9 +38,6 @@ public class UIButton extends GameObject implements Drawable
 
     public boolean IsClicked(Vector2 position)
     {
-        return (position.x >= GetX() &&
-                position.x <= GetX() + sprite.getWidth() &&
-                position.y >= GetY() &&
-                position.y <= GetY() + sprite.getHeight());
+        return position.epsilonEquals(super.GetPosition(),2);
     }
 }

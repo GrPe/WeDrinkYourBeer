@@ -95,7 +95,7 @@ public class UIManager
         return singleFireTowerButton.IsClicked(position);
     }
 
-    public boolean IsContinouosFireTowerButtonClicked(Vector2 position)
+    public boolean IsContinuousFireTowerButtonClicked(Vector2 position)
     {
         if(!towerMenuVisibility) return false;
         return continuousFireTowerButton.IsClicked(position);
