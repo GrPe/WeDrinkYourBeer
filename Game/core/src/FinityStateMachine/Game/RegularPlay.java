@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.Vector3;
 
 import Factories.TowerType;
 import FinityStateMachine.State;
+import GameObjects.Towers.ContinuousFireTower;
+import GameObjects.Towers.SingleFireTower;
 import Managers.*;
 
 public class RegularPlay extends State
@@ -143,28 +145,33 @@ public class RegularPlay extends State
 
             if(uiManager.IsTowerMenuButtonClicked(click))
             {
-                uiManager.SetVisibility(true);
-                towerTypeToInsert = TowerType.None;
+                TowerMenuVisibility();
             }
             else if(uiManager.IsReturnToMainMenuButtonClicked(click))
             {
                 towerTypeToInsert = TowerType.None;
-                //to do
+                //todo
             }
             else if(uiManager.IsSingleFireTowerButtonClicked(click))
             {
-                uiManager.SetVisibility(false);
-                towerTypeToInsert = TowerType.SingleFire;
+                if(coins >= SingleFireTower.cost)
+                {
+                    coins -= SingleFireTower.cost;
+                    ChooseTower(TowerType.SingleFire);
+                }
             }
             else if(uiManager.IsContinuousFireTowerButtonClicked(click))
             {
-                uiManager.SetVisibility(false);
-                towerTypeToInsert = TowerType.ContinuousFire;
+                if(coins >= ContinuousFireTower.cost)
+                {
+                    coins -= ContinuousFireTower.cost;
+                    ChooseTower(TowerType.ContinuousFire);
+                }
             }
             else if(uiManager.IsHarvesterTowerButtonClicked(click))
             {
-                uiManager.SetVisibility(false);
-                towerTypeToInsert = TowerType.None;
+                //todo
+                ChooseTower(TowerType.None);
             }
             else if(towerTypeToInsert != TowerType.None)
             {
@@ -172,6 +179,25 @@ public class RegularPlay extends State
                 towerTypeToInsert = TowerType.None;
             }
         }
+    }
+
+    private void TowerMenuVisibility()
+    {
+        if(uiManager.GetTowerSelectionMenuVisibility())
+        {
+            uiManager.SetTowerSelectionMenuVisibility(false);
+        }
+        else
+        {
+            uiManager.SetTowerSelectionMenuVisibility(true);
+        }
+        towerTypeToInsert = TowerType.None;
+    }
+
+    private void ChooseTower(TowerType towerType)
+    {
+        uiManager.SetTowerSelectionMenuVisibility(false);
+        towerTypeToInsert = towerType;
     }
 
     private void InsertTower(Vector2 position)

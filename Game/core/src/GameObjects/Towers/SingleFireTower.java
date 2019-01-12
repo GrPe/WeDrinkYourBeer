@@ -15,10 +15,11 @@ public class SingleFireTower extends Tower
 {
     private ArrayList<Bullet> bullets;
     private TowerFactory towerFactory;
+    public final static int cost = 50;
 
     public SingleFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 128, 1, 1,50);
+        super(position, 0, texture, 128, 1, 10, cost);
         this.towerFactory = towerFactory;
         bullets = new ArrayList<Bullet>();
     }

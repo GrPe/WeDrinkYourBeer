@@ -112,8 +112,9 @@ public class UIManager
         return returnToMainMenuButton.IsClicked(position);
     }
 
-    public void SetVisibility(boolean state)
+    public void SetTowerSelectionMenuVisibility(boolean state)
     {
         towerMenuVisibility = state;
     }
+    public boolean GetTowerSelectionMenuVisibility() {return towerMenuVisibility;}
 }
