@@ -21,7 +21,7 @@ public class LevelEnvironmentFactory
         switch(environmentType)
         {
             case Buildings:
-                return new Environment(position,resourceManager.GetTexture("buildings2.png"));
+                return new Environment(position,resourceManager.GetTexture("environment.png"));
             case Way:
                 return new Environment(position,resourceManager.GetTexture("way.png"));
         }

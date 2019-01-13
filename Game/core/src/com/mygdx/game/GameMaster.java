@@ -25,7 +25,7 @@ public class GameMaster extends ApplicationAdapter
     {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         camera = new OrthographicCamera();
-        camera.setToOrtho(false,780,480);
+        camera.setToOrtho(false,780,500);
         batch = new SpriteBatch();
 
         inputManager = new InputManager(camera);

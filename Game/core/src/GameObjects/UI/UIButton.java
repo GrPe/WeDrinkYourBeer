@@ -15,7 +15,7 @@ public class UIButton extends GameObject implements Drawable
     public UIButton(Vector2 position, Texture texture) {
         super(position, 0);
         this.sprite = new Sprite(texture);
-        sprite.setScale(60.0f/400.0f);
+        sprite.setScale(60.0f/sprite.getHeight());
         sprite.setOrigin(0,0);
     }
 
