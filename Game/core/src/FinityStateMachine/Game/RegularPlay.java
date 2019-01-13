@@ -175,8 +175,10 @@ public class RegularPlay extends State
             }
             else if(towerTypeToInsert != TowerType.None)
             {
-                InsertTower(click);
-                towerTypeToInsert = TowerType.None;
+                if(InsertTower(click))
+                {
+                    towerTypeToInsert = TowerType.None;
+                }
             }
         }
     }
@@ -200,9 +202,9 @@ public class RegularPlay extends State
         towerTypeToInsert = towerType;
     }
 
-    private void InsertTower(Vector2 position)
+    private boolean InsertTower(Vector2 position)
     {
-        towerManager.SetTower(position,towerTypeToInsert);
+        return towerManager.SetTower(position,towerTypeToInsert);
     }
 
     private Vector2 RoundTo60(Vector3 position)
