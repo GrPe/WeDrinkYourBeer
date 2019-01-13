@@ -2,6 +2,7 @@ package FinityStateMachine;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,6 +77,11 @@ public abstract class State
     }
 
     public void Act()
+    {
+        //is virtual
+    }
+
+    public void Render(Batch batch)
     {
         //is virtual
     }

@@ -11,15 +11,15 @@ import GameObjects.Bullet;
 import GameObjects.Enemy;
 import GameObjects.Tower;
 
-public class SingleFireTower extends Tower
+public class ContinuousFireTower extends Tower
 {
     private ArrayList<Bullet> bullets;
     private TowerFactory towerFactory;
-    public final static int cost = 50;
+    public final static int cost = 80;
 
-    public SingleFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
+    public ContinuousFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 128, 1, 10, cost);
+        super(position, 0, texture, 100, 0.10f, 2, cost);
         this.towerFactory = towerFactory;
         bullets = new ArrayList<Bullet>();
     }

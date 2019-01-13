@@ -18,18 +18,20 @@ public class Tower extends GameObject implements Drawable
     private StateMachine stateMachine;
     private Sprite sprite;
     private float range;
-    private int fireSpeed;
+    private float fireSpeed;
     private int damage;
+    private int cost;
 
     private Enemy target;
 
-    public Tower(Vector2 position, float rotation, Texture texture, float range, int fireSpeed, int damage) {
+    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, int cost) {
         super(position, rotation);
         this.sprite = new Sprite(texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
+        this.cost = cost;
         target = null;
         InitStateMachine();
     }
@@ -86,11 +88,7 @@ public class Tower extends GameObject implements Drawable
         return sprite.getHeight();
     }
 
-    public float GetRange() {
-        return range;
-    }
-
-    public int GetFireSpeed() {
+    public float GetFireSpeed() {
         return fireSpeed;
     }
 
@@ -121,4 +119,7 @@ public class Tower extends GameObject implements Drawable
         return target.epsilonEquals(GetPosition(),range);
     }
 
+    public int GetCost() {
+        return cost;
+    }
 }

@@ -12,7 +12,8 @@ public class SpawnPoint extends GameObject implements Drawable
     public SpawnPoint(Vector2 position, Texture texture) {
         super(position, 0);
         this.sprite = new Sprite(texture);
-        sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
+        sprite.setScale(60.0f/400.0f);
+        sprite.setOrigin(0,0);
     }
 
     @Override

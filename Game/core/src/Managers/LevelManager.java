@@ -2,7 +2,7 @@ package Managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -69,6 +69,7 @@ public class LevelManager
                     x++;
                     break;
                 case CODE_SPAWN_POINT:
+                    ways.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Way));
                     spawnPoint = levelEnvironmentFactory.CreateSpawnPoint(new Vector2(x*60, y*60));
                     x++;
                     break;
@@ -86,7 +87,7 @@ public class LevelManager
         }
     }
 
-    public void render(SpriteBatch batch)
+    public void Render(Batch batch)
     {
         for(Environment x : buildings)
         {

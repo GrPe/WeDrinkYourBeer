@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.Bullet;
 import GameObjects.Tower;
+import GameObjects.Towers.ContinuousFireTower;
 import GameObjects.Towers.SingleFireTower;
 import Managers.ResourceManager;
 
@@ -22,6 +23,8 @@ public class TowerFactory
         {
             case SingleFire:
                 return  new SingleFireTower(position, resourceManager.GetTexture("tmp_tower.png"),this);
+            case ContinuousFire:
+                return new ContinuousFireTower(position,resourceManager.GetTexture("tmp_tower.png"),this);
         }
         return null;
     }

@@ -3,58 +3,36 @@ package com.mygdx.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
-import Factories.TowerType;
-import Managers.LevelManager;
-
-import Managers.EnemyManager;
+import FinityStateMachine.Game.RegularPlay;
+import FinityStateMachine.StateMachine;
+import Managers.InputManager;
 import Managers.ResourceManager;
-import Managers.TowerManager;
 
-public class GameMaster extends ApplicationAdapter implements InputProcessor
+public class GameMaster extends ApplicationAdapter
 {
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    private float timer = 0;
-    private boolean nextPhase = false;
-    private int coins;
-
-    //test
-
-    private LevelManager levelManager;
-    private Managers.EnemyManager enemyManager;
-    private Managers.UIManager uiManager;
-    private Managers.TowerManager towerManager;
     private ResourceManager resourceManager;
+    private StateMachine stateMachine;
+    private InputManager inputManager;
 
     @Override
     public void create()
     {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         camera = new OrthographicCamera();
-        camera.setToOrtho(false,780,480);
-
+        camera.setToOrtho(false,780,500);
         batch = new SpriteBatch();
-        Gdx.input.setInputProcessor(this);
-        coins = 150;
+
+        inputManager = new InputManager(camera);
+        Gdx.input.setInputProcessor(inputManager);
 
         resourceManager = new ResourceManager();
-
-        //test
-
-        levelManager = new LevelManager(resourceManager);
-        enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
-        uiManager = new Managers.UIManager(resourceManager.GetFont());
-        towerManager = new TowerManager(levelManager,resourceManager);
-
-        //enemyManager.NewWay(5);
+        InitStateMachine();
     }
 
     @Override
@@ -68,12 +46,7 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-
-        levelManager.render(batch);
-        enemyManager.Render(batch);
-        towerManager.Render(batch);
-        uiManager.Render(batch);
-
+        stateMachine.getCurrentState().Render(batch);
         batch.end();
     }
 
@@ -87,142 +60,15 @@ public class GameMaster extends ApplicationAdapter implements InputProcessor
     private void Update()
     {
         camera.update();
-        enemyManager.Update();
-        towerManager.Update(enemyManager.GetEnemies());
-        InsertTower();
-
-        coins += enemyManager.GetKilledEnemyFromLastCheck()*10;
-        uiManager.SetCoinsLabel(coins);
-
-        EnemyInBase();
-        UpdateUI();
-        NextPhase();
+        stateMachine.getCurrentState().Act();
     }
 
-    private void EnemyInBase()
+    private void InitStateMachine()
     {
-        int damage = enemyManager.IsEnemyInBase();
-        if(damage > 0)
-        {
-            DealBaseDamage(damage);
-        }
-    }
+        stateMachine = new StateMachine();
 
-    private void DealBaseDamage(int damage)
-    {
-        levelManager.GetBase().DecreaseHp(damage);
-        uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(), levelManager.GetBase().GetMaxHp());
-    }
+        RegularPlay regularPlay = new RegularPlay(resourceManager,inputManager);
 
-    private void UpdateUI()
-    {
-        if(enemyManager.IsEmpty() && timer > 0 && !enemyManager.IsSpawningEnemies())
-        {
-            UpdateEnemyTimer();
-        }
-        else
-        {
-            UpdateEnemyCounter();
-        }
-    }
-
-    private void UpdateEnemyCounter()
-    {
-        uiManager.SetTimerAndCounter(enemyManager.Size());
-    }
-
-    private void UpdateEnemyTimer()
-    {
-        uiManager.SetTimerAndCounter((int)timer);
-    }
-
-    private void NextPhase()
-    {
-        if(enemyManager.IsEmpty() && timer <= 0 && !nextPhase)
-        {
-            timer = 3;
-            nextPhase = true;
-        }
-        if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
-        {
-            CountDownToNextPhase();
-        }
-
-    }
-
-    private void CountDownToNextPhase()
-    {
-        timer -=Gdx.graphics.getDeltaTime();
-        if(timer <= 0)
-        {
-            nextPhase = false;
-            enemyManager.NewWay(8);
-        }
-    }
-
-    private Vector3 touchPoint = new Vector3();
-    private boolean isTouched = false;
-    private void InsertTower()
-    {
-        if(isTouched)
-        {
-            if(coins >= 50)
-            {
-                coins -= 50;
-                uiManager.SetCoinsLabel(coins);
-                towerManager.SetTower(RoundTo60(touchPoint),TowerType.SingleFire);
-            }
-            isTouched = false;
-        }
-    }
-
-    private Vector2 RoundTo60(Vector3 position)
-    {
-        return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
-    }
-
-    //Input Processor implementation
-
-    @Override
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if(button != Input.Buttons.LEFT || pointer > 0) return false;
-        camera.unproject(touchPoint.set(screenX,screenY,0));
-        isTouched = true;
-        return true;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
+        stateMachine.AddState(regularPlay);
     }
 }

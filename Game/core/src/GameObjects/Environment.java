@@ -12,6 +12,8 @@ public final class Environment extends GameObject implements Drawable
     public Environment(Vector2 position, Texture texture) {
         super(position, 0);
         this.sprite = new Sprite(texture);
+        this.sprite.setScale(60/sprite.getHeight());
+        this.sprite.setOrigin(0,0);
     }
 
     @Override

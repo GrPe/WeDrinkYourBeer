@@ -23,18 +23,20 @@ public class TowerManager
         towerFactory = new TowerFactory(resourceManager);
     }
 
-    public void SetTower(Vector2 position, TowerType towerType)
+    public boolean SetTower(Vector2 position, TowerType towerType)
     {
         //if tower exists in this place
         for(Tower t : towers)
         {
-            if(t.GetPosition().equals(position)) return;
+            if(t.GetPosition().equals(position)) return false;
         }
 
         if(levelManager.CheckIfTowerCanBePlaced(position))
         {
             towers.add(towerFactory.CreateTower(position,towerType));
+            return true;
         }
+        return false;
     }
 
     public void Update(ArrayList<Enemy> enemies)

@@ -53,13 +53,28 @@ public class ResourceManager implements Disposable
 
     private void LoadTexture()
     {
+        //texture
         manager.load("enemy_test.png",Texture.class);
-        manager.load("buildings2.png",Texture.class);
+        manager.load("environment.png",Texture.class);
         manager.load("way.png",Texture.class);
         manager.load("base.png",Texture.class);
         manager.load("spawnPoint.png",Texture.class);
         manager.load("tmp_tower.png",Texture.class);
         manager.load("bullet.png",Texture.class);
+
+        //icons
+        manager.load("mainMenu.png",Texture.class);
+        manager.load("towerMenu.png",Texture.class);
+        manager.load("singleTowerMenuButton.png",Texture.class);
+        manager.load("continuousFireTowerButton.png",Texture.class);
+        manager.load("harvesterTowerButton.png",Texture.class);
+        manager.load("baseHpIcon.png",Texture.class);
+        manager.load("timerIcon.png",Texture.class);
+        manager.load("coinsIcon.png",Texture.class);
+
+        //topBar
+        manager.load("topBarGame.png",Texture.class);
+
     }
 
 

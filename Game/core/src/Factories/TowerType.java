@@ -2,5 +2,7 @@ package Factories;
 
 public enum TowerType
 {
-    SingleFire
+    None,
+    SingleFire,
+    ContinuousFire
 }
