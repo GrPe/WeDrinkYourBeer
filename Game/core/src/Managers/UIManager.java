@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
+import GameObjects.UI.Image;
 import GameObjects.UI.Label;
 import GameObjects.UI.UIButton;
 
@@ -11,6 +12,9 @@ public class UIManager
     private Label baseHp;
     private Label timerAndCounter;
     private Label coins;
+
+    //top bar
+    private Image topBar;
 
     //menu
     private UIButton returnToMainMenuButton;
@@ -22,19 +26,22 @@ public class UIManager
     private UIButton continuousFireTowerButton;
     private UIButton harvesterTowerButton;
 
-    //no-clickable buttons
-    private UIButton hpIcon;
-    private UIButton timerIcon;
-    private UIButton coinsIcon;
+    //Icons
+    private Image hpIcon;
+    private Image timerIcon;
+    private Image coinsIcon;
 
     public UIManager(ResourceManager resourceManager)
     {
         towerMenuVisibility = false;
-        baseHp = new Label(resourceManager.GetFont(), new Vector2(70,460),"12/12");
-        timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,460), "40");
-        coins = new Label(resourceManager.GetFont(), new Vector2(560,460),"120");
+        baseHp = new Label(resourceManager.GetFont(), new Vector2(75,475),"12/12");
+        timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,475), "40");
+        coins = new Label(resourceManager.GetFont(), new Vector2(560,475),"120");
 
-        returnToMainMenuButton = new UIButton(new Vector2(720,420),resourceManager.GetTexture("mainMenu.png"));
+        //top bar
+        topBar = new Image(new Vector2(-8,420),resourceManager.GetTexture("topBarGame.png"),800.0f/190.0f,83.0f/49.0f);
+
+        returnToMainMenuButton = new UIButton(new Vector2(715,435),resourceManager.GetTexture("mainMenu.png"));
 
         //tower menu buttons
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
@@ -42,10 +49,10 @@ public class UIManager
         continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"));
         harvesterTowerButton = new UIButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"));
 
-        //no-clickable buttons
-        hpIcon = new UIButton(new Vector2(0,420),resourceManager.GetTexture("baseHpIcon.png"));
-        timerIcon = new UIButton(new Vector2(260,420),resourceManager.GetTexture("timerIcon.png"));
-        coinsIcon = new UIButton(new Vector2(480,420),resourceManager.GetTexture("coinsIcon.png"));
+        //icons
+        hpIcon = new Image(new Vector2(5,435),resourceManager.GetTexture("baseHpIcon.png"));
+        timerIcon = new Image(new Vector2(260,435),resourceManager.GetTexture("timerIcon.png"));
+        coinsIcon = new Image(new Vector2(480,435),resourceManager.GetTexture("coinsIcon.png"));
     }
 
     public void SetBaseHpLabel(int current, int max)
@@ -65,6 +72,8 @@ public class UIManager
 
     public void Render(Batch batch)
     {
+        topBar.Render(batch);
+
         baseHp.Render(batch);
         timerAndCounter.Render(batch);
         coins.Render(batch);
