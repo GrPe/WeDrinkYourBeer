@@ -17,17 +17,15 @@ public class Tower extends GameObject
     private float range;
     private float fireSpeed;
     private int damage;
-    private int cost;
 
     private Enemy target;
 
-    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, int cost) {
+    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage) {
         super(position, rotation, texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
-        this.cost = cost;
         target = null;
         InitStateMachine();
     }
@@ -98,9 +96,5 @@ public class Tower extends GameObject
     public boolean IsTargetInRange(Vector2 target)
     {
         return target.epsilonEquals(GetPosition(),range);
-    }
-
-    public int GetCost() {
-        return cost;
     }
 }
