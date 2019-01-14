@@ -1,8 +1,6 @@
 package GameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -13,25 +11,21 @@ import FinityStateMachine.Tower.AttackEnemyState;
 import FinityStateMachine.Tower.WaitingForEnemyState;
 import FinityStateMachine.Transition;
 
-public class Tower extends GameObject implements Drawable
+public class Tower extends GameObject
 {
     private StateMachine stateMachine;
-    private Sprite sprite;
     private float range;
     private float fireSpeed;
     private int damage;
-    private int cost;
 
     private Enemy target;
 
-    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, int cost) {
-        super(position, rotation);
-        this.sprite = new Sprite(texture);
+    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage) {
+        super(position, rotation, texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
-        this.cost = cost;
         target = null;
         InitStateMachine();
     }
@@ -47,21 +41,6 @@ public class Tower extends GameObject implements Drawable
             stateMachine.getCurrentState().Act(enemies);
         else
             stateMachine.getCurrentState().Act();
-    }
-
-    @Override
-    public void Render(Batch batch) {
-        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
-    }
-
-    @Override
-    public float GetX() {
-        return super.GetPosition().x;
-    }
-
-    @Override
-    public float GetY() {
-        return super.GetPosition().y;
     }
 
     private void InitStateMachine()
@@ -117,9 +96,5 @@ public class Tower extends GameObject implements Drawable
     public boolean IsTargetInRange(Vector2 target)
     {
         return target.epsilonEquals(GetPosition(),range);
-    }
-
-    public int GetCost() {
-        return cost;
     }
 }

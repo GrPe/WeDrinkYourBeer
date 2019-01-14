@@ -33,13 +33,14 @@ public class UIManager
 
     public UIManager(ResourceManager resourceManager)
     {
+        //top bar
+        topBar = new Image(new Vector2(-8,420),resourceManager.GetTexture("topBarGame.png"),800.0f/190.0f,83.0f/49.0f);
+
+        //labels
         towerMenuVisibility = false;
         baseHp = new Label(resourceManager.GetFont(), new Vector2(75,475),"12/12");
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,475), "40");
         coins = new Label(resourceManager.GetFont(), new Vector2(560,475),"120");
-
-        //top bar
-        topBar = new Image(new Vector2(-8,420),resourceManager.GetTexture("topBarGame.png"),800.0f/190.0f,83.0f/49.0f);
 
         returnToMainMenuButton = new UIButton(new Vector2(715,435),resourceManager.GetTexture("mainMenu.png"));
 

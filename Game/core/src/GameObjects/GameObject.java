@@ -1,20 +1,31 @@
 package GameObjects;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class GameObject {
     private Vector2 position;
     private float rotation;
 
-    public GameObject()
-    {
-        position =  new Vector2(0,0);
-        rotation = 0f;
-    }
+    protected Sprite sprite;
 
-    public GameObject(Vector2 position, float rotation) {
+    public GameObject(Vector2 position, float rotation, Texture texture)
+    {
         this.position = position;
         this.rotation = rotation;
+        if(texture != null)
+        {
+            this.sprite = new Sprite(texture);
+            sprite.setScale(60.0f/sprite.getHeight());
+            sprite.setOrigin(0,0);
+        }
+    }
+
+    public void Render(Batch batch)
+    {
+        batch.draw(sprite, position.x, position.y,sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), rotation);
     }
 
     public Vector2 GetPosition() {
