@@ -33,11 +33,11 @@ public class ContinuousFireTower extends Tower
 
     @Override
     public void Render(Batch batch) {
-        super.Render(batch);
         for(Bullet bullet : bullets)
         {
             bullet.Render(batch);
         }
+        super.Render(batch);
     }
 
     @Override
