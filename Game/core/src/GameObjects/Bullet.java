@@ -11,6 +11,7 @@ public class Bullet extends GameObject
 
     public Bullet(Vector2 position, float rotation, Texture texture, float speed, Vector2 destination) {
         super(position, rotation, texture);
+        super.sprite.setScale(0.5f);
         super.sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.speed = speed;
         this.destination = destination;

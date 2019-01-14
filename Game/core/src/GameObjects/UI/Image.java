@@ -8,7 +8,7 @@ import GameObjects.GameObject;
 public class Image extends GameObject
 {
     public Image(Vector2 position, Texture texture) {
-        this(position,texture,60.0f/texture.getHeight(),60.0f/texture.getHeight());
+        super(position,0,texture);
     }
 
     public Image(Vector2 position, Texture texture, float scaleX, float scaleY) {

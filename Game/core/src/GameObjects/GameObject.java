@@ -16,7 +16,11 @@ public abstract class GameObject {
         this.position = position;
         this.rotation = rotation;
         if(texture != null)
+        {
             this.sprite = new Sprite(texture);
+            sprite.setScale(60.0f/sprite.getHeight());
+            sprite.setOrigin(0,0);
+        }
     }
 
     public void Render(Batch batch)
