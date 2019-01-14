@@ -50,16 +50,16 @@ public class WalkingState extends State {
 
     private void move()
     {
-        float destX = currentTarget.x - enemy.GetX();
-        float destY = currentTarget.y - enemy.GetY();
+        float destX = currentTarget.x - enemy.GetPosition().x;
+        float destY = currentTarget.y - enemy.GetPosition().y;
 
         float dist = (float)Math.sqrt(destX * destX + destY * destY);
 
         destX = destX/dist;
         destY = destY/dist;
 
-        enemy.SetPosition(new Vector2(enemy.GetX() + destX * enemy.GetSpeed() * Gdx.graphics.getDeltaTime(),
-                enemy.GetY() + destY * enemy.GetSpeed() * Gdx.graphics.getDeltaTime()));
+        enemy.SetPosition(new Vector2(enemy.GetPosition().x + destX * enemy.GetSpeed() * Gdx.graphics.getDeltaTime(),
+                enemy.GetPosition().y + destY * enemy.GetSpeed() * Gdx.graphics.getDeltaTime()));
 
         ChangePosition();
     }

@@ -12,11 +12,12 @@ public class Label extends GameObject
     private String text;
 
     public Label(BitmapFont font, Vector2 position, String text) {
-        super(position, 0);
+        super(position, 0,null);
         this.font = font;
         this.text = text;
     }
 
+    @Override
     public void Render(Batch batch)
     {
         font.draw(batch,text, GetPosition().x, GetPosition().y);

@@ -1,8 +1,6 @@
 package GameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import FinityStateMachine.Enemy.WalkingState;
@@ -11,9 +9,8 @@ import FinityStateMachine.StateMachine;
 import FinityStateMachine.Transition;
 
 
-public class Enemy extends GameObject implements Drawable
+public class Enemy extends GameObject
 {
-    private Sprite sprite;
     private int hp;
     private float speed;
     private int damage;
@@ -24,8 +21,7 @@ public class Enemy extends GameObject implements Drawable
     private StateMachine stateMachine;
 
     public Enemy(Vector2 position, float rotation, Texture texture, Vector2[] navLink, int hp, float speed, int damage) {
-        super(position, rotation);
-        sprite = new Sprite(texture);
+        super(position, rotation, texture);
         this.navLink = navLink;
         this.damage = damage;
         this.speed = speed;
@@ -33,21 +29,6 @@ public class Enemy extends GameObject implements Drawable
         this.currentTarget = 0;
         isInBase = false;
         InitStateMachine();
-    }
-
-    @Override
-    public void Render(Batch batch) {
-        batch.draw(sprite, GetX(), GetY(),sprite.getOriginX(),sprite.getOriginY(),sprite.getWidth(),sprite.getHeight(),sprite.getScaleX(),sprite.getScaleY(), GetRotation());
-    }
-
-    @Override
-    public float GetX() {
-        return super.GetPosition().x;
-    }
-
-    @Override
-    public float GetY() {
-        return super.GetPosition().y;
     }
 
     public float GetSpeed() {return speed;}
