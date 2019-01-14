@@ -44,6 +44,7 @@ public class RegularPlay extends State
     {
         coins = 100;
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
+        towerTypeToInsert = TowerType.None;
     }
 
     @Override
