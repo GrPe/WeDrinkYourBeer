@@ -42,7 +42,7 @@ public class RegularPlay extends State
     @Override
     public void DoBeforeEntering()
     {
-        coins = 100;
+        coins = 300;
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
     }
