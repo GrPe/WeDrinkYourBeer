@@ -76,6 +76,15 @@ public class ResourceManager implements Disposable
         //topBar
         manager.load("topBarGame.png",Texture.class);
 
+        //main menu
+
+        manager.load("menuBackground.png",Texture.class);
+        manager.load("mainMenuStartButton.png",Texture.class);
+        manager.load("mainMenuCredits.png",Texture.class);
+        manager.load("mainMenuExit.png",Texture.class);
+
+        //credits
+        manager.load("creditsReturn.png",Texture.class);
     }
 
 

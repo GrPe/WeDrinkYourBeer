@@ -1,12 +1,16 @@
 package FinityStateMachine.Game;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.GameMaster;
 
 import Factories.TowerType;
 import FinityStateMachine.State;
+import FinityStateMachine.StateID;
+import FinityStateMachine.Transition;
 import GameObjects.Towers.ContinuousFireTower;
 import GameObjects.Towers.SingleFireTower;
 import Managers.*;
@@ -14,6 +18,7 @@ import Managers.*;
 public class RegularPlay extends State
 {
     //shared
+    private GameMaster gameMaster;
     private Managers.ResourceManager resourceManager;
     private InputManager inputManager;
 
@@ -28,8 +33,11 @@ public class RegularPlay extends State
     private int coins;
     private TowerType towerTypeToInsert;
 
-    public RegularPlay(ResourceManager resourceManager, InputManager inputManager)
+    public RegularPlay(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
     {
+        super.stateID = StateID.RegularPlayState;
+
+        this.gameMaster = gameMaster;
         this.resourceManager = resourceManager;
         this.inputManager = inputManager;
 
@@ -142,7 +150,7 @@ public class RegularPlay extends State
     {
         if(inputManager.IsTouchedDown())
         {
-            Vector2 click = RoundTo60(inputManager.GetTouchPoint());
+            Vector2 click = ToVector2(inputManager.GetTouchPoint());
 
             if(uiManager.IsTowerMenuButtonClicked(click))
             {
@@ -150,8 +158,7 @@ public class RegularPlay extends State
             }
             else if(uiManager.IsReturnToMainMenuButtonClicked(click))
             {
-                towerTypeToInsert = TowerType.None;
-                //todo
+                gameMaster.GetStateMachine().PerformTransition(Transition.MainMenuTransition);
             }
             else if(uiManager.IsSingleFireTowerButtonClicked(click))
             {
@@ -176,7 +183,7 @@ public class RegularPlay extends State
             }
             else if(towerTypeToInsert != TowerType.None)
             {
-                if(InsertTower(click))
+                if(InsertTower(RoundTo60(click)))
                 {
                     towerTypeToInsert = TowerType.None;
                 }
@@ -208,7 +215,12 @@ public class RegularPlay extends State
         return towerManager.SetTower(position,towerTypeToInsert);
     }
 
-    private Vector2 RoundTo60(Vector3 position)
+    private Vector2 ToVector2(Vector3 position)
+    {
+        return new Vector2(position.x,position.y);
+    }
+
+    private Vector2 RoundTo60(Vector2 position)
     {
         return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
     }

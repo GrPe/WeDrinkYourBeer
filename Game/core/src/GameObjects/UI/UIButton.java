@@ -13,6 +13,9 @@ public class UIButton extends GameObject
 
     public boolean IsClicked(Vector2 position)
     {
-        return position.epsilonEquals(super.GetPosition(),2);
+        return (position.x >= super.GetPosition().x &&
+                position.x < super.GetPosition().x + sprite.getWidth() &&
+                position.y >= super.GetPosition().y &&
+                position.y < super.GetPosition().y + sprite.getHeight());
     }
 }

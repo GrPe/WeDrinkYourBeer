@@ -7,8 +7,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import FinityStateMachine.Game.Credits;
+import FinityStateMachine.Game.MainMenu;
 import FinityStateMachine.Game.RegularPlay;
+import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
+import FinityStateMachine.Transition;
 import Managers.InputManager;
 import Managers.ResourceManager;
 
@@ -67,8 +71,25 @@ public class GameMaster extends ApplicationAdapter
     {
         stateMachine = new StateMachine();
 
-        RegularPlay regularPlay = new RegularPlay(resourceManager,inputManager);
+        RegularPlay regularPlay = new RegularPlay(this, resourceManager,inputManager);
+        MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
+        Credits credits = new Credits(this,inputManager,resourceManager);
 
+        regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
+
+        mainMenu.AddTransition(Transition.PlayerRegularTransition,StateID.RegularPlayState);
+        mainMenu.AddTransition(Transition.CreditsTransition,StateID.CreditsState);
+
+        credits.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
+
+        stateMachine.AddState(mainMenu);
         stateMachine.AddState(regularPlay);
+        stateMachine.AddState(credits);
     }
+
+    public StateMachine GetStateMachine()
+    {
+        return stateMachine;
+    }
+
 }
