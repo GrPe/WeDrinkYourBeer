@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import Factories.TowerType;
 import FinityStateMachine.State;
+import FinityStateMachine.StateID;
 import GameObjects.Towers.ContinuousFireTower;
 import GameObjects.Towers.SingleFireTower;
 import Managers.*;
@@ -30,6 +31,8 @@ public class RegularPlay extends State
 
     public RegularPlay(ResourceManager resourceManager, InputManager inputManager)
     {
+        super.stateID = StateID.RegularPlayState;
+
         this.resourceManager = resourceManager;
         this.inputManager = inputManager;
 

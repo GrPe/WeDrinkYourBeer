@@ -7,8 +7,9 @@ public enum StateID
     EnemyWalking,
     EnemyDying,
 
-    PlayerRegular,
-    PlayerBuild,
+    RegularPlayState,
+    MainMenuState,
+    CreditsState,
     PlayerFailMission,
     PlayerSuccessMission,
 

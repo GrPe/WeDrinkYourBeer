@@ -7,7 +7,9 @@ public enum Transition
     EnemyStartWalking,
     EnemyDie,
 
-    PlayerRegular,
+    PlayerRegularTransition,
+    CreditsTransition,
+    MainMenuTransition,
     PlayerFailMission,
     PlayerSuccessMission,
 
