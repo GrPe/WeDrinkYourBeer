@@ -76,8 +76,8 @@ public class GameMaster extends ApplicationAdapter
         regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
         mainMenu.AddTransition(Transition.PlayerRegularTransition,StateID.RegularPlayState);
 
-        stateMachine.AddState(regularPlay);
         stateMachine.AddState(mainMenu);
+        stateMachine.AddState(regularPlay);
     }
 
     public StateMachine GetStateMachine()

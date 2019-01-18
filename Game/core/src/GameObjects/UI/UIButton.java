@@ -1,5 +1,6 @@
 package GameObjects.UI;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
@@ -13,6 +14,11 @@ public class UIButton extends GameObject
 
     public boolean IsClicked(Vector2 position)
     {
-        return position.epsilonEquals(super.GetPosition(),2);
+        Gdx.app.log("clicked",super.GetPosition().toString());
+        return (position.x >= super.GetPosition().x &&
+                position.x <= super.GetPosition().x + sprite.getWidth() &&
+                position.y >= super.GetPosition().y &&
+                position.y <= super.GetPosition().y + sprite.getHeight());
+        //return position.epsilonEquals(super.GetPosition(),2);
     }
 }
