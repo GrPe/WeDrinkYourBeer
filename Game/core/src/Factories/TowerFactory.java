@@ -22,9 +22,9 @@ public class TowerFactory
         switch(towerType)
         {
             case SingleFire:
-                return  new SingleFireTower(position, resourceManager.GetTexture("tmp_tower.png"),this);
+                return  new SingleFireTower(position, resourceManager.GetTexture("singleTowerLv01.png"),this);
             case ContinuousFire:
-                return new ContinuousFireTower(position,resourceManager.GetTexture("tmp_tower.png"),this);
+                return new ContinuousFireTower(position,resourceManager.GetTexture("towerContinuousLv01.png"),this);
         }
         return null;
     }
