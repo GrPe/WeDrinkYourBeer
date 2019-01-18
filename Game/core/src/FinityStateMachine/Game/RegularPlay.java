@@ -213,6 +213,7 @@ public class RegularPlay extends State
 
     private Vector2 RoundTo60(Vector3 position)
     {
+        //return new Vector2(position.x,position.y);
         return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
     }
 }

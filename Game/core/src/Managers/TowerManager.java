@@ -1,5 +1,6 @@
 package Managers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -26,6 +27,7 @@ public class TowerManager
     public boolean SetTower(Vector2 position, TowerType towerType)
     {
         //if tower exists in this place
+        Gdx.app.log("tower",position.toString());
         for(Tower t : towers)
         {
             if(t.GetPosition().equals(position)) return false;
