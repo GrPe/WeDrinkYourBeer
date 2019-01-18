@@ -82,6 +82,9 @@ public class ResourceManager implements Disposable
         manager.load("mainMenuStartButton.png",Texture.class);
         manager.load("mainMenuCredits.png",Texture.class);
         manager.load("mainMenuExit.png",Texture.class);
+
+        //credits
+        manager.load("creditsReturn.png",Texture.class);
     }
 
 
