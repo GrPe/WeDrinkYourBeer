@@ -70,7 +70,7 @@ public class GameMaster extends ApplicationAdapter
     {
         stateMachine = new StateMachine();
 
-        RegularPlay regularPlay = new RegularPlay(resourceManager,inputManager);
+        RegularPlay regularPlay = new RegularPlay(this, resourceManager,inputManager);
         MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
 
         regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
