@@ -21,6 +21,7 @@ public class RegularPlay extends State
     private GameMaster gameMaster;
     private Managers.ResourceManager resourceManager;
     private InputManager inputManager;
+    private CoinsManager coinsManager;
 
     //internal
     private LevelManager levelManager;
@@ -30,16 +31,16 @@ public class RegularPlay extends State
 
     private float timer = 0;
     private boolean nextPhase = false;
-    private int coins;
     private TowerType towerTypeToInsert;
 
-    public RegularPlay(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
+    public RegularPlay(GameMaster gameMaster, CoinsManager coinsManager, ResourceManager resourceManager, InputManager inputManager)
     {
         super.stateID = StateID.RegularPlayState;
 
         this.gameMaster = gameMaster;
         this.resourceManager = resourceManager;
         this.inputManager = inputManager;
+        this.coinsManager = coinsManager;
 
         levelManager = new LevelManager(resourceManager);
         enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
@@ -50,7 +51,7 @@ public class RegularPlay extends State
     @Override
     public void DoBeforeEntering()
     {
-        coins = 300;
+        coinsManager.SetCoins(300);
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
     }
@@ -68,8 +69,8 @@ public class RegularPlay extends State
         towerManager.Update(enemyManager.GetEnemies());
         ClickedHandler();
 
-        coins += enemyManager.GetKilledEnemyFromLastCheck()*10;
-        uiManager.SetCoinsLabel(coins);
+        coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*10);
+        uiManager.SetCoinsLabel(coinsManager.GetCoins());
 
         EnemyInBase();
         UpdateUI();
@@ -162,17 +163,17 @@ public class RegularPlay extends State
             }
             else if(uiManager.IsSingleFireTowerButtonClicked(click))
             {
-                if(coins >= SingleFireTower.cost)
+                if(coinsManager.HasEnoughCoins(SingleFireTower.cost))
                 {
-                    coins -= SingleFireTower.cost;
+                    coinsManager.SubtactCoins(SingleFireTower.cost);
                     ChooseTower(TowerType.SingleFire);
                 }
             }
             else if(uiManager.IsContinuousFireTowerButtonClicked(click))
             {
-                if(coins >= ContinuousFireTower.cost)
+                if(coinsManager.HasEnoughCoins(ContinuousFireTower.cost))
                 {
-                    coins -= ContinuousFireTower.cost;
+                    coinsManager.SubtactCoins(ContinuousFireTower.cost);
                     ChooseTower(TowerType.ContinuousFire);
                 }
             }

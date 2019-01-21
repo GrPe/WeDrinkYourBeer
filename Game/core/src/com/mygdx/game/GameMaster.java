@@ -13,6 +13,7 @@ import FinityStateMachine.Game.RegularPlay;
 import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
 import FinityStateMachine.Transition;
+import Managers.CoinsManager;
 import Managers.InputManager;
 import Managers.ResourceManager;
 
@@ -23,6 +24,7 @@ public class GameMaster extends ApplicationAdapter
     private ResourceManager resourceManager;
     private StateMachine stateMachine;
     private InputManager inputManager;
+    private CoinsManager coinsManager;
 
     @Override
     public void create()
@@ -34,6 +36,8 @@ public class GameMaster extends ApplicationAdapter
 
         inputManager = new InputManager(camera);
         Gdx.input.setInputProcessor(inputManager);
+
+        coinsManager = new CoinsManager(100);
 
         resourceManager = new ResourceManager();
         InitStateMachine();
@@ -71,7 +75,7 @@ public class GameMaster extends ApplicationAdapter
     {
         stateMachine = new StateMachine();
 
-        RegularPlay regularPlay = new RegularPlay(this, resourceManager,inputManager);
+        RegularPlay regularPlay = new RegularPlay(this,coinsManager, resourceManager,inputManager);
         MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
         Credits credits = new Credits(this,inputManager,resourceManager);
 
