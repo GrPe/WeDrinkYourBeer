@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import FinityStateMachine.Game.Credits;
+import FinityStateMachine.Game.GameOver;
 import FinityStateMachine.Game.MainMenu;
 import FinityStateMachine.Game.RegularPlay;
 import FinityStateMachine.StateID;
@@ -78,17 +79,23 @@ public class GameMaster extends ApplicationAdapter
         RegularPlay regularPlay = new RegularPlay(this,coinsManager, resourceManager,inputManager);
         MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
         Credits credits = new Credits(this,inputManager,resourceManager);
+        GameOver gameOver = new GameOver(this,resourceManager,inputManager,coinsManager);
 
         regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
+        regularPlay.AddTransition(Transition.PlayerFailMissionTransition,StateID.PlayerFailMissionState);
 
         mainMenu.AddTransition(Transition.PlayerRegularTransition,StateID.RegularPlayState);
         mainMenu.AddTransition(Transition.CreditsTransition,StateID.CreditsState);
 
         credits.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
 
+        gameOver.AddTransition(Transition.PlayerRegularTransition, StateID.RegularPlayState);
+        gameOver.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
+
         stateMachine.AddState(mainMenu);
         stateMachine.AddState(regularPlay);
         stateMachine.AddState(credits);
+        stateMachine.AddState(gameOver);
     }
 
     public StateMachine GetStateMachine()
