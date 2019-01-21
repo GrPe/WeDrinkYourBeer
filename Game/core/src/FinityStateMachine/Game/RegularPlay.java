@@ -151,7 +151,7 @@ public class RegularPlay extends State
     {
         if(inputManager.IsTouchedDown())
         {
-            Vector2 click = ToVector2(inputManager.GetTouchPoint());
+            Vector2 click = inputManager.GetTouchPoint();
 
             if(uiManager.IsTowerMenuButtonClicked(click))
             {
@@ -214,11 +214,6 @@ public class RegularPlay extends State
     private boolean InsertTower(Vector2 position)
     {
         return towerManager.SetTower(position,towerTypeToInsert);
-    }
-
-    private Vector2 ToVector2(Vector3 position)
-    {
-        return new Vector2(position.x,position.y);
     }
 
     private Vector2 RoundTo60(Vector2 position)
