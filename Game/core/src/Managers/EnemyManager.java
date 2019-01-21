@@ -121,4 +121,12 @@ public class EnemyManager
     public ArrayList<Enemy> GetEnemies() {
         return enemies;
     }
+
+    public void Reset()
+    {
+        enemies.clear();
+        timer = 1f;
+        numberOfEnemyToSpawn = 0;
+        killedEnemyFromLastCheck = 0;
+    }
 }

@@ -122,5 +122,10 @@ public class LevelManager
         return false;
     }
 
+    public void Reset()
+    {
+        base.SetHp(base.GetMaxHp());
+    }
+
 
 }
