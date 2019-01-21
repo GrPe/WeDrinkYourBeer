@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class InputManager implements InputProcessor
@@ -60,9 +61,9 @@ public class InputManager implements InputProcessor
         return false;
     }
 
-    public Vector3 GetTouchPoint()
+    public Vector2 GetTouchPoint()
     {
-        return touchPoint;
+        return new Vector2(touchPoint.x, touchPoint.y);
     }
 
     public boolean IsTouchedDown() {

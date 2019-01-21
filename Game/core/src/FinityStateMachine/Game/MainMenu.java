@@ -47,7 +47,7 @@ public class MainMenu extends State
     {
         if(inputManager.IsTouchedDown())
         {
-            Vector2 click = ToVector2(inputManager.GetTouchPoint());
+            Vector2 click = inputManager.GetTouchPoint();
             if(startGame.IsClicked(click))
             {
                 gameMaster.GetStateMachine().PerformTransition(Transition.PlayerRegularTransition);
@@ -62,12 +62,6 @@ public class MainMenu extends State
             }
         }
     }
-
-    private Vector2 ToVector2(Vector3 vec)
-    {
-        return new Vector2(vec.x,vec.y);
-    }
-
 
     @Override
     public void Render(Batch batch)

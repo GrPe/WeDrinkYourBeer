@@ -49,19 +49,13 @@ public class Credits extends State
     {
         if(inputManager.IsTouchedDown())
         {
-            Vector2 click = ToVector2(inputManager.GetTouchPoint());
+            Vector2 click = inputManager.GetTouchPoint();
             if(returnToMainMenu.IsClicked(click))
             {
                 gameMaster.GetStateMachine().PerformTransition(Transition.MainMenuTransition);
             }
         }
     }
-
-    private Vector2 ToVector2(Vector3 vec)
-    {
-        return new Vector2(vec.x,vec.y);
-    }
-
 
     @Override
     public void Render(Batch batch)

@@ -1,10 +1,8 @@
 package FinityStateMachine.Game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.GameMaster;
 
 import Factories.TowerType;
@@ -59,7 +57,9 @@ public class RegularPlay extends State
     @Override
     public void DoBeforeLeaving()
     {
-
+        levelManager.Reset();
+        towerManager.Reset();
+        enemyManager.Reset();
     }
 
     @Override
@@ -73,6 +73,7 @@ public class RegularPlay extends State
         uiManager.SetCoinsLabel(coinsManager.GetCoins());
 
         EnemyInBase();
+        GameOver();
         UpdateUI();
         NextPhase();
     }
@@ -151,7 +152,7 @@ public class RegularPlay extends State
     {
         if(inputManager.IsTouchedDown())
         {
-            Vector2 click = ToVector2(inputManager.GetTouchPoint());
+            Vector2 click = inputManager.GetTouchPoint();
 
             if(uiManager.IsTowerMenuButtonClicked(click))
             {
@@ -216,13 +217,16 @@ public class RegularPlay extends State
         return towerManager.SetTower(position,towerTypeToInsert);
     }
 
-    private Vector2 ToVector2(Vector3 position)
-    {
-        return new Vector2(position.x,position.y);
-    }
-
     private Vector2 RoundTo60(Vector2 position)
     {
         return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
+    }
+
+    private void GameOver()
+    {
+        if(levelManager.GetBase().IsDead())
+        {
+            gameMaster.GetStateMachine().PerformTransition(Transition.PlayerFailMissionTransition);
+        }
     }
 }

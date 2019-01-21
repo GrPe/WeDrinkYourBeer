@@ -57,4 +57,9 @@ public class TowerManager
         }
     }
 
+    public void Reset()
+    {
+        towers.clear();
+    }
+
 }
