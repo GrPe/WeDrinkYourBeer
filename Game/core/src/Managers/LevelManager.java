@@ -74,7 +74,7 @@ public class LevelManager
                     x++;
                     break;
                 case CODE_TOWER:
-                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),666);
+                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),6);
                     x++;
                     break;
                 case '\n':

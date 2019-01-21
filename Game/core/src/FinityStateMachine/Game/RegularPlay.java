@@ -73,6 +73,7 @@ public class RegularPlay extends State
         uiManager.SetCoinsLabel(coinsManager.GetCoins());
 
         EnemyInBase();
+        GameOver();
         UpdateUI();
         NextPhase();
     }
@@ -219,5 +220,13 @@ public class RegularPlay extends State
     private Vector2 RoundTo60(Vector2 position)
     {
         return new Vector2(((int)position.x/60)*60,((int)position.y/60)*60);
+    }
+
+    private void GameOver()
+    {
+        if(levelManager.GetBase().IsDead())
+        {
+            gameMaster.GetStateMachine().PerformTransition(Transition.PlayerFailMissionTransition);
+        }
     }
 }

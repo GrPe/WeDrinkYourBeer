@@ -32,7 +32,7 @@ public class Base extends GameObject
 
     public boolean IsDead()
     {
-        return hp < 0;
+        return hp <= 0;
     }
 
     public void IncreaseHp(int hp)
