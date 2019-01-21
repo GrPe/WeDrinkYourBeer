@@ -1,10 +1,8 @@
 package FinityStateMachine.Game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.GameMaster;
 
 import Factories.TowerType;
@@ -59,7 +57,9 @@ public class RegularPlay extends State
     @Override
     public void DoBeforeLeaving()
     {
-
+        levelManager.Reset();
+        towerManager.Reset();
+        enemyManager.Reset();
     }
 
     @Override
