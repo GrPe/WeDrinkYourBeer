@@ -10,7 +10,7 @@ public enum Transition
     PlayerRegularTransition,
     CreditsTransition,
     MainMenuTransition,
-    PlayerFailMission,
+    PlayerFailMissionTransition,
     PlayerSuccessMission,
 
     TowerWaitingFor,

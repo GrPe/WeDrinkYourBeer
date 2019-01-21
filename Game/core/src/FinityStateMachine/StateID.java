@@ -10,7 +10,7 @@ public enum StateID
     RegularPlayState,
     MainMenuState,
     CreditsState,
-    PlayerFailMission,
+    PlayerFailMissionState,
     PlayerSuccessMission,
 
     TowerWaitingForEnemy,
