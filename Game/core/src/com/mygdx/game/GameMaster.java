@@ -79,7 +79,7 @@ public class GameMaster extends ApplicationAdapter
         RegularPlay regularPlay = new RegularPlay(this,coinsManager, resourceManager,inputManager);
         MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
         Credits credits = new Credits(this,inputManager,resourceManager);
-        GameOver gameOver = new GameOver(this,resourceManager,inputManager,coinsManager);
+        GameOver gameOver = new GameOver(this,resourceManager,inputManager);
 
         regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
         regularPlay.AddTransition(Transition.PlayerFailMissionTransition,StateID.PlayerFailMissionState);

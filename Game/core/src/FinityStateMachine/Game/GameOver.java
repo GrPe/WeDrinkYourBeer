@@ -17,29 +17,28 @@ public class GameOver extends State {
     private GameMaster gameMaster;
     private ResourceManager resourceManager;
     private InputManager inputManager;
-    private CoinsManager coinsManager;
 
     private Image background;
-    private Label score;
     private UIButton returnToMenu;
     private UIButton retry;
 
-    public GameOver(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager, CoinsManager coinsManager) {
+    public GameOver(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager) {
         this.gameMaster = gameMaster;
         this.resourceManager = resourceManager;
         this.inputManager = inputManager;
-        this.coinsManager = coinsManager;
 
         InitUI();
     }
 
-    private void InitUI() {
-
+    private void InitUI()
+    {
+        background = new Image(new Vector2(-40,-40),resourceManager.GetTexture("gameOverBackground.png"),1,1);
+        retry = new UIButton(new Vector2(100,50),resourceManager.GetTexture("retry.png"));
+        returnToMenu = new UIButton(new Vector2(450,50),resourceManager.GetTexture("creditsReturn.png"));
     }
 
     @Override
     public void DoBeforeEntering() {
-
     }
 
     @Override
@@ -71,7 +70,6 @@ public class GameOver extends State {
     public void Render(Batch batch)
     {
         background.Render(batch);
-        score.Render(batch);
         retry.Render(batch);
         returnToMenu.Render(batch);
     }

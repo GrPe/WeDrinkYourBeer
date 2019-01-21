@@ -86,6 +86,10 @@ public class ResourceManager implements Disposable
         //credits
         manager.load("creditsReturn.png",Texture.class);
         manager.load("credits.png",Texture.class);
+
+        //game over
+        manager.load("retry.png",Texture.class);
+        manager.load("gameOverBackground.png",Texture.class);
     }
 
 
