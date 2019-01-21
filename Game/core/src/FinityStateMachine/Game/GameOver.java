@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameMaster;
 
 import FinityStateMachine.State;
+import FinityStateMachine.StateID;
 import FinityStateMachine.Transition;
 import GameObjects.UI.Image;
 import GameObjects.UI.Label;
@@ -23,6 +24,7 @@ public class GameOver extends State {
     private UIButton retry;
 
     public GameOver(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager) {
+        super.stateID = StateID.PlayerFailMissionState;
         this.gameMaster = gameMaster;
         this.resourceManager = resourceManager;
         this.inputManager = inputManager;
