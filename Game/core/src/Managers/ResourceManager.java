@@ -5,19 +5,31 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
+
+import java.util.ArrayList;
 
 public class ResourceManager implements Disposable
 {
     private AssetManager manager;
     private BitmapFont bitmapFont;
+    private ArrayList<Vector2> navLink;
 
     public ResourceManager()
     {
         manager = new AssetManager();
+        navLink = new ArrayList<Vector2>();
         LoadFont();
         LoadTexture();
         manager.finishLoading();
+
+        navLink.add(  new Vector2(4*60,1*60));
+        navLink.add( new Vector2(5*60,1*60));
+        navLink.add(new Vector2(5*60,3*60));
+        navLink.add(new Vector2(7*60,3*60));
+        navLink.add(new Vector2(7*60,5*60));
+        navLink.add(new Vector2(3*60,5*60));
     }
 
     private void LoadFont()
@@ -67,8 +79,11 @@ public class ResourceManager implements Disposable
         manager.load("mainMenu.png",Texture.class);
         manager.load("towerMenu.png",Texture.class);
         manager.load("singleTowerMenuButton.png",Texture.class);
+        manager.load("singleTowerMenuButtonOff.png",Texture.class);
         manager.load("continuousFireTowerButton.png",Texture.class);
+        manager.load("continuousFireTowerButtonOff.png",Texture.class);
         manager.load("harvesterTowerButton.png",Texture.class);
+        manager.load("harvesterTowerButtonOff.png",Texture.class);
         manager.load("baseHpIcon.png",Texture.class);
         manager.load("timerIcon.png",Texture.class);
         manager.load("coinsIcon.png",Texture.class);
@@ -92,5 +107,8 @@ public class ResourceManager implements Disposable
         manager.load("gameOverBackground.png",Texture.class);
     }
 
-
+    public ArrayList<Vector2> GetNavLink()
+    {
+        return navLink;
+    }
 }

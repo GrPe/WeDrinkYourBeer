@@ -60,6 +60,7 @@ public class RegularPlay extends State
         levelManager.Reset();
         towerManager.Reset();
         enemyManager.Reset();
+        uiManager.SetTowerSelectionMenuVisibility(false);
     }
 
     @Override
@@ -67,6 +68,7 @@ public class RegularPlay extends State
     {
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
+        UpdateTowerMenu();
         ClickedHandler();
 
         coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*10);
@@ -85,6 +87,13 @@ public class RegularPlay extends State
         enemyManager.Render(batch);
         towerManager.Render(batch);
         uiManager.Render(batch);
+    }
+
+    private void UpdateTowerMenu()
+    {
+        uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost));
+        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost));
+        //uiManager.SetHarvesterTowerActive(coinsManager.HasEnoughCoins(.cost)); todo
     }
 
     private void EnemyInBase()

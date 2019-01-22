@@ -8,14 +8,6 @@ import Managers.ResourceManager;
 
 public class EnemyFactory
 {
-    private Vector2[] navLink = {
-            new Vector2(4*60,1*60),
-            new Vector2(5*60,1*60),
-            new Vector2(5*60,3*60),
-            new Vector2(7*60,3*60),
-            new Vector2(7*60,5*60),
-            new Vector2(3*60,5*60)};
-
     private  ResourceManager resourceManager;
 
     public EnemyFactory(ResourceManager resourceManager)
@@ -28,7 +20,7 @@ public class EnemyFactory
         switch(enemyType)
         {
             case Student:
-                return new Student(position, resourceManager.GetTexture("enemy_test.png"),navLink);
+                return new Student(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
         }
         return null;
     }
