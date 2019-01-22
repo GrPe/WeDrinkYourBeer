@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.UI.Image;
 import GameObjects.UI.Label;
+import GameObjects.UI.TwoStateButton;
 import GameObjects.UI.UIButton;
 
 public class UIManager
@@ -22,9 +23,9 @@ public class UIManager
     //tower menu buttons
     private boolean towerMenuVisibility;
     private UIButton towerMenu;
-    private UIButton singleFireTowerButton;
-    private UIButton continuousFireTowerButton;
-    private UIButton harvesterTowerButton;
+    private TwoStateButton singleFireTowerButton;
+    private TwoStateButton continuousFireTowerButton;
+    private TwoStateButton harvesterTowerButton;
 
     //Icons
     private Image hpIcon;
@@ -46,9 +47,9 @@ public class UIManager
 
         //tower menu buttons
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
-        singleFireTowerButton = new UIButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"));
-        continuousFireTowerButton = new UIButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"));
-        harvesterTowerButton = new UIButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"));
+        singleFireTowerButton = new TwoStateButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"), resourceManager.GetTexture("singleTowerMenuButtonOff.png"));
+        continuousFireTowerButton = new TwoStateButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"), resourceManager.GetTexture("continuousFireTowerButtonOff.png"));
+        harvesterTowerButton = new TwoStateButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"),resourceManager.GetTexture("harvesterTowerButtonOff.png"));
 
         //icons
         hpIcon = new Image(new Vector2(5,435),resourceManager.GetTexture("baseHpIcon.png"));
@@ -127,4 +128,19 @@ public class UIManager
         towerMenuVisibility = state;
     }
     public boolean GetTowerSelectionMenuVisibility() {return towerMenuVisibility;}
+
+    public void SetSingleFireTowerActive(boolean active)
+    {
+        singleFireTowerButton.SetActive(active);
+    }
+
+    public void SetContinuousFireTowerActive(boolean active)
+    {
+        continuousFireTowerButton.SetActive(active);
+    }
+
+    public void SetHarvesterTowerActivi(boolean active)
+    {
+        harvesterTowerButton.SetActive(active);
+    }
 }
