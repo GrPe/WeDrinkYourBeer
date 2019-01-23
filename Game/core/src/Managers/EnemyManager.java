@@ -53,7 +53,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Student));
+                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Minion));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }
