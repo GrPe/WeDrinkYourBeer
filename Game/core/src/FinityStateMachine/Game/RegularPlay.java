@@ -223,6 +223,7 @@ public class RegularPlay extends State
 
     private boolean InsertTower(Vector2 position)
     {
+        levelManager.RemoveDecoration(position);
         return towerManager.SetTower(position,towerTypeToInsert);
     }
 

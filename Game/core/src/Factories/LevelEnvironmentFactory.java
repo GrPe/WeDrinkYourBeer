@@ -37,4 +37,9 @@ public class LevelEnvironmentFactory
     {
         return new SpawnPoint(position, resourceManager.GetTexture("spawnPoint.png"));
     }
+
+    public Environment CreateDecoration(int no, Vector2 position)
+    {
+        return new Environment(position,resourceManager.GetTexture("environment" + Integer.toString(no) + ".png"));
+    }
 }

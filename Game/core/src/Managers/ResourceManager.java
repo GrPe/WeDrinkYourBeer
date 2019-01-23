@@ -105,6 +105,10 @@ public class ResourceManager implements Disposable
         //game over
         manager.load("retry.png",Texture.class);
         manager.load("gameOverBackground.png",Texture.class);
+
+        //decorations
+        for(int i = 1 ;i != 6; i++)
+            manager.load("environment" + Integer.toString(i) + ".png",Texture.class);
     }
 
     public ArrayList<Vector2> GetNavLink()

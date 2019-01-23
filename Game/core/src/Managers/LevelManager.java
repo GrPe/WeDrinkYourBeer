@@ -26,6 +26,7 @@ public class LevelManager
 
     private ResourceManager resourceManager;
     private LevelEnvironmentFactory levelEnvironmentFactory;
+    private DecorationManager decorationManager;
 
     private int numberOfLevel = 1; //temp
 
@@ -33,7 +34,7 @@ public class LevelManager
     {
         this.resourceManager = resourceManager;
         this.levelEnvironmentFactory = new LevelEnvironmentFactory(resourceManager);
-
+        this.decorationManager = new DecorationManager(levelEnvironmentFactory);
         try
         {
             CreateLevel();
@@ -85,6 +86,8 @@ public class LevelManager
                     break;
             }
         }
+
+        decorationManager.GenerateEnvironment(buildings);
     }
 
     public void Render(Batch batch)
@@ -93,6 +96,8 @@ public class LevelManager
         {
             x.Render(batch);
         }
+
+        decorationManager.Render(batch);
 
         for(Environment x : ways)
         {
@@ -122,9 +127,16 @@ public class LevelManager
         return false;
     }
 
+    public void RemoveDecoration(Vector2 position)
+    {
+        decorationManager.DestroyEnvironment(position);
+    }
+
     public void Reset()
     {
         base.SetHp(base.GetMaxHp());
+        decorationManager.Reset();
+        decorationManager.GenerateEnvironment(buildings);
     }
 
 
