@@ -27,7 +27,7 @@ public class ContinuousFireTower extends Tower
     @Override
     public void Fire()
     {
-        bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/4,super.GetPosition().y + GetSpriteHeight()/4),
+        bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
                 super.GetRotation(),super.GetTarget().GetPosition()));
     }
 
