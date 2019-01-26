@@ -1,126 +1,61 @@
 package Managers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
-
-import Factories.EnvironmentType;
 import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
-import GameObjects.SpawnPoint;
 
 public class LevelManager
 {
-    private final char CODE_WAY = 'o';
-    private final char CODE_BUILDING = 'x';
-    private final char CODE_SPAWN_POINT = 's';
-    private final char CODE_TOWER = 'T';
-
-    private ArrayList<Environment> ways;
-    private ArrayList<Environment> buildings;
-    private SpawnPoint spawnPoint;
-    private GameObjects.Base base;
-
-    private ResourceManager resourceManager;
-    private LevelEnvironmentFactory levelEnvironmentFactory;
     private DecorationManager decorationManager;
-
-    private int numberOfLevel = 1; //temp
+    private DataLoader dataLoader;
+    private LevelData levelData;
 
     public LevelManager(ResourceManager resourceManager)
     {
-        this.resourceManager = resourceManager;
-        this.levelEnvironmentFactory = new LevelEnvironmentFactory(resourceManager);
-        this.decorationManager = new DecorationManager(levelEnvironmentFactory);
-        try
-        {
-            CreateLevel();
-        }
-        catch (Exception ex)
-        {
-            //do nothing
-        }
-
+        this.decorationManager = new DecorationManager(new LevelEnvironmentFactory(resourceManager));
+        this.dataLoader = new DataLoader(resourceManager);
+        CreateLevel(1);
     }
 
-    //todo - exception handlers
-    private void CreateLevel() throws Exception
+    private void CreateLevel(int level)
     {
-        ways = new ArrayList<Environment>();
-        buildings = new ArrayList<Environment>();
+        levelData = dataLoader.LoadDataLevel(level);
 
-        FileHandle file = Gdx.files.internal("Levels/lv0.txt");
-        String line;
-        int y = 6;
-        int x = 0;
-        line = file.readString();
-
-        for(char sign : line.toCharArray())
-        {
-            switch (sign) {
-                case CODE_WAY:
-                    ways.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Way));
-                    x++;
-                    break;
-                case CODE_BUILDING:
-                    buildings.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Buildings));
-                    x++;
-                    break;
-                case CODE_SPAWN_POINT:
-                    ways.add(levelEnvironmentFactory.CreateEnvironment(new Vector2(x * 60, y * 60),EnvironmentType.Way));
-                    spawnPoint = levelEnvironmentFactory.CreateSpawnPoint(new Vector2(x*60, y*60));
-                    x++;
-                    break;
-                case CODE_TOWER:
-                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),6);
-                    x++;
-                    break;
-                case '\n':
-                    y--;
-                    x = 0;
-                case '\r':
-                    x = 0;
-                    break;
-            }
-        }
-
-        decorationManager.GenerateEnvironment(buildings);
+        decorationManager.GenerateEnvironment(levelData.environments);
     }
 
     public void Render(Batch batch)
     {
-        for(Environment x : buildings)
+        for(Environment x : levelData.environments)
         {
             x.Render(batch);
         }
 
         decorationManager.Render(batch);
 
-        for(Environment x : ways)
+        for(Environment x : levelData.ways)
         {
             x.Render(batch);
         }
 
-        spawnPoint.Render(batch);
-        base.Render(batch);
+        levelData.spawnPoint.Render(batch);
+        levelData.base.Render(batch);
     }
 
     public Vector2 GetSpawnPointPosition()
     {
-        return spawnPoint.GetPosition();
+        return levelData.spawnPoint.GetPosition();
     }
 
     public GameObjects.Base GetBase()
     {
-        return base;
+        return levelData.base;
     }
 
     public boolean CheckIfTowerCanBePlaced(Vector2 position)
     {
-        for(Environment x : buildings)
+        for(Environment x : levelData.environments)
         {
             if(x.GetPosition().equals(position)) return true;
         }
@@ -134,9 +69,9 @@ public class LevelManager
 
     public void Reset()
     {
-        base.SetHp(base.GetMaxHp());
+        levelData.base.SetHp(levelData.base.GetMaxHp());
         decorationManager.Reset();
-        decorationManager.GenerateEnvironment(buildings);
+        decorationManager.GenerateEnvironment(levelData.environments);
     }
 
 
