@@ -1,4 +1,4 @@
-package Managers;
+package Data;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -13,6 +13,7 @@ import Factories.EnvironmentType;
 import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
 import GameObjects.SpawnPoint;
+import Managers.ResourceManager;
 
 public class DataLoader
 {

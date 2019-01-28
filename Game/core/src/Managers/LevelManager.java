@@ -2,6 +2,9 @@ package Managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+
+import Data.DataLoader;
+import Data.LevelData;
 import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
 
