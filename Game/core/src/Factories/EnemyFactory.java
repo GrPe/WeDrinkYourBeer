@@ -2,6 +2,7 @@ package Factories;
 
 import com.badlogic.gdx.math.Vector2;
 
+import GameObjects.Enemies.AWFStudent;
 import GameObjects.Enemies.LawStudent;
 import GameObjects.Enemies.Student;
 import GameObjects.Enemy;
@@ -24,6 +25,9 @@ public class EnemyFactory
                 return new Student(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
             case LawStudent:
                 return new LawStudent(position, resourceManager.GetTexture("enemy_test1.png"),resourceManager.GetNavLink());
+            case AWFStudent:
+                return new AWFStudent(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
+
         }
         return null;
     }

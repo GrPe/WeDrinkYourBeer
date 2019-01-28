@@ -38,6 +38,7 @@ public class EnemyManager
         //i don't now why, but switch not work in this case ????
         if(id == 1) enemyToSpawn =EnemyType.Student;
         else if(id == 2) enemyToSpawn = EnemyType.LawStudent;
+        else if(id == 3) enemyToSpawn = EnemyType.AWFStudent;
         else enemyToSpawn = EnemyType.Student;
 
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
