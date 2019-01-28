@@ -16,7 +16,7 @@ public class EnemyManager
     private ArrayList<Enemy> enemies;
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
-    private EnemyType enemyToSpawn = EnemyType.Minion;
+    private EnemyType enemyToSpawn = EnemyType.Student;
     private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
@@ -36,9 +36,9 @@ public class EnemyManager
         switch(phase.GetEnemyId())
         {
             case 1:
-                enemyToSpawn = EnemyType.Minion;
+                enemyToSpawn = EnemyType.Student;
             default:
-                enemyToSpawn = EnemyType.Minion;
+                enemyToSpawn = EnemyType.Student;
         }
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
     }
@@ -62,7 +62,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Minion));
+                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Student));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }

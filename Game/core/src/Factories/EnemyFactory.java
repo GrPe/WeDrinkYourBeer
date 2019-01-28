@@ -2,7 +2,7 @@ package Factories;
 
 import com.badlogic.gdx.math.Vector2;
 
-import GameObjects.Enemies.Minion;
+import GameObjects.Enemies.Student;
 import GameObjects.Enemy;
 import Managers.ResourceManager;
 
@@ -19,8 +19,8 @@ public class EnemyFactory
     {
         switch(enemyType)
         {
-            case Minion:
-                return new Minion(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
+            case Student:
+                return new Student(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
         }
         return null;
     }

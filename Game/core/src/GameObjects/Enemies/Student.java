@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 import GameObjects.Enemy;
 
-public class Minion extends Enemy
+public class Student extends Enemy
 {
-    public Minion(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
+    public Student(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
         super(position, 0, texture, navLink, 50, 60, 1);
     }
 }
