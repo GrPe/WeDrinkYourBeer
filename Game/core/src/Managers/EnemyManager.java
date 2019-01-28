@@ -33,13 +33,13 @@ public class EnemyManager
 
     public void NewWay(Phase phase)
     {
-        switch(phase.GetEnemyId())
-        {
-            case 1:
-                enemyToSpawn = EnemyType.Student;
-            default:
-                enemyToSpawn = EnemyType.Student;
-        }
+        int id = phase.GetEnemyId();
+
+        //i don't now why, but switch not work in this case ????
+        if(id == 1) enemyToSpawn =EnemyType.Student;
+        else if(id == 2) enemyToSpawn = EnemyType.LawStudent;
+        else enemyToSpawn = EnemyType.Student;
+
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
     }
 
@@ -62,7 +62,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Student));
+                enemies.add(enemyFactory.CreateEnemy(spawnPosition,enemyToSpawn));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }
