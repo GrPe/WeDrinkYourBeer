@@ -137,7 +137,7 @@ public class RegularPlay extends State
     {
         if(enemyManager.IsEmpty() && timer <= 0 && !nextPhase)
         {
-            timer = 3;
+            timer = 8;
             nextPhase = true;
         }
         if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
@@ -152,8 +152,15 @@ public class RegularPlay extends State
         timer -=Gdx.graphics.getDeltaTime();
         if(timer <= 0)
         {
-            nextPhase = false;
-            enemyManager.NewWay(8);
+            if(levelManager.IsEndOfLevel())
+            {
+                gameMaster.GetStateMachine().PerformTransition(Transition.PlayerFailMissionTransition);
+            }
+            else
+            {
+                nextPhase = false;
+                enemyManager.NewWay(levelManager.GetNextPhase());
+            }
         }
     }
 
