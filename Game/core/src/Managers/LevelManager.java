@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import Data.DataLoader;
 import Data.LevelData;
+import Data.LevelPhase;
+import Data.Phase;
 import Factories.LevelEnvironmentFactory;
 import GameObjects.Environment;
 
@@ -13,17 +15,21 @@ public class LevelManager
     private DecorationManager decorationManager;
     private DataLoader dataLoader;
     private LevelData levelData;
+    private LevelPhase levelPhase;
+    private int currentPhase;
 
     public LevelManager(ResourceManager resourceManager)
     {
         this.decorationManager = new DecorationManager(new LevelEnvironmentFactory(resourceManager));
         this.dataLoader = new DataLoader(resourceManager);
+        currentPhase = 0;
         CreateLevel(1);
     }
 
     private void CreateLevel(int level)
     {
         levelData = dataLoader.LoadDataLevel(level);
+        levelPhase = dataLoader.LoadLevelPhase(level);
 
         decorationManager.GenerateEnvironment(levelData.environments);
     }
@@ -75,7 +81,16 @@ public class LevelManager
         levelData.base.SetHp(levelData.base.GetMaxHp());
         decorationManager.Reset();
         decorationManager.GenerateEnvironment(levelData.environments);
+        currentPhase = 0;
     }
 
+    public Phase GetNextPhase()
+    {
+        return levelPhase.GetPhase(currentPhase++);
+    }
 
+    public boolean IsEndOfLevel()
+    {
+        return currentPhase >= levelPhase.GetSize();
+    }
 }

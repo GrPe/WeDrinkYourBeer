@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+import Data.Phase;
 import Factories.EnemyFactory;
 import Factories.EnemyType;
 import GameObjects.Enemy;
@@ -15,6 +16,7 @@ public class EnemyManager
     private ArrayList<Enemy> enemies;
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
+    private EnemyType enemyToSpawn = EnemyType.Minion;
     private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
@@ -29,9 +31,16 @@ public class EnemyManager
         this.enemyFactory = new EnemyFactory(resourceManager);
     }
 
-    public void NewWay(int numberOfEnemy)
+    public void NewWay(Phase phase)
     {
-        numberOfEnemyToSpawn = numberOfEnemy;
+        switch(phase.GetEnemyId())
+        {
+            case 1:
+                enemyToSpawn = EnemyType.Minion;
+            default:
+                enemyToSpawn = EnemyType.Minion;
+        }
+        numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
     }
 
     public void Update()
