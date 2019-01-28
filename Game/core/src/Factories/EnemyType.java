@@ -2,5 +2,6 @@ package Factories;
 
 public enum EnemyType
 {
-    Student
+    Student,
+    LawStudent
 }
