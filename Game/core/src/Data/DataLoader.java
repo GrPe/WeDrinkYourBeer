@@ -63,7 +63,7 @@ public class DataLoader
                     x++;
                     break;
                 case CODE_TOWER:
-                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),6);
+                    base = levelEnvironmentFactory.CreateBase(new Vector2(x*60, y*60),30);
                     x++;
                     break;
                 case '\n':
