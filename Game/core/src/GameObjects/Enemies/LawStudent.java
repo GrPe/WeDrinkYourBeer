@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public class LawStudent extends Enemy
 {
     public LawStudent(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 200, 60, 1);
+        super(position, 0, texture, navLink, 150, 60, 1);
     }
 }
