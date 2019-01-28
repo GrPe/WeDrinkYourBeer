@@ -77,7 +77,7 @@ public class DataLoader
 
 
         ArrayList<Vector2> navLink = new ArrayList<Vector2>();
-        FileHandle f = Gdx.files.internal("Levels/level1.json");
+        FileHandle f = Gdx.files.internal("Levels/level" + Integer.toString(level) + ".json");
         JSONObject reader = new JSONObject(f.readString());
         JSONArray array = reader.getJSONArray("path");
 
@@ -90,4 +90,21 @@ public class DataLoader
         resourceManager.SetNavLink(navLink);
         return new LevelData(environments,ways,spawnPoint,base);
     }
+
+    public LevelPhase LoadLevelPhase(int level)
+    {
+        LevelPhase levelPhase = new LevelPhase();
+        FileHandle f = Gdx.files.internal("Levels/level" + Integer.toString(level) + ".json");
+        JSONObject reader = new JSONObject(f.readString());
+        JSONArray array = reader.getJSONArray("phases");
+
+        for(int i = 0; i < array.length(); i++)
+        {
+            JSONObject val = array.getJSONObject(i);
+            levelPhase.Add(new Phase(val.getInt("id"),val.getInt("size")));
+        }
+
+        return levelPhase;
+    }
+
 }
