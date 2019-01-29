@@ -60,10 +60,11 @@ public class ResourceManager implements Disposable
     {
         //enemy atlas
         manager.load("studentV1.png",Texture.class);
+        manager.load("studentLaw.png",Texture.class);
+        manager.load("studentAWF.png",Texture.class);
+        manager.load("studentIT.png",Texture.class);
 
         //texture
-        manager.load("enemy_test.png",Texture.class);
-        manager.load("enemy_test1.png",Texture.class);
         manager.load("environment.png",Texture.class);
         manager.load("way.png",Texture.class);
         manager.load("base.png",Texture.class);

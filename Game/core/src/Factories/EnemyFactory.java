@@ -25,11 +25,11 @@ public class EnemyFactory
             case Student:
                 return new Student(position, resourceManager.GetTexture("studentV1.png"),resourceManager.GetNavLink());
             case LawStudent:
-                return new LawStudent(position, resourceManager.GetTexture("enemy_test1.png"),resourceManager.GetNavLink());
+                return new LawStudent(position, resourceManager.GetTexture("studentLaw.png"),resourceManager.GetNavLink());
             case AWFStudent:
-                return new AWFStudent(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
+                return new AWFStudent(position, resourceManager.GetTexture("studentAWF.png"),resourceManager.GetNavLink());
             case ITStudent:
-                return new ITStudent(position, resourceManager.GetTexture("enemy_test1.png"),resourceManager.GetNavLink());
+                return new ITStudent(position, resourceManager.GetTexture("studentIT.png"),resourceManager.GetNavLink());
 
         }
         return null;
