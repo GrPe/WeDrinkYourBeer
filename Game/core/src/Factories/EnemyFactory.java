@@ -23,7 +23,7 @@ public class EnemyFactory
         switch(enemyType)
         {
             case Student:
-                return new Student(position, resourceManager.GetTexture("enemy_test.png"),resourceManager.GetNavLink());
+                return new Student(position, resourceManager.GetTexture("studentV1.png"),resourceManager.GetNavLink());
             case LawStudent:
                 return new LawStudent(position, resourceManager.GetTexture("enemy_test1.png"),resourceManager.GetNavLink());
             case AWFStudent:

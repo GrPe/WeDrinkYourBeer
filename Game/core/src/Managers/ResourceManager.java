@@ -58,6 +58,9 @@ public class ResourceManager implements Disposable
 
     private void LoadTexture()
     {
+        //enemy atlas
+        manager.load("studentV1.png",Texture.class);
+
         //texture
         manager.load("enemy_test.png",Texture.class);
         manager.load("enemy_test1.png",Texture.class);

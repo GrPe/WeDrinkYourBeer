@@ -20,6 +20,7 @@ public class WalkingState extends State {
 
         currentTarget = enemy.GetNextTarget();
         finalTarget = enemy.GetFinalTarget();
+        SetDirection();
     }
 
     @Override
@@ -70,7 +71,20 @@ public class WalkingState extends State {
         if(CheckPosition(1, currentTarget))
         {
             currentTarget = enemy.GetNextTarget();
+            SetDirection();
         }
+    }
+
+    private void SetDirection()
+    {
+        if(currentTarget.x + 30 < enemy.GetPosition().x)
+            enemy.SwitchDirection(Direction.Left);
+        else if(currentTarget.x - 30 > enemy.GetPosition().x)
+            enemy.SwitchDirection(Direction.Right);
+        else if(currentTarget.y - 30 > enemy.GetPosition().y)
+            enemy.SwitchDirection(Direction.Up);
+        else
+            enemy.SwitchDirection(Direction.Down);
     }
 
     private boolean CheckPosition(int epsilon, Vector2 target)
