@@ -4,5 +4,6 @@ public enum EnemyType
 {
     Student,
     LawStudent,
-    AWFStudent
+    AWFStudent,
+    ITStudent
 }

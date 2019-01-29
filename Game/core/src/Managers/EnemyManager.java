@@ -39,6 +39,7 @@ public class EnemyManager
         if(id == 1) enemyToSpawn =EnemyType.Student;
         else if(id == 2) enemyToSpawn = EnemyType.LawStudent;
         else if(id == 3) enemyToSpawn = EnemyType.AWFStudent;
+        else if(id == 4) enemyToSpawn = EnemyType.ITStudent;
         else enemyToSpawn = EnemyType.Student;
 
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
