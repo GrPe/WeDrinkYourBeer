@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+import Data.Phase;
 import Factories.EnemyFactory;
 import Factories.EnemyType;
 import GameObjects.Enemy;
@@ -15,6 +16,7 @@ public class EnemyManager
     private ArrayList<Enemy> enemies;
     private float timer = 1f;
     private int numberOfEnemyToSpawn = 0;
+    private EnemyType enemyToSpawn = EnemyType.Student;
     private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
@@ -29,9 +31,18 @@ public class EnemyManager
         this.enemyFactory = new EnemyFactory(resourceManager);
     }
 
-    public void NewWay(int numberOfEnemy)
+    public void NewWay(Phase phase)
     {
-        numberOfEnemyToSpawn = numberOfEnemy;
+        int id = phase.GetEnemyId();
+
+        //i don't now why, but switch not work in this case ????
+        if(id == 1) enemyToSpawn =EnemyType.Student;
+        else if(id == 2) enemyToSpawn = EnemyType.LawStudent;
+        else if(id == 3) enemyToSpawn = EnemyType.AWFStudent;
+        else if(id == 4) enemyToSpawn = EnemyType.ITStudent;
+        else enemyToSpawn = EnemyType.Student;
+
+        numberOfEnemyToSpawn = phase.GetNumberOfEnemy();
     }
 
     public void Update()
@@ -53,7 +64,7 @@ public class EnemyManager
             timer -= Gdx.graphics.getDeltaTime();
             if(timer <= 0)
             {
-                enemies.add(enemyFactory.CreateEnemy(spawnPosition,EnemyType.Student));
+                enemies.add(enemyFactory.CreateEnemy(spawnPosition,enemyToSpawn));
                 timer = 1;
                 numberOfEnemyToSpawn--;
             }

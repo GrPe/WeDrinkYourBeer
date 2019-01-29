@@ -23,13 +23,6 @@ public class ResourceManager implements Disposable
         LoadFont();
         LoadTexture();
         manager.finishLoading();
-
-        navLink.add(  new Vector2(4*60,1*60));
-        navLink.add( new Vector2(5*60,1*60));
-        navLink.add(new Vector2(5*60,3*60));
-        navLink.add(new Vector2(7*60,3*60));
-        navLink.add(new Vector2(7*60,5*60));
-        navLink.add(new Vector2(3*60,5*60));
     }
 
     private void LoadFont()
@@ -65,8 +58,13 @@ public class ResourceManager implements Disposable
 
     private void LoadTexture()
     {
+        //enemy atlas
+        manager.load("studentV1.png",Texture.class);
+        manager.load("studentLaw.png",Texture.class);
+        manager.load("studentAWF.png",Texture.class);
+        manager.load("studentIT.png",Texture.class);
+
         //texture
-        manager.load("enemy_test.png",Texture.class);
         manager.load("environment.png",Texture.class);
         manager.load("way.png",Texture.class);
         manager.load("base.png",Texture.class);
@@ -114,5 +112,10 @@ public class ResourceManager implements Disposable
     public ArrayList<Vector2> GetNavLink()
     {
         return navLink;
+    }
+
+    public void SetNavLink(ArrayList<Vector2> navLink)
+    {
+        this.navLink = navLink;
     }
 }

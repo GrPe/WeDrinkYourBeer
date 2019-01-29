@@ -49,7 +49,7 @@ public class RegularPlay extends State
     @Override
     public void DoBeforeEntering()
     {
-        coinsManager.SetCoins(300);
+        coinsManager.SetCoins(110);
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
     }
@@ -71,7 +71,7 @@ public class RegularPlay extends State
         UpdateTowerMenu();
         ClickedHandler();
 
-        coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*10);
+        coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*5);
         uiManager.SetCoinsLabel(coinsManager.GetCoins());
 
         EnemyInBase();
@@ -137,7 +137,7 @@ public class RegularPlay extends State
     {
         if(enemyManager.IsEmpty() && timer <= 0 && !nextPhase)
         {
-            timer = 3;
+            timer = 6;
             nextPhase = true;
         }
         if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
@@ -152,8 +152,15 @@ public class RegularPlay extends State
         timer -=Gdx.graphics.getDeltaTime();
         if(timer <= 0)
         {
-            nextPhase = false;
-            enemyManager.NewWay(8);
+            if(levelManager.IsEndOfLevel())
+            {
+                gameMaster.GetStateMachine().PerformTransition(Transition.PlayerFailMissionTransition);
+            }
+            else
+            {
+                nextPhase = false;
+                enemyManager.NewWay(levelManager.GetNextPhase());
+            }
         }
     }
 

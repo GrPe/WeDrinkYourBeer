@@ -19,7 +19,7 @@ public class SingleFireTower extends Tower
 
     public SingleFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 128, 1, 10);
+        super(position, 0, texture, 135, 0.95f, 20);
         this.towerFactory = towerFactory;
         bullets = new ArrayList<Bullet>();
     }
@@ -28,7 +28,8 @@ public class SingleFireTower extends Tower
     public void Fire()
     {
         bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
-                super.GetRotation(),super.GetTarget().GetPosition()));
+                super.GetRotation(),
+                new Vector2(super.GetTarget().GetPosition().x + 15, super.GetTarget().GetPosition().y +30)));
     }
 
     @Override
