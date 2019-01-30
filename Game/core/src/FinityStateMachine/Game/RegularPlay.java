@@ -61,6 +61,7 @@ public class RegularPlay extends State
         towerManager.Reset();
         enemyManager.Reset();
         uiManager.SetTowerSelectionMenuVisibility(false);
+        timer = 7f;
     }
 
     @Override
