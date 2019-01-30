@@ -11,6 +11,7 @@ import FinityStateMachine.Game.Credits;
 import FinityStateMachine.Game.GameOver;
 import FinityStateMachine.Game.MainMenu;
 import FinityStateMachine.Game.RegularPlay;
+import FinityStateMachine.Game.WinScreen;
 import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
 import FinityStateMachine.Transition;
@@ -80,9 +81,11 @@ public class GameMaster extends ApplicationAdapter
         MainMenu mainMenu = new MainMenu(this,resourceManager,inputManager);
         Credits credits = new Credits(this,inputManager,resourceManager);
         GameOver gameOver = new GameOver(this,resourceManager,inputManager);
+        WinScreen winScreen = new WinScreen(this,resourceManager,inputManager);
 
         regularPlay.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
         regularPlay.AddTransition(Transition.PlayerFailMissionTransition,StateID.PlayerFailMissionState);
+        regularPlay.AddTransition(Transition.PlayerSuccessMission, StateID.PlayerSuccessMission);
 
         mainMenu.AddTransition(Transition.PlayerRegularTransition,StateID.RegularPlayState);
         mainMenu.AddTransition(Transition.CreditsTransition,StateID.CreditsState);
@@ -92,10 +95,13 @@ public class GameMaster extends ApplicationAdapter
         gameOver.AddTransition(Transition.PlayerRegularTransition, StateID.RegularPlayState);
         gameOver.AddTransition(Transition.MainMenuTransition, StateID.MainMenuState);
 
+        winScreen.AddTransition(Transition.MainMenuTransition,StateID.MainMenuState);
+
         stateMachine.AddState(mainMenu);
         stateMachine.AddState(regularPlay);
         stateMachine.AddState(credits);
         stateMachine.AddState(gameOver);
+        stateMachine.AddState(winScreen);
     }
 
     public StateMachine GetStateMachine()

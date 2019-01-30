@@ -154,7 +154,7 @@ public class RegularPlay extends State
         {
             if(levelManager.IsEndOfLevel())
             {
-                gameMaster.GetStateMachine().PerformTransition(Transition.PlayerFailMissionTransition);
+                gameMaster.GetStateMachine().PerformTransition(Transition.PlayerSuccessMission);
             }
             else
             {

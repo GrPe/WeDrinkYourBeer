@@ -90,7 +90,6 @@ public class ResourceManager implements Disposable
         manager.load("topBarGame.png",Texture.class);
 
         //main menu
-
         manager.load("menuBackground.png",Texture.class);
         manager.load("mainMenuStartButton.png",Texture.class);
         manager.load("mainMenuCredits.png",Texture.class);
@@ -103,6 +102,9 @@ public class ResourceManager implements Disposable
         //game over
         manager.load("retry.png",Texture.class);
         manager.load("gameOverBackground.png",Texture.class);
+
+        //win screen
+        manager.load("winwin.png",Texture.class);
 
         //decorations
         for(int i = 1 ;i != 6; i++)
