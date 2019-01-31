@@ -2,7 +2,7 @@ package Factories;
 
 import com.badlogic.gdx.math.Vector2;
 
-import FinityStateMachine.Game.ITStudent;
+import GameObjects.Enemies.ITStudent;
 import GameObjects.Enemies.AWFStudent;
 import GameObjects.Enemies.LawStudent;
 import GameObjects.Enemies.Student;
