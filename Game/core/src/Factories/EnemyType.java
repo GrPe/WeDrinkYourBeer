@@ -6,5 +6,7 @@ public enum EnemyType
     LawStudent,
     AWFStudent,
     ITStudent,
-    MDStudent
+    MDStudent,
+    BossDrunkMaster
+
 }

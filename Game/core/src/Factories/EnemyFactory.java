@@ -2,11 +2,7 @@ package Factories;
 
 import com.badlogic.gdx.math.Vector2;
 
-import GameObjects.Enemies.ITStudent;
-import GameObjects.Enemies.AWFStudent;
-import GameObjects.Enemies.LawStudent;
-import GameObjects.Enemies.MDStudent;
-import GameObjects.Enemies.Student;
+import GameObjects.Enemies.*;
 import GameObjects.Enemy;
 import Managers.ResourceManager;
 
@@ -33,6 +29,8 @@ public class EnemyFactory
                 return new ITStudent(position, resourceManager.GetTexture("studentIT.png"),resourceManager.GetNavLink());
             case MDStudent:
                 return new MDStudent(position, resourceManager.GetTexture("studentMD.png"),resourceManager.GetNavLink());
+            case BossDrunkMaster:
+                return new BossDrunkMaster(position, resourceManager.GetTexture("bossV1.png"),resourceManager.GetNavLink());
         }
         return null;
     }

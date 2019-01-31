@@ -64,6 +64,7 @@ public class ResourceManager implements Disposable
         manager.load("studentAWF.png",Texture.class);
         manager.load("studentIT.png",Texture.class);
         manager.load("studentMD.png",Texture.class);
+        manager.load("bossV1.png",Texture.class);
 
         //texture
         manager.load("environment.png",Texture.class);
