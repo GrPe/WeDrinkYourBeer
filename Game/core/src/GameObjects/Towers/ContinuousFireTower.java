@@ -13,6 +13,6 @@ public class ContinuousFireTower extends Tower
 
     public ContinuousFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 115, 0.08f, 3, towerFactory, TowerType.ContinuousFire);
+        super(position, 0, texture, 115, 0.11f, 3, towerFactory, TowerType.ContinuousFire);
     }
 }
