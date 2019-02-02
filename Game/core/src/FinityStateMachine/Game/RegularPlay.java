@@ -93,7 +93,7 @@ public class RegularPlay extends State
     private void UpdateTowerMenu()
     {
         uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost));
-        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost));
+        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > 3);
         //uiManager.SetHarvesterTowerActive(coinsManager.HasEnoughCoins(.cost)); todo
     }
 

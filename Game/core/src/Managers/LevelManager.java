@@ -93,4 +93,8 @@ public class LevelManager
     {
         return currentPhase >= levelPhase.GetSize();
     }
+
+    public int GetCurrentPhase() {
+        return currentPhase;
+    }
 }
