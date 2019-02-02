@@ -11,6 +11,7 @@ import FinityStateMachine.StateID;
 import FinityStateMachine.Transition;
 import GameObjects.Towers.ContinuousFireTower;
 import GameObjects.Towers.SingleFireTower;
+import GameObjects.Towers.SingleFireTowerV2;
 import Managers.*;
 
 public class RegularPlay extends State
@@ -94,7 +95,7 @@ public class RegularPlay extends State
     {
         uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost));
         uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > 3);
-        //uiManager.SetHarvesterTowerActive(coinsManager.HasEnoughCoins(.cost)); todo
+        uiManager.SetTowerUpgradeActive(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost) && levelManager.GetCurrentPhase() > 15);
     }
 
     private void EnemyInBase()
@@ -195,14 +196,24 @@ public class RegularPlay extends State
                     ChooseTower(TowerType.ContinuousFire);
                 }
             }
-            else if(uiManager.IsHarvesterTowerButtonClicked(click))
+            else if(uiManager.IsUpgradeTowerButtonClicked(click))
             {
-                //todo
-                ChooseTower(TowerType.None);
+                if(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost))
+                {
+                    coinsManager.SubtactCoins(SingleFireTowerV2.cost);
+                    ChooseTower(TowerType.Upgrade);
+                }
             }
             else if(towerTypeToInsert != TowerType.None)
             {
-                if(InsertTower(RoundTo60(click)))
+                if(towerTypeToInsert == TowerType.Upgrade)
+                {
+                    if(UpgradeTower(RoundTo60(click)))
+                    {
+                        towerTypeToInsert = TowerType.None;
+                    }
+                }
+                else if(InsertTower(RoundTo60(click)))
                 {
                     towerTypeToInsert = TowerType.None;
                 }
@@ -233,6 +244,11 @@ public class RegularPlay extends State
     {
         levelManager.RemoveDecoration(position);
         return towerManager.SetTower(position,towerTypeToInsert);
+    }
+
+    private boolean UpgradeTower(Vector2 position)
+    {
+        return towerManager.UpgradeTower(position);
     }
 
     private Vector2 RoundTo60(Vector2 position)
