@@ -6,5 +6,6 @@ public enum TowerType
     SingleFire,
     ContinuousFire,
     SingleFireV2,
-    ContinuousFireV2
+    ContinuousFireV2,
+    Upgrade
 }
