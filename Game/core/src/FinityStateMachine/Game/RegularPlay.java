@@ -6,12 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameMaster;
 
 import Factories.TowerType;
-import FinityStateMachine.State;
-import FinityStateMachine.StateID;
-import FinityStateMachine.Transition;
-import GameObjects.Towers.ContinuousFireTower;
-import GameObjects.Towers.SingleFireTower;
-import GameObjects.Towers.SingleFireTowerV2;
+import FinityStateMachine.*;
+import GameObjects.Towers.*;
 import Managers.*;
 
 public class RegularPlay extends State
