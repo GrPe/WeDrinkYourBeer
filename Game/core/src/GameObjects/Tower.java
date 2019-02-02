@@ -1,10 +1,13 @@
 package GameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+import Factories.TowerFactory;
+import Factories.TowerType;
 import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
 import FinityStateMachine.Tower.AttackEnemyState;
@@ -13,26 +16,43 @@ import FinityStateMachine.Transition;
 
 public class Tower extends GameObject
 {
+    private ArrayList<Bullet> bullets;
+    private TowerFactory towerFactory;
     private StateMachine stateMachine;
     private float range;
     private float fireSpeed;
     private int damage;
+    private TowerType type;
 
     private Enemy target;
 
-    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage) {
+    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, TowerFactory towerFactory, TowerType type) {
         super(position, rotation, texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
+        this.type = type;
         target = null;
+        bullets = new ArrayList<Bullet>();
+        this.towerFactory = towerFactory;
         InitStateMachine();
     }
 
     public void Fire()
     {
-        //is virtual
+        bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
+                super.GetRotation(),
+                new Vector2(target.GetPosition().x + 15, target.GetPosition().y +30)));
+    }
+
+    @Override
+    public void Render(Batch batch) {
+        for(Bullet bullet : bullets)
+        {
+            bullet.Render(batch);
+        }
+        super.Render(batch);
     }
 
     public void Update(ArrayList<Enemy> enemies)
@@ -41,6 +61,10 @@ public class Tower extends GameObject
             stateMachine.getCurrentState().Act(enemies);
         else
             stateMachine.getCurrentState().Act();
+
+        if(bullets.isEmpty()) return;
+        UpdateBullets();
+        DestroyBullets();
     }
 
     private void InitStateMachine()
@@ -96,5 +120,30 @@ public class Tower extends GameObject
     public boolean IsTargetInRange(Vector2 target)
     {
         return target.epsilonEquals(GetPosition(),range);
+    }
+
+
+    private void UpdateBullets()
+    {
+        for(Bullet bullet : bullets)
+        {
+            bullet.Update();
+        }
+    }
+
+    private void DestroyBullets()
+    {
+        for(Bullet bullet : bullets)
+        {
+            if(bullet.CanBeDestroyed())
+            {
+                bullets.remove(bullet);
+                return;
+            }
+        }
+    }
+
+    public TowerType GetType() {
+        return type;
     }
 }

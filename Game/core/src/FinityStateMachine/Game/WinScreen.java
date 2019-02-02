@@ -37,14 +37,6 @@ public final class WinScreen extends State
     }
 
     @Override
-    public void DoBeforeEntering() {
-    }
-
-    @Override
-    public void DoBeforeLeaving() {
-    }
-
-    @Override
     public void Act() {
         ClickHandler();
     }

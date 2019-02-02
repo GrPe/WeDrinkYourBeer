@@ -8,7 +8,7 @@ import GameObjects.SpawnPoint;
 
 public final class LevelData
 {
-    public LevelData(ArrayList<Environment> environments, ArrayList<Environment> ways, SpawnPoint spawnPoint, Base base) {
+    LevelData(ArrayList<Environment> environments, ArrayList<Environment> ways, SpawnPoint spawnPoint, Base base) {
         this.environments = environments;
         this.ways = ways;
         this.spawnPoint = spawnPoint;

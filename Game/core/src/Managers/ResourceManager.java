@@ -63,6 +63,8 @@ public class ResourceManager implements Disposable
         manager.load("studentLaw.png",Texture.class);
         manager.load("studentAWF.png",Texture.class);
         manager.load("studentIT.png",Texture.class);
+        manager.load("studentMD.png",Texture.class);
+        manager.load("bossV1.png",Texture.class);
 
         //texture
         manager.load("environment.png",Texture.class);
@@ -71,7 +73,9 @@ public class ResourceManager implements Disposable
         manager.load("spawnPoint.png",Texture.class);
         manager.load("bullet.png",Texture.class);
         manager.load("singleTowerLv01.png",Texture.class);
+        manager.load("singleTowerLv02.png",Texture.class);
         manager.load("towerContinuousLv01.png",Texture.class);
+        manager.load("towerContinuousLv02.png",Texture.class);
 
         //icons
         manager.load("mainMenu.png",Texture.class);

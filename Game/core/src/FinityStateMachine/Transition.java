@@ -4,7 +4,6 @@ public enum Transition
 {
     NullTransition,
 
-    EnemyStartWalking,
     EnemyDie,
 
     PlayerRegularTransition,
@@ -14,7 +13,5 @@ public enum Transition
     PlayerSuccessMission,
 
     TowerWaitingFor,
-    TowerAttack,
-    TowerBuild,
-    TowerUpgrade
+    TowerAttack
 }

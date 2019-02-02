@@ -20,14 +20,12 @@ public class EnemyManager
     private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
-    private ResourceManager resourceManager;
     private EnemyFactory enemyFactory;
 
     public EnemyManager(Vector2 spawnPosition, ResourceManager resourceManager)
     {
         enemies = new ArrayList<Enemy>();
         this.spawnPosition = spawnPosition;
-        this.resourceManager = resourceManager;
         this.enemyFactory = new EnemyFactory(resourceManager);
     }
 
@@ -40,6 +38,8 @@ public class EnemyManager
         else if(id == 2) enemyToSpawn = EnemyType.LawStudent;
         else if(id == 3) enemyToSpawn = EnemyType.AWFStudent;
         else if(id == 4) enemyToSpawn = EnemyType.ITStudent;
+        else if(id == 5) enemyToSpawn = EnemyType.MDStudent;
+        else if(id == 6) enemyToSpawn = EnemyType.BossDrunkMaster;
         else enemyToSpawn = EnemyType.Student;
 
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();

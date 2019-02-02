@@ -6,7 +6,7 @@ public final class LevelPhase
 {
     private ArrayList<Phase> phases;
 
-    public LevelPhase()
+    LevelPhase()
     {
         phases = new ArrayList<Phase>();
     }
@@ -16,7 +16,7 @@ public final class LevelPhase
         return phases.size();
     }
 
-    public void Add(Phase phase)
+    void Add(Phase phase)
     {
         phases.add(phase);
     }

@@ -62,7 +62,7 @@ public class LevelManager
         return levelData.base;
     }
 
-    public boolean CheckIfTowerCanBePlaced(Vector2 position)
+    boolean CheckIfTowerCanBePlaced(Vector2 position)
     {
         for(Environment x : levelData.environments)
         {
@@ -92,5 +92,9 @@ public class LevelManager
     public boolean IsEndOfLevel()
     {
         return currentPhase >= levelPhase.GetSize();
+    }
+
+    public int GetCurrentPhase() {
+        return currentPhase;
     }
 }

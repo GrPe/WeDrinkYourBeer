@@ -5,7 +5,7 @@ public final class Phase
     private final int enemyId;
     private final int numberOfEnemy;
 
-    public Phase(int enemyId, int numberOfEnemy) {
+    Phase(int enemyId, int numberOfEnemy) {
         this.enemyId = enemyId;
         this.numberOfEnemy = numberOfEnemy;
     }

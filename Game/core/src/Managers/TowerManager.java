@@ -1,6 +1,5 @@
 package Managers;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -27,7 +26,6 @@ public class TowerManager
     public boolean SetTower(Vector2 position, TowerType towerType)
     {
         //if tower exists in this place
-        Gdx.app.log("tower",position.toString());
         for(Tower t : towers)
         {
             if(t.GetPosition().equals(position)) return false;
@@ -56,6 +54,29 @@ public class TowerManager
             tower.Render(batch);
         }
     }
+
+    public boolean UpgradeTower(Vector2 position)
+    {
+        for(Tower tower : towers)
+        {
+            if(tower.GetPosition().epsilonEquals(position,2f))
+            {
+                if(tower.GetType() == TowerType.SingleFire)
+                {
+                    towers.remove(tower);
+                    towers.add(towerFactory.CreateTower(position,TowerType.SingleFireV2));
+                }
+                else
+                {
+                    towers.remove(tower);
+                    towers.add(towerFactory.CreateTower(position,TowerType.ContinuousFireV2));
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void Reset()
     {
