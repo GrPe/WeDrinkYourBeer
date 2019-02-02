@@ -27,13 +27,13 @@ public class RegularPlay extends State
     private boolean nextPhase = false;
     private TowerType towerTypeToInsert;
 
-    public RegularPlay(GameMaster gameMaster, CoinsManager coinsManager, ResourceManager resourceManager, InputManager inputManager)
+    public RegularPlay(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
     {
         super.stateID = StateID.RegularPlayState;
 
         this.gameMaster = gameMaster;
         this.inputManager = inputManager;
-        this.coinsManager = coinsManager;
+        this.coinsManager = new CoinsManager(110);
 
         levelManager = new LevelManager(resourceManager);
         enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
@@ -140,7 +140,6 @@ public class RegularPlay extends State
         {
             CountDownToNextPhase();
         }
-
     }
 
     private void CountDownToNextPhase()
