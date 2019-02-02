@@ -20,14 +20,12 @@ public class EnemyManager
     private int killedEnemyFromLastCheck = 0;
 
     private Vector2 spawnPosition;
-    private ResourceManager resourceManager;
     private EnemyFactory enemyFactory;
 
     public EnemyManager(Vector2 spawnPosition, ResourceManager resourceManager)
     {
         enemies = new ArrayList<Enemy>();
         this.spawnPosition = spawnPosition;
-        this.resourceManager = resourceManager;
         this.enemyFactory = new EnemyFactory(resourceManager);
     }
 

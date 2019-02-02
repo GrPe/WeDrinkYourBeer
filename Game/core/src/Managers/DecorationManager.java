@@ -16,13 +16,13 @@ public class DecorationManager
     private LevelEnvironmentFactory levelEnvironmentFactory;
     private Random rand;
 
-    public DecorationManager(LevelEnvironmentFactory levelEnvironmentFactory) {
+    DecorationManager(LevelEnvironmentFactory levelEnvironmentFactory) {
         this.levelEnvironmentFactory = levelEnvironmentFactory;
         environments = new ArrayList<Environment>();
         rand = new Random();
     }
 
-    public void GenerateEnvironment(ArrayList<Environment> list)
+    void GenerateEnvironment(ArrayList<Environment> list)
     {
         for(Environment environment : list)
         {
@@ -52,7 +52,7 @@ public class DecorationManager
         }
     }
 
-    public void DestroyEnvironment(Vector2 position)
+    void DestroyEnvironment(Vector2 position)
     {
         for(Environment environment : environments)
         {
@@ -64,7 +64,7 @@ public class DecorationManager
         }
     }
 
-    public void Reset()
+    void Reset()
     {
         environments.clear();
     }

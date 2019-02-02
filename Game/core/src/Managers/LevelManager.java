@@ -62,7 +62,7 @@ public class LevelManager
         return levelData.base;
     }
 
-    public boolean CheckIfTowerCanBePlaced(Vector2 position)
+    boolean CheckIfTowerCanBePlaced(Vector2 position)
     {
         for(Environment x : levelData.environments)
         {
