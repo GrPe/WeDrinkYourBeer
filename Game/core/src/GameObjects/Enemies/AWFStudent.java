@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class AWFStudent extends Enemy
 {
     public AWFStudent(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 200, 90, 1);
+        super(position, 0, texture, navLink, 200, 80, 1);
     }
 }
