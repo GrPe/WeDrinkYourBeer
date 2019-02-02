@@ -4,5 +4,7 @@ public enum TowerType
 {
     None,
     SingleFire,
-    ContinuousFire
+    ContinuousFire,
+    SingleFireV2,
+    ContinuousFireV2
 }

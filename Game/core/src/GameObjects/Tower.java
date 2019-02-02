@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
+import Factories.TowerType;
 import FinityStateMachine.StateID;
 import FinityStateMachine.StateMachine;
 import FinityStateMachine.Tower.AttackEnemyState;
@@ -17,15 +18,17 @@ public class Tower extends GameObject
     private float range;
     private float fireSpeed;
     private int damage;
+    private TowerType type;
 
     private Enemy target;
 
-    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage) {
+    public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, TowerType type) {
         super(position, rotation, texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
         this.range = range;
         this.fireSpeed = fireSpeed;
         this.damage = damage;
+        this.type = type;
         target = null;
         InitStateMachine();
     }
@@ -96,5 +99,9 @@ public class Tower extends GameObject
     public boolean IsTargetInRange(Vector2 target)
     {
         return target.epsilonEquals(GetPosition(),range);
+    }
+
+    public TowerType GetType() {
+        return type;
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 import Factories.TowerFactory;
+import Factories.TowerType;
 import GameObjects.Bullet;
 import GameObjects.Enemy;
 import GameObjects.Tower;
@@ -19,7 +20,7 @@ public class SingleFireTower extends Tower
 
     public SingleFireTower(Vector2 position, Texture texture, TowerFactory towerFactory)
     {
-        super(position, 0, texture, 135, 0.95f, 20);
+        super(position, 0, texture, 135, 0.95f, 20, TowerType.SingleFire);
         this.towerFactory = towerFactory;
         bullets = new ArrayList<Bullet>();
     }
