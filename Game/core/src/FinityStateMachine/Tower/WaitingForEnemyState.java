@@ -20,18 +20,6 @@ public class WaitingForEnemyState extends State
     }
 
     @Override
-    public void DoBeforeEntering()
-    {
-
-    }
-
-    @Override
-    public void DoBeforeLeaving()
-    {
-
-    }
-
-    @Override
     public < E > void Act(ArrayList<E> list)
     {
         if(tower.GetTarget() != null) return;
