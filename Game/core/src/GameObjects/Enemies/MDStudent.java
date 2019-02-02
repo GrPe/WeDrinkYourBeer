@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class MDStudent extends Enemy
 {
     public MDStudent(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 460, 75, 1);
+        super(position, 0, texture, navLink, 430, 70, 1);
     }
 }
