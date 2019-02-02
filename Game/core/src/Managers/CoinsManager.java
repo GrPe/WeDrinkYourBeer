@@ -21,7 +21,7 @@ public class CoinsManager
         coins +=val;
     }
 
-    public void SubtactCoins(int val)
+    public void SubtractCoins(int val)
     {
         coins -= val;
     }

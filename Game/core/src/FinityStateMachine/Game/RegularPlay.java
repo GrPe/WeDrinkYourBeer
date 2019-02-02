@@ -177,7 +177,7 @@ public class RegularPlay extends State
             {
                 if(coinsManager.HasEnoughCoins(SingleFireTower.cost))
                 {
-                    coinsManager.SubtactCoins(SingleFireTower.cost);
+                    coinsManager.SubtractCoins(SingleFireTower.cost);
                     ChooseTower(TowerType.SingleFire);
                 }
             }
@@ -185,7 +185,7 @@ public class RegularPlay extends State
             {
                 if(coinsManager.HasEnoughCoins(ContinuousFireTower.cost))
                 {
-                    coinsManager.SubtactCoins(ContinuousFireTower.cost);
+                    coinsManager.SubtractCoins(ContinuousFireTower.cost);
                     ChooseTower(TowerType.ContinuousFire);
                 }
             }
@@ -193,7 +193,7 @@ public class RegularPlay extends State
             {
                 if(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost))
                 {
-                    coinsManager.SubtactCoins(SingleFireTowerV2.cost);
+                    coinsManager.SubtractCoins(SingleFireTowerV2.cost);
                     ChooseTower(TowerType.Upgrade);
                 }
             }
