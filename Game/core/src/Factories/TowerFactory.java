@@ -25,6 +25,8 @@ public class TowerFactory
                 return  new SingleFireTower(position, resourceManager.GetTexture("singleTowerLv01.png"),this);
             case ContinuousFire:
                 return new ContinuousFireTower(position,resourceManager.GetTexture("towerContinuousLv01.png"),this);
+            case SingleFireV2:
+                return  new SingleFireTower(position, resourceManager.GetTexture("singleTowerLv02.png"),this);
         }
         return null;
     }

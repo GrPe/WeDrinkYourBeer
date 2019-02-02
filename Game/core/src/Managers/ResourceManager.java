@@ -73,6 +73,7 @@ public class ResourceManager implements Disposable
         manager.load("spawnPoint.png",Texture.class);
         manager.load("bullet.png",Texture.class);
         manager.load("singleTowerLv01.png",Texture.class);
+        manager.load("singleTowerLv02.png",Texture.class);
         manager.load("towerContinuousLv01.png",Texture.class);
 
         //icons
