@@ -3,7 +3,6 @@ package FinityStateMachine.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.GameMaster;
 
 import FinityStateMachine.State;
@@ -76,17 +75,5 @@ public class MainMenu extends State
     public void Act()
     {
         ClickHandler();
-    }
-
-    @Override
-    public void DoBeforeEntering()
-    {
-
-    }
-
-    @Override
-    public void DoBeforeLeaving()
-    {
-
     }
 }
