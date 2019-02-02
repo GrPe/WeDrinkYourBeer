@@ -25,7 +25,7 @@ public class UIManager
     private UIButton towerMenu;
     private TwoStateButton singleFireTowerButton;
     private TwoStateButton continuousFireTowerButton;
-    private TwoStateButton harvesterTowerButton;
+    private TwoStateButton upgradeTowerButton;
 
     //Icons
     private Image hpIcon;
@@ -49,7 +49,7 @@ public class UIManager
         towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
         singleFireTowerButton = new TwoStateButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"), resourceManager.GetTexture("singleTowerMenuButtonOff.png"));
         continuousFireTowerButton = new TwoStateButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"), resourceManager.GetTexture("continuousFireTowerButtonOff.png"));
-        harvesterTowerButton = new TwoStateButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"),resourceManager.GetTexture("harvesterTowerButtonOff.png"));
+        upgradeTowerButton = new TwoStateButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"),resourceManager.GetTexture("harvesterTowerButtonOff.png"));
 
         //icons
         hpIcon = new Image(new Vector2(5,435),resourceManager.GetTexture("baseHpIcon.png"));
@@ -87,7 +87,7 @@ public class UIManager
         {
             singleFireTowerButton.Render(batch);
             continuousFireTowerButton.Render(batch);
-            harvesterTowerButton.Render(batch);
+            upgradeTowerButton.Render(batch);
         }
 
         hpIcon.Render(batch);
@@ -112,10 +112,10 @@ public class UIManager
         return continuousFireTowerButton.IsClicked(position);
     }
 
-    public boolean IsHarvesterTowerButtonClicked(Vector2 position)
+    public boolean IsUpgradeTowerButtonClicked(Vector2 position)
     {
         if(!towerMenuVisibility) return false;
-        return harvesterTowerButton.IsClicked(position);
+        return upgradeTowerButton.IsClicked(position);
     }
 
     public boolean IsReturnToMainMenuButtonClicked(Vector2 position)
@@ -139,8 +139,8 @@ public class UIManager
         continuousFireTowerButton.SetActive(active);
     }
 
-    public void SetHarvesterTowerActivi(boolean active)
+    public void SetTowerUpgradeActive(boolean active)
     {
-        harvesterTowerButton.SetActive(active);
+        upgradeTowerButton.SetActive(active);
     }
 }
