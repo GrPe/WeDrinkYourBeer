@@ -14,7 +14,6 @@ public class RegularPlay extends State
 {
     //shared
     private GameMaster gameMaster;
-    private Managers.ResourceManager resourceManager;
     private InputManager inputManager;
     private CoinsManager coinsManager;
 
@@ -33,7 +32,6 @@ public class RegularPlay extends State
         super.stateID = StateID.RegularPlayState;
 
         this.gameMaster = gameMaster;
-        this.resourceManager = resourceManager;
         this.inputManager = inputManager;
         this.coinsManager = coinsManager;
 
