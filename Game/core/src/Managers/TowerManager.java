@@ -25,6 +25,9 @@ public class TowerManager
 
     public boolean SetTower(Vector2 position, TowerType towerType)
     {
+        if(position.y > 430) return false;
+        if(position.x < 190 && position.y < 59) return false;
+
         //if tower exists in this place
         for(Tower t : towers)
         {
@@ -65,13 +68,15 @@ public class TowerManager
                 {
                     towers.remove(tower);
                     towers.add(towerFactory.CreateTower(position,TowerType.SingleFireV2));
+                    return true;
                 }
-                else
+                else if(tower.GetType() == TowerType.ContinuousFire)
                 {
                     towers.remove(tower);
                     towers.add(towerFactory.CreateTower(position,TowerType.ContinuousFireV2));
+                    return true;
                 }
-                return true;
+                else return false;
             }
         }
         return false;

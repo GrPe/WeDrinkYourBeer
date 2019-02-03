@@ -21,8 +21,7 @@ public class UIManager
     private UIButton returnToMainMenuButton;
 
     //tower menu buttons
-    private boolean towerMenuVisibility;
-    private UIButton towerMenu;
+    private Image towerMenuBackground;
     private TwoStateButton singleFireTowerButton;
     private TwoStateButton continuousFireTowerButton;
     private TwoStateButton upgradeTowerButton;
@@ -38,18 +37,17 @@ public class UIManager
         topBar = new Image(new Vector2(-8,420),resourceManager.GetTexture("topBarGame.png"),800.0f/190.0f,83.0f/49.0f);
 
         //labels
-        towerMenuVisibility = false;
         baseHp = new Label(resourceManager.GetFont(), new Vector2(75,475),"12/12");
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,475), "40");
         coins = new Label(resourceManager.GetFont(), new Vector2(560,475),"120");
 
         returnToMainMenuButton = new UIButton(new Vector2(715,435),resourceManager.GetTexture("mainMenu.png"));
 
-        //tower menu buttons
-        towerMenu = new UIButton(new Vector2(0,0),resourceManager.GetTexture("towerMenu.png"));
-        singleFireTowerButton = new TwoStateButton(new Vector2(0,60),resourceManager.GetTexture("singleTowerMenuButton.png"), resourceManager.GetTexture("singleTowerMenuButtonOff.png"));
-        continuousFireTowerButton = new TwoStateButton(new Vector2(60,60),resourceManager.GetTexture("continuousFireTowerButton.png"), resourceManager.GetTexture("continuousFireTowerButtonOff.png"));
-        upgradeTowerButton = new TwoStateButton(new Vector2(60,0),resourceManager.GetTexture("harvesterTowerButton.png"),resourceManager.GetTexture("harvesterTowerButtonOff.png"));
+        //tower menu
+        towerMenuBackground = new Image(new Vector2(-16,-13),resourceManager.GetTexture("topBarGame.png"),1.15f,1.65f);
+        singleFireTowerButton = new TwoStateButton(new Vector2(5,0),resourceManager.GetTexture("singleTowerMenuButton.png"), resourceManager.GetTexture("singleTowerMenuButtonOff.png"));
+        continuousFireTowerButton = new TwoStateButton(new Vector2(70,0),resourceManager.GetTexture("continuousFireTowerButton.png"), resourceManager.GetTexture("continuousFireTowerButtonOff.png"));
+        upgradeTowerButton = new TwoStateButton(new Vector2(135,0),resourceManager.GetTexture("harvesterTowerButton.png"),resourceManager.GetTexture("harvesterTowerButtonOff.png"));
 
         //icons
         hpIcon = new Image(new Vector2(5,435),resourceManager.GetTexture("baseHpIcon.png"));
@@ -82,39 +80,28 @@ public class UIManager
 
         returnToMainMenuButton.Render(batch);
 
-        towerMenu.Render(batch);
-        if(towerMenuVisibility)
-        {
-            singleFireTowerButton.Render(batch);
-            continuousFireTowerButton.Render(batch);
-            upgradeTowerButton.Render(batch);
-        }
+        towerMenuBackground.Render(batch);
+        singleFireTowerButton.Render(batch);
+        continuousFireTowerButton.Render(batch);
+        upgradeTowerButton.Render(batch);
 
         hpIcon.Render(batch);
         timerIcon.Render(batch);
         coinsIcon.Render(batch);
     }
 
-    public boolean IsTowerMenuButtonClicked(Vector2 position)
-    {
-        return towerMenu.IsClicked(position);
-    }
-
     public boolean IsSingleFireTowerButtonClicked(Vector2 position)
     {
-        if(!towerMenuVisibility) return false;
         return singleFireTowerButton.IsClicked(position);
     }
 
     public boolean IsContinuousFireTowerButtonClicked(Vector2 position)
     {
-        if(!towerMenuVisibility) return false;
         return continuousFireTowerButton.IsClicked(position);
     }
 
     public boolean IsUpgradeTowerButtonClicked(Vector2 position)
     {
-        if(!towerMenuVisibility) return false;
         return upgradeTowerButton.IsClicked(position);
     }
 
@@ -122,12 +109,6 @@ public class UIManager
     {
         return returnToMainMenuButton.IsClicked(position);
     }
-
-    public void SetTowerSelectionMenuVisibility(boolean state)
-    {
-        towerMenuVisibility = state;
-    }
-    public boolean GetTowerSelectionMenuVisibility() {return towerMenuVisibility;}
 
     public void SetSingleFireTowerActive(boolean active)
     {
