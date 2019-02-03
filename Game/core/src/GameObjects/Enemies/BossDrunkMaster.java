@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class BossDrunkMaster extends Enemy
 {
     public BossDrunkMaster(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 6400, 55, 2);
+        super(position, 0, texture, navLink, 2200, 50, 2);
     }
 }
