@@ -68,13 +68,15 @@ public class TowerManager
                 {
                     towers.remove(tower);
                     towers.add(towerFactory.CreateTower(position,TowerType.SingleFireV2));
+                    return true;
                 }
-                else
+                else if(tower.GetType() == TowerType.ContinuousFire)
                 {
                     towers.remove(tower);
                     towers.add(towerFactory.CreateTower(position,TowerType.ContinuousFireV2));
+                    return true;
                 }
-                return true;
+                else return false;
             }
         }
         return false;
