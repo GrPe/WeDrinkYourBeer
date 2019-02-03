@@ -12,6 +12,10 @@ import Managers.*;
 
 public class RegularPlay extends State
 {
+    //final
+    private final int ACTIVE_SECOND_TOWER = 3;
+    private final int ACTIVE_UPGRADE_TOWER = 15;
+
     //shared
     private GameMaster gameMaster;
     private InputManager inputManager;
@@ -25,6 +29,8 @@ public class RegularPlay extends State
 
     private float timer = 0;
     private boolean nextPhase = false;
+
+    //inserting and upgrading tower
     private TowerType towerTypeToInsert;
 
     public RegularPlay(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
@@ -88,8 +94,8 @@ public class RegularPlay extends State
     private void UpdateTowerMenu()
     {
         uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost));
-        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > 3);
-        uiManager.SetTowerUpgradeActive(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost) && levelManager.GetCurrentPhase() > 15);
+        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > ACTIVE_SECOND_TOWER);
+        uiManager.SetTowerUpgradeActive(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost) && levelManager.GetCurrentPhase() > ACTIVE_UPGRADE_TOWER);
     }
 
     private void EnemyInBase()
