@@ -31,6 +31,7 @@ public class RegularPlay extends State
     private boolean nextPhase = false;
 
     //inserting and upgrading tower
+    private boolean isTowerSelected;
     private TowerType towerTypeToInsert;
 
     public RegularPlay(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
@@ -53,6 +54,7 @@ public class RegularPlay extends State
         coinsManager.SetCoins(110);
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
+        isTowerSelected = false;
     }
 
     @Override
@@ -61,7 +63,6 @@ public class RegularPlay extends State
         levelManager.Reset();
         towerManager.Reset();
         enemyManager.Reset();
-        uiManager.SetTowerSelectionMenuVisibility(false);
         timer = 7f;
     }
 
@@ -93,9 +94,9 @@ public class RegularPlay extends State
 
     private void UpdateTowerMenu()
     {
-        uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost));
-        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > ACTIVE_SECOND_TOWER);
-        uiManager.SetTowerUpgradeActive(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost) && levelManager.GetCurrentPhase() > ACTIVE_UPGRADE_TOWER);
+        uiManager.SetSingleFireTowerActive(coinsManager.HasEnoughCoins(SingleFireTower.cost) && !isTowerSelected);
+        uiManager.SetContinuousFireTowerActive(coinsManager.HasEnoughCoins(ContinuousFireTower.cost) && levelManager.GetCurrentPhase() > ACTIVE_SECOND_TOWER && !isTowerSelected);
+        uiManager.SetTowerUpgradeActive(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost) && levelManager.GetCurrentPhase() > ACTIVE_UPGRADE_TOWER && !isTowerSelected);
     }
 
     private void EnemyInBase()
@@ -171,62 +172,47 @@ public class RegularPlay extends State
         {
             Vector2 click = inputManager.GetTouchPoint();
 
-            if(uiManager.IsTowerMenuButtonClicked(click))
-            {
-                TowerMenuVisibility();
-            }
-            else if(uiManager.IsReturnToMainMenuButtonClicked(click))
+            if(uiManager.IsReturnToMainMenuButtonClicked(click))
             {
                 gameMaster.GetStateMachine().PerformTransition(Transition.MainMenuTransition);
             }
-            else if(uiManager.IsSingleFireTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
+            else if(uiManager.IsSingleFireTowerButtonClicked(click))
             {
                 coinsManager.SubtractCoins(SingleFireTower.cost);
                 ChooseTower(TowerType.SingleFire);
             }
-            else if(uiManager.IsContinuousFireTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
+            else if(uiManager.IsContinuousFireTowerButtonClicked(click))
             {
                 coinsManager.SubtractCoins(ContinuousFireTower.cost);
                 ChooseTower(TowerType.ContinuousFire);
             }
-            else if(uiManager.IsUpgradeTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
+            else if(uiManager.IsUpgradeTowerButtonClicked(click))
             {
                 coinsManager.SubtractCoins(SingleFireTowerV2.cost);
                 ChooseTower(TowerType.Upgrade);
             }
-            else if(towerTypeToInsert != TowerType.None)
+            else if(isTowerSelected)
             {
                 if(towerTypeToInsert == TowerType.Upgrade)
                 {
                     if(UpgradeTower(RoundTo60(click)))
                     {
+                        isTowerSelected = false;
                         towerTypeToInsert = TowerType.None;
                     }
                 }
                 else if(InsertTower(RoundTo60(click)))
                 {
+                    isTowerSelected = false;
                     towerTypeToInsert = TowerType.None;
                 }
             }
         }
     }
 
-    private void TowerMenuVisibility()
-    {
-        if(uiManager.GetTowerSelectionMenuVisibility())
-        {
-            uiManager.SetTowerSelectionMenuVisibility(false);
-        }
-        else
-        {
-            uiManager.SetTowerSelectionMenuVisibility(true);
-        }
-        towerTypeToInsert = TowerType.None;
-    }
-
     private void ChooseTower(TowerType towerType)
     {
-        uiManager.SetTowerSelectionMenuVisibility(false);
+        isTowerSelected = true;
         towerTypeToInsert = towerType;
     }
 

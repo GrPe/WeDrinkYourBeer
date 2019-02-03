@@ -25,6 +25,9 @@ public class TowerManager
 
     public boolean SetTower(Vector2 position, TowerType towerType)
     {
+        if(position.y > 430) return false;
+        if(position.x < 190 && position.y < 59) return false;
+
         //if tower exists in this place
         for(Tower t : towers)
         {
