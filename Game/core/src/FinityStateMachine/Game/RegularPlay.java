@@ -179,29 +179,20 @@ public class RegularPlay extends State
             {
                 gameMaster.GetStateMachine().PerformTransition(Transition.MainMenuTransition);
             }
-            else if(uiManager.IsSingleFireTowerButtonClicked(click))
+            else if(uiManager.IsSingleFireTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
             {
-                if(coinsManager.HasEnoughCoins(SingleFireTower.cost))
-                {
-                    coinsManager.SubtractCoins(SingleFireTower.cost);
-                    ChooseTower(TowerType.SingleFire);
-                }
+                coinsManager.SubtractCoins(SingleFireTower.cost);
+                ChooseTower(TowerType.SingleFire);
             }
-            else if(uiManager.IsContinuousFireTowerButtonClicked(click))
+            else if(uiManager.IsContinuousFireTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
             {
-                if(coinsManager.HasEnoughCoins(ContinuousFireTower.cost))
-                {
-                    coinsManager.SubtractCoins(ContinuousFireTower.cost);
-                    ChooseTower(TowerType.ContinuousFire);
-                }
+                coinsManager.SubtractCoins(ContinuousFireTower.cost);
+                ChooseTower(TowerType.ContinuousFire);
             }
-            else if(uiManager.IsUpgradeTowerButtonClicked(click))
+            else if(uiManager.IsUpgradeTowerButtonClicked(click) && towerTypeToInsert == TowerType.None)
             {
-                if(coinsManager.HasEnoughCoins(SingleFireTowerV2.cost))
-                {
-                    coinsManager.SubtractCoins(SingleFireTowerV2.cost);
-                    ChooseTower(TowerType.Upgrade);
-                }
+                coinsManager.SubtractCoins(SingleFireTowerV2.cost);
+                ChooseTower(TowerType.Upgrade);
             }
             else if(towerTypeToInsert != TowerType.None)
             {
