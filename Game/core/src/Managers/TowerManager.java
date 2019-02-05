@@ -1,5 +1,6 @@
 package Managers;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -15,12 +16,14 @@ public class TowerManager
     private ArrayList<Tower> towers;
     private LevelManager levelManager;
     private TowerFactory towerFactory;
+    private Sound putTowerSound;
 
     public TowerManager(LevelManager levelManager, ResourceManager resourceManager)
     {
         towers = new ArrayList<Tower>();
         this.levelManager = levelManager;
         towerFactory = new TowerFactory(resourceManager);
+        this.putTowerSound = resourceManager.GetSound("Sounds/putTower.ogg");
     }
 
     public boolean SetTower(Vector2 position, TowerType towerType)
@@ -37,6 +40,7 @@ public class TowerManager
         if(levelManager.CheckIfTowerCanBePlaced(position))
         {
             towers.add(towerFactory.CreateTower(position,towerType));
+            putTowerSound.play(1.0f);
             return true;
         }
         return false;
