@@ -1,5 +1,6 @@
 package Factories;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.Bullet;
@@ -10,10 +11,17 @@ import Managers.ResourceManager;
 public class TowerFactory
 {
     private ResourceManager resourceManager;
+    private Sound shootSound;
 
     public TowerFactory(ResourceManager resourceManager)
     {
         this.resourceManager = resourceManager;
+        this.shootSound = resourceManager.GetSound("Sounds/shoot.wav");
+    }
+
+    public Sound GetShootSound()
+    {
+        return shootSound;
     }
 
     public Tower CreateTower(Vector2 position, TowerType towerType)
