@@ -4,35 +4,34 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
 import GameObjects.UI.Image;
-import GameObjects.UI.UIButton;
 
 public final class MessageController
 {
     //consts
     private final int MESSAGE_BOX_START_PHASE = 0;
-    private final int MESSAGE_BOX_2ND_TOWER_PHASE = 3;
-    private final int MESSAGE_BOX_UPGRADE_TOWER_PHASE = 15;
-    private final int MESSAGE_BOX_FINAL = 30;
+    private final int MESSAGE_BOX_2ND_TOWER_PHASE = 4;
+    private final int MESSAGE_BOX_UPGRADE_TOWER_PHASE = 16;
 
     //controls
-    private int allowFlag = 0x0;
+    private int allowFlag;
+    private int ignorePhase;
 
     private Image startMessageBox;
     private Image secondTowerMessageBox;
     private Image upgradeTowerMessageBox;
-    private Image finalMassageBox;
 
     public MessageController(ResourceManager resourceManager)
     {
-        startMessageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("start"));
-        secondTowerMessageBox = new Image(new Vector2(20,20), resourceManager.GetMessage("second"));
-        upgradeTowerMessageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("upgrade"));
-        finalMassageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("final"));
+        startMessageBox = new Image(new Vector2(20,120),resourceManager.GetMessage("start"));
+        secondTowerMessageBox = new Image(new Vector2(20,120), resourceManager.GetMessage("second"));
+        upgradeTowerMessageBox = new Image(new Vector2(20,120),resourceManager.GetMessage("upgrade"));
         allowFlag = 0x0;
+        ignorePhase = -1;
     }
 
     public boolean DisplayMessage(int phaseId)
     {
+        if(ignorePhase == phaseId) return false;
         switch(phaseId)
         {
             case MESSAGE_BOX_START_PHASE:
@@ -43,9 +42,6 @@ public final class MessageController
                 break;
             case MESSAGE_BOX_UPGRADE_TOWER_PHASE:
                 allowFlag = 0x4;
-                break;
-            case MESSAGE_BOX_FINAL:
-                allowFlag = 0x8;
                 break;
             default:
                 allowFlag = 0x0;
@@ -63,12 +59,16 @@ public final class MessageController
             secondTowerMessageBox.Render(batch);
         else if(allowFlag == 0x4)
             upgradeTowerMessageBox.Render(batch);
-        else if(allowFlag == 0x8)
-            finalMassageBox.Render(batch);
     }
 
     public void Reset()
     {
         allowFlag = 0x0;
+    }
+
+    public void Reset(int ignorePhase)
+    {
+        Reset();
+        this.ignorePhase = ignorePhase;
     }
 }
