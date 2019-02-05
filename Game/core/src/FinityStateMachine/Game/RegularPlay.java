@@ -79,6 +79,7 @@ public class RegularPlay extends State
             if(inputManager.IsTouchedDown())
             {
                 messageDisplayedInThisPhase = true;
+                messageController.Reset(levelManager.GetCurrentPhase());
             }
             return;
         }
@@ -157,6 +158,7 @@ public class RegularPlay extends State
         {
             timer = 6;
             nextPhase = true;
+            messageDisplayedInThisPhase = false;
         }
         if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
         {
