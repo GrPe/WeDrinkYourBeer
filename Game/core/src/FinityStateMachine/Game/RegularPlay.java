@@ -26,9 +26,11 @@ public class RegularPlay extends State
     private EnemyManager enemyManager;
     private UIManager uiManager;
     private TowerManager towerManager;
+    private MessageController messageController;
 
     private float timer = 0;
     private boolean nextPhase = false;
+    private boolean messageDisplayedInThisPhase = false;
 
     //inserting and upgrading tower
     private boolean isTowerSelected;
@@ -46,6 +48,7 @@ public class RegularPlay extends State
         enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
         uiManager = new UIManager(resourceManager);
         towerManager = new TowerManager(levelManager,resourceManager);
+        messageController = new MessageController(resourceManager);
     }
 
     @Override
@@ -55,6 +58,7 @@ public class RegularPlay extends State
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
         isTowerSelected = false;
+        messageDisplayedInThisPhase = false;
     }
 
     @Override
@@ -63,12 +67,22 @@ public class RegularPlay extends State
         levelManager.Reset();
         towerManager.Reset();
         enemyManager.Reset();
+        messageController.Reset();
         timer = 7f;
     }
 
     @Override
     public void Act()
     {
+        if (messageController.DisplayMessage(levelManager.GetCurrentPhase()) && !messageDisplayedInThisPhase)
+        {
+            if(inputManager.IsTouchedDown())
+            {
+                messageDisplayedInThisPhase = true;
+            }
+            return;
+        }
+
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
         UpdateTowerMenu();
@@ -90,6 +104,7 @@ public class RegularPlay extends State
         enemyManager.Render(batch);
         towerManager.Render(batch);
         uiManager.Render(batch);
+        messageController.Render(batch);
     }
 
     private void UpdateTowerMenu()
