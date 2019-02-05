@@ -2,6 +2,7 @@ package Managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -22,6 +23,7 @@ public class ResourceManager implements Disposable
         navLink = new ArrayList<Vector2>();
         LoadFont();
         LoadTexture();
+        LoadSounds();
         manager.finishLoading();
     }
 
@@ -44,6 +46,15 @@ public class ResourceManager implements Disposable
         return null;
     }
 
+    public Sound GetSound(String path)
+    {
+        if(manager.isLoaded(path))
+        {
+            return manager.get(path,Sound.class);
+        }
+        return null;
+    }
+
     public BitmapFont GetFont()
     {
         return bitmapFont;
@@ -54,6 +65,14 @@ public class ResourceManager implements Disposable
     {
         bitmapFont.dispose();
         manager.dispose();
+    }
+
+    private void LoadSounds()
+    {
+        manager.load("Sounds/message.ogg", Sound.class);
+        manager.load("Sounds/putTower.ogg",Sound.class);
+        manager.load("Sounds/shoot.wav",Sound.class);
+        manager.load("Sounds/click.ogg",Sound.class);
     }
 
     private void LoadTexture()

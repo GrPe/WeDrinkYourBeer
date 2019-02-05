@@ -1,5 +1,6 @@
 package GameObjects;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
@@ -26,6 +27,8 @@ public class Tower extends GameObject
 
     private Enemy target;
 
+    private Sound shootSound;
+
     public Tower(Vector2 position, float rotation, Texture texture, float range, float fireSpeed, int damage, TowerFactory towerFactory, TowerType type) {
         super(position, rotation, texture);
         sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
@@ -36,11 +39,13 @@ public class Tower extends GameObject
         target = null;
         bullets = new ArrayList<Bullet>();
         this.towerFactory = towerFactory;
+        this.shootSound = towerFactory.GetShootSound();
         InitStateMachine();
     }
 
     public void Fire()
     {
+        shootSound.play(0.4f);
         bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
                 super.GetRotation(),
                 new Vector2(target.GetPosition().x + 15, target.GetPosition().y +30)));

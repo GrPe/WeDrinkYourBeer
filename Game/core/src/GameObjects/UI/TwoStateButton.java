@@ -1,5 +1,6 @@
 package GameObjects.UI;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,8 +11,8 @@ public final class TwoStateButton extends UIButton
     private Sprite secondSprite;
     private boolean active;
 
-    public TwoStateButton(Vector2 position, Texture texture, Texture secondTexture) {
-        super(position, texture);
+    public TwoStateButton(Vector2 position, Texture texture, Texture secondTexture, Sound sound) {
+        super(position, texture, sound);
         this.secondSprite = new Sprite(secondTexture);
         active = true;
     }
