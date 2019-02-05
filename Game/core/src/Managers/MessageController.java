@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
+import GameObjects.UI.Image;
 import GameObjects.UI.UIButton;
 
 public final class MessageController
@@ -16,17 +17,17 @@ public final class MessageController
     //controls
     private int allowFlag = 0x0;
 
-    private UIButton startMessageBox;
-    private UIButton secondTowerMessageBox;
-    private UIButton upgradeTowerMessageBox;
-    private UIButton finalMassageBox;
+    private Image startMessageBox;
+    private Image secondTowerMessageBox;
+    private Image upgradeTowerMessageBox;
+    private Image finalMassageBox;
 
     public MessageController(ResourceManager resourceManager)
     {
-        startMessageBox = new UIButton(new Vector2(20,20),resourceManager.GetMessage("start"),resourceManager.GetSound("Sounds/click.ogg"));
-        secondTowerMessageBox = new UIButton(new Vector2(20,20), resourceManager.GetMessage("second"),resourceManager.GetSound("Sounds/click.ogg"));
-        upgradeTowerMessageBox = new UIButton(new Vector2(20,20),resourceManager.GetMessage("upgrade"),resourceManager.GetSound("Sounds/click.ogg"));
-        finalMassageBox = new UIButton(new Vector2(20,20),resourceManager.GetMessage("final"),resourceManager.GetSound("Sounds/click.ogg"));
+        startMessageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("start"));
+        secondTowerMessageBox = new Image(new Vector2(20,20), resourceManager.GetMessage("second"));
+        upgradeTowerMessageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("upgrade"));
+        finalMassageBox = new Image(new Vector2(20,20),resourceManager.GetMessage("final"));
         allowFlag = 0x0;
     }
 
@@ -66,9 +67,8 @@ public final class MessageController
             finalMassageBox.Render(batch);
     }
 
-    public boolean WaitForTouch(Vector2 touch)
+    public void Reset()
     {
-        return startMessageBox.IsClicked(touch);
+        allowFlag = 0x0;
     }
-
 }
