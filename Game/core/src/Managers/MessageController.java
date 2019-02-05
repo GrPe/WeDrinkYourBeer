@@ -37,11 +37,7 @@ public final class MessageController
 
     public boolean DisplayMessage(int phaseId)
     {
-        if(ignorePhase == phaseId)
-        {
-            sound.play(1.0f);
-            return false;
-        }
+        if(ignorePhase == phaseId) return false;
         switch(phaseId)
         {
             case MESSAGE_BOX_START_PHASE:
@@ -61,6 +57,11 @@ public final class MessageController
         return allowFlag != 0;
     }
 
+    public void CallASound()
+    {
+        sound.play(1.0f);
+    }
+
     public void Render(Batch batch)
     {
         if(allowFlag == 0x1)
@@ -74,6 +75,7 @@ public final class MessageController
     public void Reset()
     {
         allowFlag = 0x0;
+        ignorePhase = -1;
     }
 
     public void Reset(int ignorePhase)

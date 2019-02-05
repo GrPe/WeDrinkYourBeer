@@ -31,6 +31,7 @@ public class RegularPlay extends State
     private float timer = 0;
     private boolean nextPhase = false;
     private boolean messageDisplayedInThisPhase = false;
+    private boolean messageSoundWasPlayed = false;
 
     //inserting and upgrading tower
     private boolean isTowerSelected;
@@ -59,6 +60,7 @@ public class RegularPlay extends State
         towerTypeToInsert = TowerType.None;
         isTowerSelected = false;
         messageDisplayedInThisPhase = false;
+        messageSoundWasPlayed = false;
     }
 
     @Override
@@ -74,15 +76,7 @@ public class RegularPlay extends State
     @Override
     public void Act()
     {
-        if (messageController.DisplayMessage(levelManager.GetCurrentPhase()) && !messageDisplayedInThisPhase)
-        {
-            if(inputManager.IsTouchedDown())
-            {
-                messageDisplayedInThisPhase = true;
-                messageController.Reset(levelManager.GetCurrentPhase());
-            }
-            return;
-        }
+        if(Message()) return;
 
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
@@ -96,6 +90,27 @@ public class RegularPlay extends State
         GameOver();
         UpdateUI();
         NextPhase();
+    }
+
+    private boolean Message()
+    {
+        if (messageController.DisplayMessage(levelManager.GetCurrentPhase()) && !messageDisplayedInThisPhase)
+        {
+            if(!messageSoundWasPlayed)
+            {
+                messageController.CallASound();
+                messageSoundWasPlayed = true;
+            }
+
+            if(inputManager.IsTouchedDown())
+            {
+                messageDisplayedInThisPhase = true;
+                messageSoundWasPlayed = false;
+                messageController.Reset(levelManager.GetCurrentPhase());
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
