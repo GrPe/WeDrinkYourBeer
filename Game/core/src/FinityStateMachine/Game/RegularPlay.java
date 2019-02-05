@@ -191,6 +191,10 @@ public class RegularPlay extends State
                 coinsManager.SubtractCoins(SingleFireTowerV2.cost);
                 ChooseTower(TowerType.Upgrade);
             }
+            else if(uiManager.IsTowerBarClicked(click) && isTowerSelected)
+            {
+                CancelTowerSelection(towerTypeToInsert);
+            }
             else if(isTowerSelected)
             {
                 if(towerTypeToInsert == TowerType.Upgrade)
@@ -208,6 +212,25 @@ public class RegularPlay extends State
                 }
             }
         }
+    }
+
+    private void CancelTowerSelection(TowerType type)
+    {
+        if(type == TowerType.Upgrade)
+        {
+            coinsManager.AddCoins(SingleFireTowerV2.cost);
+        }
+        else if(type == TowerType.SingleFire)
+        {
+            coinsManager.AddCoins(SingleFireTower.cost);
+        }
+        else if(type == TowerType.ContinuousFire)
+        {
+            coinsManager.AddCoins(ContinuousFireTower.cost);
+        }
+
+        towerTypeToInsert = TowerType.None;
+        isTowerSelected = false;
     }
 
     private void ChooseTower(TowerType towerType)

@@ -55,6 +55,11 @@ public class UIManager
         coinsIcon = new Image(new Vector2(480,435),resourceManager.GetTexture("coinsIcon.png"));
     }
 
+    public boolean IsTowerBarClicked(Vector2 position)
+    {
+        return ( position.x < (upgradeTowerButton.GetPosition().x + 60 ))  && (position.y < (upgradeTowerButton.GetPosition().y + 60));
+    }
+
     public void SetBaseHpLabel(int current, int max)
     {
         baseHp.SetText(current + "/" + max);
