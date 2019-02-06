@@ -23,6 +23,7 @@ public class ResourceManager implements Disposable
         navLink = new ArrayList<Vector2>();
         LoadFont();
         LoadTexture();
+        LoadEnemyAtlases();
         LoadSounds();
         LoadMessages();
         manager.finishLoading();
@@ -30,7 +31,7 @@ public class ResourceManager implements Disposable
 
     private void LoadFont()
     {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Joystick.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Font/Joystick.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
         parameter.borderStraight = true;
@@ -47,11 +48,21 @@ public class ResourceManager implements Disposable
         return null;
     }
 
+    public Texture GetEnemyTexture(String name)
+    {
+        if(manager.isLoaded("Enemies/" + name + ".png"))
+        {
+            return manager.get("Enemies/" + name + ".png",Texture.class);
+        }
+        return null;
+    }
+
+
     public Sound GetSound(String path)
     {
-        if(manager.isLoaded(path))
+        if(manager.isLoaded("Sounds/" + path))
         {
-            return manager.get(path,Sound.class);
+            return manager.get("Sounds/" + path,Sound.class);
         }
         return null;
     }
@@ -92,16 +103,18 @@ public class ResourceManager implements Disposable
         manager.load("Messages/upgrade.png", Texture.class);
     }
 
+    private void LoadEnemyAtlases()
+    {
+        manager.load("Enemies/studentV1.png",Texture.class);
+        manager.load("Enemies/studentLaw.png",Texture.class);
+        manager.load("Enemies/studentAWF.png",Texture.class);
+        manager.load("Enemies/studentIT.png",Texture.class);
+        manager.load("Enemies/studentMD.png",Texture.class);
+        manager.load("Enemies/bossV1.png",Texture.class);
+    }
+
     private void LoadTexture()
     {
-        //enemy atlas
-        manager.load("studentV1.png",Texture.class);
-        manager.load("studentLaw.png",Texture.class);
-        manager.load("studentAWF.png",Texture.class);
-        manager.load("studentIT.png",Texture.class);
-        manager.load("studentMD.png",Texture.class);
-        manager.load("bossV1.png",Texture.class);
-
         //texture
         manager.load("environment.png",Texture.class);
         manager.load("way.png",Texture.class);

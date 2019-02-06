@@ -41,16 +41,16 @@ public class UIManager
         timerAndCounter = new Label(resourceManager.GetFont(), new Vector2(350,475), "40");
         coins = new Label(resourceManager.GetFont(), new Vector2(560,475),"120");
 
-        returnToMainMenuButton = new UIButton(new Vector2(715,435),resourceManager.GetTexture("mainMenu.png"), resourceManager.GetSound("Sounds/click.ogg"));
+        returnToMainMenuButton = new UIButton(new Vector2(715,435),resourceManager.GetTexture("mainMenu.png"), resourceManager.GetSound("click.ogg"));
 
         //tower menu
         towerMenuBackground = new Image(new Vector2(-16,-13),resourceManager.GetTexture("topBarGame.png"),1.15f,1.65f);
         singleFireTowerButton = new TwoStateButton(new Vector2(5,0),resourceManager.GetTexture("singleTowerMenuButton.png"),
-                resourceManager.GetTexture("singleTowerMenuButtonOff.png"), resourceManager.GetSound("Sounds/click.ogg"));
+                resourceManager.GetTexture("singleTowerMenuButtonOff.png"), resourceManager.GetSound("click.ogg"));
         continuousFireTowerButton = new TwoStateButton(new Vector2(70,0),resourceManager.GetTexture("continuousFireTowerButton.png"),
-                resourceManager.GetTexture("continuousFireTowerButtonOff.png"), resourceManager.GetSound("Sounds/click.ogg"));
+                resourceManager.GetTexture("continuousFireTowerButtonOff.png"), resourceManager.GetSound("click.ogg"));
         upgradeTowerButton = new TwoStateButton(new Vector2(135,0),resourceManager.GetTexture("harvesterTowerButton.png"),
-                resourceManager.GetTexture("harvesterTowerButtonOff.png"),resourceManager.GetSound("Sounds/click.ogg"));
+                resourceManager.GetTexture("harvesterTowerButtonOff.png"),resourceManager.GetSound("click.ogg"));
 
         //icons
         hpIcon = new Image(new Vector2(5,435),resourceManager.GetTexture("baseHpIcon.png"));

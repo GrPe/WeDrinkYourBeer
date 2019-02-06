@@ -34,7 +34,7 @@ public class Credits extends State
     private void InitUI()
     {
         background = new Image(new Vector2(-40,-30), resourceManager.GetTexture("credits.png"),1,1);
-        returnToMainMenu = new UIButton(new Vector2(275,15),resourceManager.GetTexture("creditsReturn.png"), resourceManager.GetSound("Sounds/click.ogg"));
+        returnToMainMenu = new UIButton(new Vector2(275,15),resourceManager.GetTexture("creditsReturn.png"), resourceManager.GetSound("click.ogg"));
     }
 
     @Override

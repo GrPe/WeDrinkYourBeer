@@ -20,17 +20,17 @@ public class EnemyFactory
         switch(enemyType)
         {
             case Student:
-                return new Student(position, resourceManager.GetTexture("studentV1.png"),resourceManager.GetNavLink());
+                return new Student(position, resourceManager.GetEnemyTexture("studentV1"),resourceManager.GetNavLink());
             case LawStudent:
-                return new LawStudent(position, resourceManager.GetTexture("studentLaw.png"),resourceManager.GetNavLink());
+                return new LawStudent(position, resourceManager.GetEnemyTexture("studentLaw"),resourceManager.GetNavLink());
             case AWFStudent:
-                return new AWFStudent(position, resourceManager.GetTexture("studentAWF.png"),resourceManager.GetNavLink());
+                return new AWFStudent(position, resourceManager.GetEnemyTexture("studentAWF"),resourceManager.GetNavLink());
             case ITStudent:
-                return new ITStudent(position, resourceManager.GetTexture("studentIT.png"),resourceManager.GetNavLink());
+                return new ITStudent(position, resourceManager.GetEnemyTexture("studentIT"),resourceManager.GetNavLink());
             case MDStudent:
-                return new MDStudent(position, resourceManager.GetTexture("studentMD.png"),resourceManager.GetNavLink());
+                return new MDStudent(position, resourceManager.GetEnemyTexture("studentMD"),resourceManager.GetNavLink());
             case BossDrunkMaster:
-                return new BossDrunkMaster(position, resourceManager.GetTexture("bossV1.png"),resourceManager.GetNavLink());
+                return new BossDrunkMaster(position, resourceManager.GetEnemyTexture("bossV1"),resourceManager.GetNavLink());
         }
         return null;
     }

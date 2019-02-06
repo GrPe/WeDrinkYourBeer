@@ -30,7 +30,7 @@ public final class MessageController
         startMessageBox = new Image(new Vector2(140,80),resourceManager.GetMessage("start"),1,1);
         secondTowerMessageBox = new Image(new Vector2(140,80), resourceManager.GetMessage("second"),1,1);
         upgradeTowerMessageBox = new Image(new Vector2(140,80),resourceManager.GetMessage("upgrade"),1,1);
-        sound = resourceManager.GetSound("Sounds/message.ogg");
+        sound = resourceManager.GetSound("message.ogg");
         allowFlag = 0x0;
         ignorePhase = -1;
     }

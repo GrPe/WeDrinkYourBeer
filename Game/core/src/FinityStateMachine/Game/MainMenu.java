@@ -37,9 +37,9 @@ public class MainMenu extends State
     private void InitUI()
     {
         background = new Image(new Vector2(-40,-40),resourceManager.GetTexture("menuBackground.png"),1,1);
-        startGame = new UIButton(new Vector2(275,270),resourceManager.GetTexture("mainMenuStartButton.png"), resourceManager.GetSound("Sounds/click.ogg"));
-        goToCredits = new UIButton(new Vector2(275,190),resourceManager.GetTexture("mainMenuCredits.png"),resourceManager.GetSound("Sounds/click.ogg"));
-        exit = new UIButton(new Vector2(275,110),resourceManager.GetTexture("mainMenuExit.png"),resourceManager.GetSound("Sounds/click.ogg"));
+        startGame = new UIButton(new Vector2(275,270),resourceManager.GetTexture("mainMenuStartButton.png"), resourceManager.GetSound("click.ogg"));
+        goToCredits = new UIButton(new Vector2(275,190),resourceManager.GetTexture("mainMenuCredits.png"),resourceManager.GetSound("click.ogg"));
+        exit = new UIButton(new Vector2(275,110),resourceManager.GetTexture("mainMenuExit.png"),resourceManager.GetSound("click.ogg"));
     }
 
     private void ClickHandler()

@@ -33,7 +33,7 @@ public final class WinScreen extends State
     private void InitUI()
     {
         background = new Image(new Vector2(-40,-40),resourceManager.GetTexture("winwin.png"),1,1);
-        returnToMenu = new UIButton(new Vector2(275,50),resourceManager.GetTexture("creditsReturn.png"), resourceManager.GetSound("Sounds/click.ogg"));
+        returnToMenu = new UIButton(new Vector2(275,50),resourceManager.GetTexture("creditsReturn.png"), resourceManager.GetSound("click.ogg"));
     }
 
     @Override
