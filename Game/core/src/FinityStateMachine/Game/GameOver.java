@@ -33,8 +33,8 @@ public class GameOver extends State {
     private void InitUI()
     {
         background = new Image(new Vector2(-40,-40),resourceManager.GetTexture("gameOverBackground.png"),1,1);
-        retry = new UIButton(new Vector2(100,50),resourceManager.GetTexture("retry.png"), resourceManager.GetSound("Sounds/click.ogg"));
-        returnToMenu = new UIButton(new Vector2(450,50),resourceManager.GetTexture("creditsReturn.png"),resourceManager.GetSound("Sounds/click.ogg"));
+        retry = new UIButton(new Vector2(100,50),resourceManager.GetTexture("retry.png"), resourceManager.GetSound("click.ogg"));
+        returnToMenu = new UIButton(new Vector2(450,50),resourceManager.GetTexture("creditsReturn.png"),resourceManager.GetSound("click.ogg"));
     }
 
     @Override

@@ -23,7 +23,7 @@ public class TowerManager
         towers = new ArrayList<Tower>();
         this.levelManager = levelManager;
         towerFactory = new TowerFactory(resourceManager);
-        this.putTowerSound = resourceManager.GetSound("Sounds/putTower.ogg");
+        this.putTowerSound = resourceManager.GetSound("putTower.ogg");
     }
 
     public boolean SetTower(Vector2 position, TowerType towerType)

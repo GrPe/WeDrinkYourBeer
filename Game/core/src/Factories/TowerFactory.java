@@ -16,7 +16,7 @@ public class TowerFactory
     public TowerFactory(ResourceManager resourceManager)
     {
         this.resourceManager = resourceManager;
-        this.shootSound = resourceManager.GetSound("Sounds/shoot.wav");
+        this.shootSound = resourceManager.GetSound("shoot.wav");
     }
 
     public Sound GetShootSound()

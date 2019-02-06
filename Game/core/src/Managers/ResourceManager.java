@@ -60,9 +60,9 @@ public class ResourceManager implements Disposable
 
     public Sound GetSound(String path)
     {
-        if(manager.isLoaded(path))
+        if(manager.isLoaded("Sounds/" + path))
         {
-            return manager.get(path,Sound.class);
+            return manager.get("Sounds/" + path,Sound.class);
         }
         return null;
     }
