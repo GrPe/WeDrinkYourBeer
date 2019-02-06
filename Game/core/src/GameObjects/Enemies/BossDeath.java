@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class BossDeath extends Enemy
 {
     public BossDeath(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 8666, 66, 2);
+        super(position, 0, texture, navLink, 5666, 66, 2);
     }
 }

@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class SamuraiStudent extends Enemy
 {
     public SamuraiStudent(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 700, 90, 1);
+        super(position, 0, texture, navLink, 600, 75, 1);
     }
 }

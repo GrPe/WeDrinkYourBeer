@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class Devil extends Enemy
 {
     public Devil(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 950, 66, 1);
+        super(position, 0, texture, navLink, 965, 66, 1);
     }
 }
