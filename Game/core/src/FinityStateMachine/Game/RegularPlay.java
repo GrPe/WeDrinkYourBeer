@@ -14,7 +14,7 @@ public class RegularPlay extends State
 {
     //final
     private final int ACTIVE_SECOND_TOWER = 3;
-    private final int ACTIVE_UPGRADE_TOWER = 15;
+    private final int ACTIVE_UPGRADE_TOWER = 16;
 
     //shared
     private GameMaster gameMaster;
@@ -83,13 +83,21 @@ public class RegularPlay extends State
         UpdateTowerMenu();
         ClickedHandler();
 
-        coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*5);
-        uiManager.SetCoinsLabel(coinsManager.GetCoins());
+        AddCoins();
 
         EnemyInBase();
         GameOver();
         UpdateUI();
         NextPhase();
+    }
+
+    private void AddCoins()
+    {
+        if(levelManager.GetCurrentPhase() > ACTIVE_UPGRADE_TOWER)
+            coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*8);
+        else
+            coinsManager.AddCoins(enemyManager.GetKilledEnemyFromLastCheck()*5);
+        uiManager.SetCoinsLabel(coinsManager.GetCoins());
     }
 
     private boolean Message()
