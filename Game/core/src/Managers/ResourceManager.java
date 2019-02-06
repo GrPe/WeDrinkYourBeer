@@ -90,7 +90,6 @@ public class ResourceManager implements Disposable
         manager.load("Messages/start.png", Texture.class);
         manager.load("Messages/second.png", Texture.class);
         manager.load("Messages/upgrade.png", Texture.class);
-        manager.load("Messages/final.png",Texture.class);
     }
 
     private void LoadTexture()
