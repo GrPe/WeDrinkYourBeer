@@ -7,6 +7,12 @@ public enum EnemyType
     AWFStudent,
     ITStudent,
     MDStudent,
-    BossDrunkMaster
-
+    BossDrunkMaster,
+    StudentV2,
+    ChineseStudent,
+    SamuraiStudent,
+    RussiaStudent,
+    Devil,
+    BossDeath,
+    BossExtraVader
 }
