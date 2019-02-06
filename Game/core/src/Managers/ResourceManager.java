@@ -23,6 +23,7 @@ public class ResourceManager implements Disposable
         navLink = new ArrayList<Vector2>();
         LoadFont();
         LoadTexture();
+        LoadEnemyAtlases();
         LoadSounds();
         LoadMessages();
         manager.finishLoading();
@@ -46,6 +47,16 @@ public class ResourceManager implements Disposable
         }
         return null;
     }
+
+    public Texture GetEnemyTexture(String name)
+    {
+        if(manager.isLoaded("Enemies/" + name + ".png"))
+        {
+            return manager.get("Enemies/" + name + ".png",Texture.class);
+        }
+        return null;
+    }
+
 
     public Sound GetSound(String path)
     {
@@ -92,16 +103,18 @@ public class ResourceManager implements Disposable
         manager.load("Messages/upgrade.png", Texture.class);
     }
 
+    private void LoadEnemyAtlases()
+    {
+        manager.load("Enemies/studentV1.png",Texture.class);
+        manager.load("Enemies/studentLaw.png",Texture.class);
+        manager.load("Enemies/studentAWF.png",Texture.class);
+        manager.load("Enemies/studentIT.png",Texture.class);
+        manager.load("Enemies/studentMD.png",Texture.class);
+        manager.load("Enemies/bossV1.png",Texture.class);
+    }
+
     private void LoadTexture()
     {
-        //enemy atlas
-        manager.load("studentV1.png",Texture.class);
-        manager.load("studentLaw.png",Texture.class);
-        manager.load("studentAWF.png",Texture.class);
-        manager.load("studentIT.png",Texture.class);
-        manager.load("studentMD.png",Texture.class);
-        manager.load("bossV1.png",Texture.class);
-
         //texture
         manager.load("environment.png",Texture.class);
         manager.load("way.png",Texture.class);
