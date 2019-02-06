@@ -110,7 +110,6 @@ public class Enemy extends GameObject
         stateMachine = new StateMachine();
 
         WalkingState walkingState = new WalkingState(this);
-        walkingState.AddTransition(Transition.EnemyDie, StateID.EnemyDying);
 
         stateMachine.AddState(walkingState);
     }

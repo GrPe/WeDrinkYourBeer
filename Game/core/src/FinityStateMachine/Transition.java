@@ -4,8 +4,6 @@ public enum Transition
 {
     NullTransition,
 
-    EnemyDie,
-
     PlayerRegularTransition,
     CreditsTransition,
     MainMenuTransition,
