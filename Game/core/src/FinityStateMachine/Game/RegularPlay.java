@@ -26,9 +26,12 @@ public class RegularPlay extends State
     private EnemyManager enemyManager;
     private UIManager uiManager;
     private TowerManager towerManager;
+    private MessageController messageController;
 
     private float timer = 0;
     private boolean nextPhase = false;
+    private boolean messageDisplayedInThisPhase = false;
+    private boolean messageSoundWasPlayed = false;
 
     //inserting and upgrading tower
     private boolean isTowerSelected;
@@ -46,6 +49,7 @@ public class RegularPlay extends State
         enemyManager = new EnemyManager(levelManager.GetSpawnPointPosition(),resourceManager);
         uiManager = new UIManager(resourceManager);
         towerManager = new TowerManager(levelManager,resourceManager);
+        messageController = new MessageController(resourceManager);
     }
 
     @Override
@@ -55,6 +59,8 @@ public class RegularPlay extends State
         uiManager.SetBaseHpLabel(levelManager.GetBase().GetHp(),levelManager.GetBase().GetMaxHp());
         towerTypeToInsert = TowerType.None;
         isTowerSelected = false;
+        messageDisplayedInThisPhase = false;
+        messageSoundWasPlayed = false;
     }
 
     @Override
@@ -63,12 +69,15 @@ public class RegularPlay extends State
         levelManager.Reset();
         towerManager.Reset();
         enemyManager.Reset();
+        messageController.Reset();
         timer = 7f;
     }
 
     @Override
     public void Act()
     {
+        if(Message()) return;
+
         enemyManager.Update();
         towerManager.Update(enemyManager.GetEnemies());
         UpdateTowerMenu();
@@ -83,6 +92,27 @@ public class RegularPlay extends State
         NextPhase();
     }
 
+    private boolean Message()
+    {
+        if (messageController.DisplayMessage(levelManager.GetCurrentPhase()) && !messageDisplayedInThisPhase)
+        {
+            if(!messageSoundWasPlayed)
+            {
+                messageController.CallASound();
+                messageSoundWasPlayed = true;
+            }
+
+            if(inputManager.IsTouchedDown())
+            {
+                messageDisplayedInThisPhase = true;
+                messageSoundWasPlayed = false;
+                messageController.Reset(levelManager.GetCurrentPhase());
+            }
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void Render(Batch batch)
     {
@@ -90,6 +120,7 @@ public class RegularPlay extends State
         enemyManager.Render(batch);
         towerManager.Render(batch);
         uiManager.Render(batch);
+        messageController.Render(batch);
     }
 
     private void UpdateTowerMenu()
@@ -142,6 +173,7 @@ public class RegularPlay extends State
         {
             timer = 6;
             nextPhase = true;
+            messageDisplayedInThisPhase = false;
         }
         if(nextPhase && !enemyManager.IsSpawningEnemies() && enemyManager.IsEmpty())
         {

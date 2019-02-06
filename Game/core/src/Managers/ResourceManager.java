@@ -24,6 +24,7 @@ public class ResourceManager implements Disposable
         LoadFont();
         LoadTexture();
         LoadSounds();
+        LoadMessages();
         manager.finishLoading();
     }
 
@@ -60,6 +61,15 @@ public class ResourceManager implements Disposable
         return bitmapFont;
     }
 
+    public Texture GetMessage(String name)
+    {
+        if(manager.isLoaded("Messages/" + name + ".png"))
+        {
+            return manager.get("Messages/" + name + ".png");
+        }
+        return null;
+    }
+
     @Override
     public void dispose()
     {
@@ -73,6 +83,13 @@ public class ResourceManager implements Disposable
         manager.load("Sounds/putTower.ogg",Sound.class);
         manager.load("Sounds/shoot.wav",Sound.class);
         manager.load("Sounds/click.ogg",Sound.class);
+    }
+
+    private void LoadMessages()
+    {
+        manager.load("Messages/start.png", Texture.class);
+        manager.load("Messages/second.png", Texture.class);
+        manager.load("Messages/upgrade.png", Texture.class);
     }
 
     private void LoadTexture()
