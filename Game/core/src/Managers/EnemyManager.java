@@ -40,6 +40,13 @@ public class EnemyManager
         else if(id == 4) enemyToSpawn = EnemyType.ITStudent;
         else if(id == 5) enemyToSpawn = EnemyType.MDStudent;
         else if(id == 6) enemyToSpawn = EnemyType.BossDrunkMaster;
+        else if(id == 7) enemyToSpawn = EnemyType.StudentV2;
+        else if(id == 8) enemyToSpawn = EnemyType.ChineseStudent;
+        else if(id == 9) enemyToSpawn = EnemyType.SamuraiStudent;
+        else if(id == 10) enemyToSpawn = EnemyType.RussiaStudent;
+        else if(id == 11) enemyToSpawn = EnemyType.Devil;
+        else if(id == 12) enemyToSpawn = EnemyType.BossDeath;
+        else if(id == 13) enemyToSpawn = EnemyType.BossExtraVader;
         else enemyToSpawn = EnemyType.Student;
 
         numberOfEnemyToSpawn = phase.GetNumberOfEnemy();

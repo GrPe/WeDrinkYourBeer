@@ -11,7 +11,7 @@ public final class MessageController
     //constants
     private final int MESSAGE_BOX_START_PHASE = 0;
     private final int MESSAGE_BOX_2ND_TOWER_PHASE = 4;
-    private final int MESSAGE_BOX_UPGRADE_TOWER_PHASE = 16;
+    private final int MESSAGE_BOX_UPGRADE_TOWER_PHASE = 17;
 
     //controls
     private int allowFlag;

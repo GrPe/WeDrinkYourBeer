@@ -31,6 +31,20 @@ public class EnemyFactory
                 return new MDStudent(position, resourceManager.GetEnemyTexture("studentMD"),resourceManager.GetNavLink());
             case BossDrunkMaster:
                 return new BossDrunkMaster(position, resourceManager.GetEnemyTexture("bossV1"),resourceManager.GetNavLink());
+            case StudentV2:
+                return new StudentV2(position,resourceManager.GetEnemyTexture("studentV2"),resourceManager.GetNavLink());
+            case ChineseStudent:
+                return new ChineseStudent(position,resourceManager.GetEnemyTexture("studentChinese"),resourceManager.GetNavLink());
+            case SamuraiStudent:
+                return new SamuraiStudent(position,resourceManager.GetEnemyTexture("studentSamurai"),resourceManager.GetNavLink());
+            case RussiaStudent:
+                return new RussiaStudent(position,resourceManager.GetEnemyTexture("studentRussia"),resourceManager.GetNavLink());
+            case Devil:
+                return new Devil(position,resourceManager.GetEnemyTexture("devil"),resourceManager.GetNavLink());
+            case BossDeath:
+                return new BossDeath(position,resourceManager.GetEnemyTexture("bossV2"),resourceManager.GetNavLink());
+            case BossExtraVader:
+                return new BossExtraVader(position,resourceManager.GetEnemyTexture("bossV3"),resourceManager.GetNavLink());
         }
         return null;
     }

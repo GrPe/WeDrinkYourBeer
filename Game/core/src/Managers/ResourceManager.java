@@ -111,6 +111,13 @@ public class ResourceManager implements Disposable
         manager.load("Enemies/studentIT.png",Texture.class);
         manager.load("Enemies/studentMD.png",Texture.class);
         manager.load("Enemies/bossV1.png",Texture.class);
+        manager.load("Enemies/studentV2.png",Texture.class);
+        manager.load("Enemies/studentChinese.png",Texture.class);
+        manager.load("Enemies/studentSamurai.png",Texture.class);
+        manager.load("Enemies/studentRussia.png",Texture.class);
+        manager.load("Enemies/devil.png",Texture.class);
+        manager.load("Enemies/bossV2.png",Texture.class);
+        manager.load("Enemies/bossV3.png",Texture.class);
     }
 
     private void LoadTexture()

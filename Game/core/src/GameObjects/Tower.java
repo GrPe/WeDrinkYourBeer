@@ -45,7 +45,7 @@ public class Tower extends GameObject
 
     public void Fire()
     {
-        shootSound.play(0.4f);
+        shootSound.play(0.3f);
         bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
                 super.GetRotation(),
                 new Vector2(target.GetPosition().x + 15, target.GetPosition().y +30)));
