@@ -10,6 +10,6 @@ import GameObjects.Enemy;
 public final class BossExtraVader extends Enemy
 {
     public BossExtraVader(Vector2 position, Texture texture, ArrayList<Vector2> navLink) {
-        super(position, 0, texture, navLink, 5900, 60, 2);
+        super(position, 0, texture, navLink, 5800, 60, 2);
     }
 }
