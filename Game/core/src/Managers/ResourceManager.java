@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
+import com.mygdx.game.LanguageConfig;
 
 import java.util.ArrayList;
 
@@ -74,9 +75,12 @@ public class ResourceManager implements Disposable
 
     public Texture GetMessage(String name)
     {
-        if(manager.isLoaded("Messages/" + name + ".png"))
+        if(manager.isLoaded("Messages/" + name + ".png") && manager.isLoaded("Messages/" + name + "EN.png"))
         {
-            return manager.get("Messages/" + name + ".png");
+            if(LanguageConfig.GetLanguage() == LanguageConfig.Language.PL)
+                return manager.get("Messages/" + name + ".png");
+            else
+                return manager.get("Messages/" + name + "EN.png");
         }
         return null;
     }
@@ -98,9 +102,15 @@ public class ResourceManager implements Disposable
 
     private void LoadMessages()
     {
+        //PL
         manager.load("Messages/start.png", Texture.class);
         manager.load("Messages/second.png", Texture.class);
         manager.load("Messages/upgrade.png", Texture.class);
+
+        //EN
+        manager.load("Messages/startEN.png", Texture.class);
+        manager.load("Messages/secondEN.png", Texture.class);
+        manager.load("Messages/upgradeEN.png", Texture.class);
     }
 
     private void LoadEnemyAtlases()

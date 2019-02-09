@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.Locale;
+
 import FinityStateMachine.Game.Credits;
 import FinityStateMachine.Game.GameOver;
 import FinityStateMachine.Game.MainMenu;
@@ -34,12 +36,24 @@ public class GameMaster extends ApplicationAdapter
         camera.setToOrtho(false,780,500);
         batch = new SpriteBatch();
 
+        SetLanguage();
+
         inputManager = new InputManager(camera);
         Gdx.input.setInputProcessor(inputManager);
 
         resourceManager = new ResourceManager();
         InitStateMachine();
     }
+
+    private void SetLanguage()
+    {
+        String locale = Locale.getDefault().getLanguage();
+        if(locale.equals(new Locale("pl").getLanguage()))
+            LanguageConfig.SetLanguage(LanguageConfig.Language.PL);
+        else
+            LanguageConfig.SetLanguage(LanguageConfig.Language.EN);
+    }
+
 
     @Override
     public void render()
