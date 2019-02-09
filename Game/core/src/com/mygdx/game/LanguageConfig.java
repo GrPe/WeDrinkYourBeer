@@ -6,5 +6,5 @@ public final class LanguageConfig
     private static Language currentLanguage;
 
     public static Language GetLanguage() {return currentLanguage;}
-    public static void SetLanguage(Language language) { currentLanguage = language;}
+    static void SetLanguage(Language language) { currentLanguage = language;}
 }
