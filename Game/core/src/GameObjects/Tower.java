@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MusicConfig;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class Tower extends GameObject
 
     public void Fire()
     {
-        shootSound.play(0.3f);
+        shootSound.play(MusicConfig.VOLUMESHOOTING);
         bullets.add(towerFactory.CreateBullet(new Vector2(super.GetPosition().x + GetSpriteWidth()/3,super.GetPosition().y + GetSpriteHeight()/3),
                 super.GetRotation(),
                 new Vector2(target.GetPosition().x + 15, target.GetPosition().y +30)));

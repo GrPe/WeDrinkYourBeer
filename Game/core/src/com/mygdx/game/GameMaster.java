@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,6 +29,9 @@ public class GameMaster extends ApplicationAdapter
     private StateMachine stateMachine;
     private InputManager inputManager;
 
+    private Music music;
+    private boolean musicIsPlaying = true;
+
     @Override
     public void create()
     {
@@ -35,6 +39,12 @@ public class GameMaster extends ApplicationAdapter
         camera = new OrthographicCamera();
         camera.setToOrtho(false,780,500);
         batch = new SpriteBatch();
+
+        music  = Gdx.audio.newMusic(Gdx.files.internal("Sounds/Music.mp3"));
+        MusicConfig.SetMusicEnable(true);
+        music.setLooping(true);
+        music.setVolume(0.8f);
+        music.play();
 
         SetLanguage();
 
@@ -75,12 +85,28 @@ public class GameMaster extends ApplicationAdapter
     {
         batch.dispose();
         resourceManager.dispose();
+        music.dispose();
     }
 
     private void Update()
     {
         camera.update();
+        SetMusic();
         stateMachine.getCurrentState().Act();
+    }
+
+    private void SetMusic()
+    {
+        if(!MusicConfig.GetMusicEnable() && MusicConfig.GetMusicEnable() != musicIsPlaying)
+        {
+            musicIsPlaying = false;
+            music.stop();
+        }
+        else if (MusicConfig.GetMusicEnable() != musicIsPlaying)
+        {
+            musicIsPlaying = true;
+            music.play();
+        }
     }
 
     private void InitStateMachine()

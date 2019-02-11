@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MusicConfig;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class TowerManager
         if(levelManager.CheckIfTowerCanBePlaced(position))
         {
             towers.add(towerFactory.CreateTower(position,towerType));
-            putTowerSound.play(1.0f);
+            putTowerSound.play(MusicConfig.VOLUMEFX);
             return true;
         }
         return false;

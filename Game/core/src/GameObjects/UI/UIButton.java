@@ -3,6 +3,7 @@ package GameObjects.UI;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MusicConfig;
 
 import GameObjects.GameObject;
 
@@ -22,7 +23,7 @@ public class UIButton extends GameObject
                 position.y >= super.GetPosition().y &&
                 position.y < super.GetPosition().y + sprite.getHeight());
         if(results)
-            sound.play(1.0f);
+            sound.play(MusicConfig.VOLUMEFX);
         return results;
     }
 }

@@ -155,6 +155,7 @@ public class ResourceManager implements Disposable
         manager.load("baseHpIcon.png",Texture.class);
         manager.load("timerIcon.png",Texture.class);
         manager.load("coinsIcon.png",Texture.class);
+        manager.load("soundIcon.png",Texture.class);
 
         //topBar
         manager.load("topBarGame.png",Texture.class);

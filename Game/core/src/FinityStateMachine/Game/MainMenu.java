@@ -1,9 +1,11 @@
 package FinityStateMachine.Game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameMaster;
+import com.mygdx.game.MusicConfig;
 
 import FinityStateMachine.State;
 import FinityStateMachine.StateID;
@@ -23,6 +25,8 @@ public class MainMenu extends State
     private UIButton goToCredits;
     private UIButton exit;
 
+    private UIButton musicState;
+
     public MainMenu(GameMaster gameMaster, ResourceManager resourceManager, InputManager inputManager)
     {
         super.stateID = StateID.MainMenuState;
@@ -40,6 +44,7 @@ public class MainMenu extends State
         startGame = new UIButton(new Vector2(275,270),resourceManager.GetTexture("mainMenuStartButton.png"), resourceManager.GetSound("click.ogg"));
         goToCredits = new UIButton(new Vector2(275,190),resourceManager.GetTexture("mainMenuCredits.png"),resourceManager.GetSound("click.ogg"));
         exit = new UIButton(new Vector2(275,110),resourceManager.GetTexture("mainMenuExit.png"),resourceManager.GetSound("click.ogg"));
+        musicState = new UIButton(new Vector2(720,440),resourceManager.GetTexture("soundIcon.png"),resourceManager.GetSound("click.ogg"));
     }
 
     private void ClickHandler()
@@ -59,6 +64,19 @@ public class MainMenu extends State
             {
                 Gdx.app.exit();
             }
+            if(musicState.IsClicked(click))
+            {
+                if(MusicConfig.GetMusicEnable())
+                {
+                    MusicConfig.SetMusicEnable(false);
+                    MusicConfig.MuteFX();
+                }
+                else
+                {
+                    MusicConfig.SetMusicEnable(true);
+                    MusicConfig.NormalizeFX();
+                }
+            }
         }
     }
 
@@ -69,6 +87,7 @@ public class MainMenu extends State
         startGame.Render(batch);
         goToCredits.Render(batch);
         exit.Render(batch);
+        musicState.Render(batch);
     }
 
     @Override

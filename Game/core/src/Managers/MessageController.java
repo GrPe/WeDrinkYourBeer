@@ -3,6 +3,7 @@ package Managers;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MusicConfig;
 
 import GameObjects.UI.Image;
 
@@ -59,7 +60,7 @@ public final class MessageController
 
     public void CallASound()
     {
-        sound.play(1.0f);
+        sound.play(MusicConfig.VOLUMEFX);
     }
 
     public void Render(Batch batch)
