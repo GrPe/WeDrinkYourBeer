@@ -3,7 +3,7 @@ package com.mygdx.game;
 public final class MusicConfig
 {
     private static boolean musicEnable = true;
-    public static float VOLUMESHOOTING = 0.25f;
+    public static float VOLUMESHOOTING = 0.15f;
     public static float VOLUMEFX = 1.0f;
 
     public static void MuteFX()
@@ -14,7 +14,7 @@ public final class MusicConfig
 
     public static void NormalizeFX()
     {
-        VOLUMESHOOTING = 0.3f;
+        VOLUMESHOOTING = 0.15f;
         VOLUMEFX = 1.0f;
     }
 
