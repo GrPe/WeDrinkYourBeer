@@ -6,7 +6,7 @@ Cała gra napisana jest w Java z użyciem biblioteki LibGDX. Dane do poziomów �
 
 Platforma: Android
 Gra dostępna na Google Play:
-https://play.google.com/store/apps/details?id=game.envysoftware.pl&rdid=game.envysoftware.pl
+https://play.google.com/store/apps/details?id=game.envysoftware.pl
 
 ### [EN]
 Final project on the second year of study - Java
@@ -14,7 +14,7 @@ The whole game is written in Java using LibGDX library. Level data are import fr
 
 Platform: Android
 Game available on Google Play:
-https://play.google.com/store/apps/details?id=game.envysoftware.pl&rdid=game.envysoftware.pl
+https://play.google.com/store/apps/details?id=game.envysoftware.pl
 
   
 ### Licences
