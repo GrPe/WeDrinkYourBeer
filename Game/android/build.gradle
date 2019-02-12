@@ -1,4 +1,8 @@
 android {
+    signingConfigs {
+        config {
+        }
+    }
     buildToolsVersion "28.0.3"
     compileSdkVersion 27
     sourceSets {
@@ -17,7 +21,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.mygdx.game"
+        applicationId "game.envysoftware.pl"
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
@@ -31,7 +35,7 @@ android {
     }
 }
 
-dependencies{
+dependencies {
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
     natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
     natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"

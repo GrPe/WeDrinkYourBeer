@@ -35,7 +35,7 @@ public class GameMaster extends ApplicationAdapter
     @Override
     public void create()
     {
-        Gdx.app.setLogLevel(Application.LOG_DEBUG);
+        Gdx.app.setLogLevel(Application.LOG_NONE);
         camera = new OrthographicCamera();
         camera.setToOrtho(false,780,500);
         batch = new SpriteBatch();
